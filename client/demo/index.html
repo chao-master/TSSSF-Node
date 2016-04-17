@@ -16,14 +16,29 @@
       padding: 20px;
       border: 1px solid black;
     }
+    .flexLayout{
+      display: flex;
+      flex-wrap:wrap;
+    }
+    .flexLayout>header{
+      flex: 100%;
+    }
+    .flexLayout>main{
+      flex-grow:1
+    }
+    .flexLayout>aside{
+      flex-grow:0;
+    }
 </style>
   </head>
   <body>
-
-    <main id="gameRoom" style="display:none">
+    <div id="gameRoom" class="flexLayout" style="display:none">
       <header>
         Join Link: <span id="joinLink"></span>
       </header>
+      <main>
+        <header>Game board</header>
+      </main>
       <aside>
         <section>
           <header>Room Members</header>

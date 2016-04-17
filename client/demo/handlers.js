@@ -36,7 +36,7 @@ handlers.join = function(data){
   if(data.client.id == ourId){
     var roomLink = location.origin+location.pathname+"?room="+data.room.id;
     document.querySelector("#joinLink").textContent = roomLink;
-    document.querySelector("#gameRoom").style.display = "block";
+    document.querySelector("#gameRoom").style.display = null;
   }
   var li = document.createElement("li");
   li.textContent = data.client.name;

@@ -8,11 +8,15 @@ function Room(server){
   this.hooks = {};
 
   this.clients = {};
+  this.owner = undefined;
 
-  this.name = this.id;
+  this.name = undefined;
 }
 
 Room.prototype.addClient = function(client) {
+  if(this.owner === undefined){
+    this.owner = client;
+  }
   this.clients[client.id] = client;
   this.broadcast({type:"join",client:client,room:this});
   client.send(this.packet("clients"));
@@ -23,6 +27,15 @@ Room.prototype.removeClient = function(client) {
   delete this.clients[client.id];
   this.broadcast({type:"leave",client:client,room:this});
   console.info(client.name,"has left",this.id);
+  if(this.owner == client){
+    var cIds = Object.keys(this.clients);
+    if (cIds.length > 0){
+      this.owner = this.clients[cIds[0]];
+      this.broadcastPacket("owner");
+    } else {
+      //TODO Close room when empty.
+    }
+  }
 };
 
 Room.prototype.after = function(hook){
@@ -42,7 +55,8 @@ Room.prototype.toJSON = function(){
   return {
     "type":"room",
     "id":this.id,
-    "name":this.name
+    "name":this.name!==undefined? this.name : this.owner.name+"'s room'",
+    "owner":this.owner
   };
 };
 
@@ -65,6 +79,9 @@ Room.prototype.packets =  {
       clients.push(this.clients[r]);
     }
     return {clients:clients};
+  },
+  owner: function(){
+    return {owner:this.owner};
   }
 };
 

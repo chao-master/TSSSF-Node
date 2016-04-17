@@ -36,3 +36,8 @@ Lists the users inside a room. Sent to a client when they join a room.
 Indicate a user is leaving a room.
 * `client` User object for the user who is leaving
 * `room` Room object that the user is leaving
+
+## `owner` &darr;
+Indicate a change of room ownership
+* `owner` User object of the new owner
+* `room` Room object the change corosponds to

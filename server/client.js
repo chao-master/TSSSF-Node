@@ -6,6 +6,7 @@ function Client(ws,server,requestedName,requestedRoom){
   this.oneHooks = {};
   this.hooks = {};
   ws.on("message",this.onMessage.bind(this));
+  ws.on("close",this.onClose.bind(this));
 
   this.room = undefined;
   this.name = undefined;
@@ -115,6 +116,14 @@ Client.prototype.onMessage = function(data){
       console.warn("No handler defined for",type);
     }
   }
+};
+
+Client.prototype.onClose = function(code,msg){
+  console.info("Client",this.id,"has disconnected");
+  if(this.room){
+    this.room.removeClient(this);
+  }
+  delete this.server.clients[this.id];
 };
 
 Client.prototype.after = function(hook){

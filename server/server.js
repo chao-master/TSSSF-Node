@@ -26,6 +26,8 @@ server.prototype.newRoom = function(){
   return new Room(this);
 };
 
+server.prototype.hooks = {};
+
 /*Server Packets*/
 server.prototype.packet = function(packet){
   var rtn = this.packets[packet].call(this);

@@ -40,4 +40,13 @@ Indicate a user is leaving a room.
 ## `owner` &darr;
 Indicate a change of room ownership
 * `owner` User object of the new owner
-* `room` Room object the change corosponds to
+* `room` Room object the change corresponds to
+
+## `chat` &uaddr;
+Sends a chat message to the room
+* `msg` Chat message being Sent
+
+## `chat` &darr;
+Indicates a chat message has been received
+* `msg` Chat message that was received
+* `client` User object of whom sent the chat

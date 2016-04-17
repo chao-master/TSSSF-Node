@@ -89,24 +89,31 @@ Client.prototype.join = function(room){
     this.room.removeClient(this);
   }
   this.server.rooms[room.id].addClient(this);
+  this.room = this.server.rooms[room.id];
 };
 
 Client.prototype.onMessage = function(data){
   data = JSON.parse(data);
   var type = data.type;
   delete data.type;
+
   if(this.oneHooks[type] !== undefined){
     var tmp = this.oneHooks[type];
     delete this.oneHooks[type];
-    tmp(data,this);
-  } else if (this.hooks[type] !== undefined){
-    this.hooks[type](data,this);
-  } else if (this.room !== undefined && this.room.hooks[type] !== undefined){
-    this.room.hooks[type](data,this);
-  } else if (this.server.hooks[type] !== undefined) {
-    this.server.hooks[type](data,this);
+    tmp.call(this,data,this);
   } else {
-    console.warn("No handler defined for",this.toJSON(),type);
+    var resolvers = [this,this.room,this.server], resolved = false;
+    for(var i=0;i<resolvers.length;i++){
+      var r = resolvers[i];
+      if (r !== undefined && r.hooks[type] !== undefined){
+        r.hooks[type].call(r,data,this);
+        resolved = true;
+        break;
+      }
+    }
+    if (!resolved){
+      console.warn("No handler defined for",type);
+    }
   }
 };
 

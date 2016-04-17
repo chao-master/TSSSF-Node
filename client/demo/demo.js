@@ -38,6 +38,9 @@ var ws = new WebSocket("ws://" + location.host + location.search);
 ws.onmessage = function(msg){
   var data = JSON.parse(msg.data),
       handler = handlers[data.type];
+  if(typeof(data) !== 'object'){
+    console.warn("Data is not a object origional data:",msg.data);
+  }
   if(handler === undefined){
     console.warn("No handler for ",data.type,data);
   } else {
@@ -49,4 +52,10 @@ ws.onmessage = function(msg){
 ws._send = ws.send;
 ws.send = function(data){
   ws._send(JSON.stringify(data));
+};
+
+document.querySelector("#chat form").onsubmit = function(e){
+  ws.send({type:"chat",msg:this.childNodes[0].value});
+  this.childNodes[0].value = "";
+  return false;
 };

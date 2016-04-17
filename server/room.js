@@ -4,8 +4,6 @@ var console = require("../colourConsole");
 function Room(server){
   this.server = server;
   this.id = this.server.addRoom(this);
-  this.oneHooks = {};
-  this.hooks = {};
 
   this.clients = {};
   this.owner = undefined;
@@ -38,8 +36,12 @@ Room.prototype.removeClient = function(client) {
   }
 };
 
-Room.prototype.after = function(hook){
-  return new Promise(good=>this.oneHooks[hook] = good);
+Room.prototype.hooks = {
+  chat:function(data,client){
+    data.client = client;
+    data.type = "chat";
+    this.broadcast(data);
+  }
 };
 
 Room.prototype.broadcast = function(data){

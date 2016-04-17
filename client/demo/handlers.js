@@ -33,5 +33,11 @@ handlers.clients = function(data){
 handlers.join = function(data){
   var li = document.createElement("li");
   li.textContent = data.client.name;
-  clientList.appendChild(li);
+  document.querySelector("#clientList").appendChild(li);
+};
+
+handlers.chat = function(data){
+  var li = document.createElement("li");
+  li.textContent = data.client.name + ": " + data.msg;
+  document.querySelector("#chat ul").appendChild(li);
 };

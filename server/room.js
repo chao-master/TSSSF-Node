@@ -55,7 +55,7 @@ Room.prototype.toJSON = function(){
   return {
     "type":"room",
     "id":this.id,
-    "name":this.name!==undefined? this.name : this.owner.name+"'s room'",
+    "name":this.name!==undefined? this.name : this.owner.name+"'s room",
     "owner":this.owner
   };
 };

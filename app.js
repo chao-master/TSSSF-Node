@@ -15,7 +15,6 @@ var server = new gameServer();
 //Websockets
 wss.on('connection', function(ws) {
   var query = url.parse(ws.upgradeReq.url, true).query;
-  console.debug(query);
   new client(ws,server,query.name,query.room);
 });
 

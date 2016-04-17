@@ -1,17 +1,30 @@
+function addModal(element){
+  var modals = document.querySelector(".modals");
+  modals.appendChild(element);
+  modals.style.display = null;
+}
+
+function removeModal(element){
+  var modals = document.querySelector(".modals");
+  modals.removeChild(element);
+  if(modals.childNodes.length==0){
+    modals.style.display = "none";
+  }
+}
+
 function getUserInput(prompt,type){
   return new Promise(function(good,bad){
     var modal = document.createElement("form"),
         input = document.createElement("input");
     input.type = type;
     input.placeholder = prompt;
-    modal.className="modal";
     modal.onsubmit = function(){
       good(input.value);
-      document.body.removeChild(modal);
+      removeModal(modal);
       return false;
     };
     modal.appendChild(input);
-    document.body.appendChild(modal);
+    addModal(modal);
     input.focus();
   });
 }
@@ -21,10 +34,9 @@ function getUserSelection(prompt,options){
     var modal = document.createElement("form"),
         submit = function(val){
           good(val);
-          document.body.removeChild(modal);
+          removeModal(modal);
           return false;
         };
-    modal.className="modal";
     modal.textContent = prompt;
     options.forEach(function(n){
       var selection = document.createElement("button");
@@ -32,8 +44,17 @@ function getUserSelection(prompt,options){
       selection.onclick = submit.bind(null,n.value);
       modal.appendChild(selection);
     });
-    document.body.appendChild(modal);
+    addModal(modal);
   });
+}
+
+function showError(err){
+  var modal = document.createElement("div");
+  modal.onclick = function(){
+    removeModal(modal);
+  };
+  modal.textContent = err;
+  addModal(modal);
 }
 
 var ws = new WebSocket("ws://" + location.host + location.search);

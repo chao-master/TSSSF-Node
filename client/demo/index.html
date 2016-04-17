@@ -3,7 +3,7 @@
   <head>
     <title>TSSSF-Game Connection Demo &amp; protocol test</title>
     <style>
-    form.modal {
+    .modals {
       position: fixed;
       top: 50px;
       left: 0;
@@ -13,8 +13,14 @@
       max-width: 300px;
       margin: auto;
       background: rgba(0,0,0,0.5);
-      padding: 20px;
       border: 1px solid black;
+      border-bottom: none;
+    }
+    .modals>* {
+      display: flex;
+      flex-direction: column;
+      padding:20px;
+      border-bottom:1px solid black;
     }
     .flexLayout{
       display: flex;
@@ -50,10 +56,11 @@
           <form><input type="text"/></form>
         </section>
       </aside>
-
     </main>
+  </div>
+  <div class="modals" style="display:none"></div>
 
-    <script src="handlers.js"></script>
-    <script src="demo.js"></script>
+  <script src="handlers.js"></script>
+  <script src="demo.js"></script>
   </body>
 </html>

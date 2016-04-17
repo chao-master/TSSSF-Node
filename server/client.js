@@ -67,7 +67,7 @@ Client.prototype.awaitRoomChoice = function(room){
     }
     if(room === undefined){
       that.send({type:"error",msg:room+" is not a valid room"});
-      that.send({type:"rooms",rooms:this.server.rooms});
+      that.sendPacket("rooms");
       return that.after("join").then(loop);
     } else {
       return room;

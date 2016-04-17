@@ -48,3 +48,7 @@ handlers.chat = function(data){
   li.textContent = data.client.name + ": " + data.msg;
   document.querySelector("#chat ul").appendChild(li);
 };
+
+handlers.error = function(data){
+  showError("Error: "+data.msg);
+};

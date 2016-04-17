@@ -31,7 +31,7 @@ Room.prototype.after = function(hook){
 
 Room.prototype.broadcast = function(data){
   for(var c in this.clients){
-    this.clients[c].send(JSON.stringify(data));
+    this.clients[c].send(data);
   }
 };
 Room.prototype.broadcastPacket = function(packet){

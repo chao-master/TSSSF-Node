@@ -1,5 +1,4 @@
 /*jshint esnext:true*/
-
 var console = require("../colourConsole");
 
 function Client(ws,server){

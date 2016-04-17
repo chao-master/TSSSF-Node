@@ -1,6 +1,8 @@
 handlers = {};
+var ourId;
 
 handlers.self = function(data){
+  ourId = data.client.id;
   console.log("Our id is",data.client.id);
 };
 
@@ -31,6 +33,11 @@ handlers.clients = function(data){
 };
 
 handlers.join = function(data){
+  if(data.client.id == ourId){
+    var roomLink = location.origin+location.pathname+"?room="+data.room.id;
+    document.querySelector("#joinLink").textContent = roomLink;
+    document.querySelector("#gameRoom").style.display = "block";
+  }
   var li = document.createElement("li");
   li.textContent = data.client.name;
   document.querySelector("#clientList").appendChild(li);

@@ -4,7 +4,11 @@
     <title>TSSSF-Game Connection Demo &amp; protocol test</title>
   </head>
   <body>
-    <main id="gameRoom">
+
+    <main id="gameRoom" style="display:none">
+      <header>
+        Join Link: <span id="joinLink"></span>
+      </header>
       <aside>
         <section>
           <header>Room Members</header>
@@ -16,8 +20,9 @@
           <form><input type="text"/></form>
         </section>
       </aside>
+
     </main>
-    
+
     <script src="handlers.js"></script>
     <script src="demo.js"></script>
   </body>

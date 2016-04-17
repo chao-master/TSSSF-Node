@@ -1,7 +1,7 @@
 handlers = {};
 
 handlers.self = function(data){
-  console.log("Our id is ",data.client.id);
+  console.log("Our id is",data.client.id);
 };
 
 handlers.getName = function(data){

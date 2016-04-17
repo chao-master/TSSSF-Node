@@ -31,7 +31,8 @@ Room.prototype.removeClient = function(client) {
       this.owner = this.clients[cIds[0]];
       this.broadcastPacket("owner");
     } else {
-      //TODO Close room when empty.
+      //Room is empty, destory it.
+      delete this.server.rooms[this.id];
     }
   }
 };

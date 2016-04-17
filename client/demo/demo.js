@@ -4,6 +4,7 @@ function getUserInput(prompt,type){
         input = document.createElement("input");
     input.type = type;
     input.placeholder = prompt;
+    modal.className="modal";
     modal.onsubmit = function(){
       good(input.value);
       document.body.removeChild(modal);
@@ -23,6 +24,7 @@ function getUserSelection(prompt,options){
           document.body.removeChild(modal);
           return false;
         };
+    modal.className="modal";
     modal.textContent = prompt;
     options.forEach(function(n){
       var selection = document.createElement("button");

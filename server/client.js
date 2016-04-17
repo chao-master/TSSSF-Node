@@ -1,7 +1,7 @@
 /*jshint esnext:true*/
 var console = require("../colourConsole");
 
-function Client(ws,server){
+function Client(ws,server,requestedName,requestedRoom){
   this.id = server.addClient(this);
   this.oneHooks = {};
   this.hooks = {};
@@ -16,10 +16,10 @@ function Client(ws,server){
   console.info("New Client has connected id:",this.id);
 
   this.sendPacket("self");
-  this.awaitNameChoice().then( name => {
+  this.awaitNameChoice(requestedName).then( name => {
     console.info("Client",this.id,"has chosen name:",name);
     this.name = name;
-    return this.awaitRoomChoice();
+    return this.awaitRoomChoice(requestedRoom);
   }).then( room => {
     this.join(room);
   }).catch( e => {
@@ -31,28 +31,33 @@ function Client(ws,server){
 * Requests a name from the client
 * Returns: A promise which resolves to the chosen name
 */
-Client.prototype.awaitNameChoice = function(){
-  this.send({type:"getName",msg:"Please provide a name"});
-  return this.after("name").then(function(resp){
+Client.prototype.awaitNameChoice = function(name){
+  var that=this;
+  function loop(resp){
     var name = resp.name;
     if(name === undefined){
-      this.send({type:"getName",msg:name + " is not a valid name"});
-      return this.after("name");
+      that.send({type:"getName",msg:name + " is not a valid name"});
+      return that.after("name").then(loop);
     } else {
-      this.name = name;
       return name;
     }
-  });
+  }
+
+  if(name !== undefined){
+    return Promise.resolve(loop({name:name}));
+  } else {
+    this.send({type:"getName",msg:"Please provide a name"});
+    return this.after("name").then(loop);
+  }
 };
 
 /*
 * Requests a room the client wishes to join
 * Returns: A promise which resolves to the chosen room's id or "+NEW" for a new room
 */
-Client.prototype.awaitRoomChoice = function(){
+Client.prototype.awaitRoomChoice = function(room){
   var that=this;
-  this.sendPacket("rooms");
-  return this.after("join").then(function(resp){
+  function loop(resp){
     var room;
     if(resp.room == "+NEW"){
       room = that.server.newRoom();
@@ -62,11 +67,18 @@ Client.prototype.awaitRoomChoice = function(){
     if(room === undefined){
       that.send({type:"error",msg:room+" is not a valid room"});
       that.send({type:"rooms",rooms:this.server.rooms});
-      return that.after("join");
+      return that.after("join").then(loop);
     } else {
       return room;
     }
-  });
+  }
+
+  if (room !== undefined){
+    return Promise.resolve(loop({room:room}));
+  } else {
+    this.sendPacket("rooms");
+    return this.after("join").then(loop);
+  }
 };
 
 /*

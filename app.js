@@ -14,7 +14,9 @@ var server = new gameServer();
 
 //Websockets
 wss.on('connection', function(ws) {
-  new client(ws,server);
+  var query = url.parse(ws.upgradeReq.url, true).query;
+  console.debug(query);
+  new client(ws,server,query.name,query.room);
 });
 
 //Express app

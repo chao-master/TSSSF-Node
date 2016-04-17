@@ -34,7 +34,7 @@ function getUserSelection(prompt,options){
   });
 }
 
-var ws = new WebSocket("ws://" + location.host);
+var ws = new WebSocket("ws://" + location.host + location.search);
 ws.onmessage = function(msg){
   var data = JSON.parse(msg.data),
       handler = handlers[data.type];

@@ -57,8 +57,12 @@ function showError(err){
   addModal(modal);
 }
 
-//var ws = new WebSocket("ws://" + location.host + location.search);
-var ws = new LongPoll("../ws",location.search);
+var ws;
+try {
+  ws = new WebSocket("ws://" + location.host + location.search);
+} catch(e) {
+  ws = new LongPoll("../ws",location.search);
+}
 ws.onmessage = function(msg){
   var data = JSON.parse(msg.data),
       handler = handlers[data.type];

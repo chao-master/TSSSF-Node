@@ -2,13 +2,14 @@ var argv = require('yargs')
     .usage('Usage: $0 [options]')
     .alias('H', 'host').default('H','0.0.0.0')
     .alias('p', 'port').default('p','3000')
+    .boolean('lonpoll')
     .help('h').alias('h', 'help')
     .argv;
 var console = require("./colourConsole");
 
 var httpServer = require('http').createServer(),
     url = require('url'),
-    WebSocket = require('ws')
+    WebSocket = require('ws'),
     WebSocketServer = WebSocket.Server,
     wss = new WebSocketServer({ server: httpServer }),
     express = require('express'),
@@ -30,8 +31,10 @@ wss.on('connection', function(ws) {
 app.use(express.static(__dirname + '/client'));
 
 //Longpolling...
-app.get("/ws",require("./longpoll"))
-app.enable('trust proxy')
+if(argv.longpoll){
+  app.get("/ws",require("./longpoll"));
+  app.enable('trust proxy');
+}
 
 //Bind to http server and start
 httpServer.on('request', app);

@@ -1,4 +1,12 @@
 var console = require("./colourConsole");
+var argv = require('yargs')
+    .usage('Usage: $0 [options]')
+    .alias('H', 'host').default('H','0.0.0.0')
+    .alias('p', 'port').default('p','3000')
+    .help('h')
+    .alias('h', 'help')
+    .epilog('copyright 2015')
+    .argv;
 
 var httpServer = require('http').createServer(),
     url = require('url'),
@@ -23,6 +31,6 @@ app.use(express.static(__dirname + '/client'));
 
 //Bind to http server and start
 httpServer.on('request', app);
-httpServer.listen(port, function () {
-  console.log('Listening on',httpServer.address().port);
+httpServer.listen(argv.p,argv.H, function () {
+  console.log('Listening on',httpServer.address());
 });

@@ -2,38 +2,15 @@ function Grid(canvas){
   this.ponies = {};
   this.ships = {};
   this.canvas = canvas;
-
-  //Debug
-  var that = this;
-  this.canvas.onclick = function(e){
-    console.table(that.getActions(e.offsetX,e.offsetY));
-    return false;
-  };
-
-  var ctx = this.canvas.getContext("2d");
-
-  ctx.fillRect(
-    this.CELL_MARGIN*1.5+this.CELL_SIZE,
-    this.CELL_MARGIN*1.5+this.CELL_SIZE,
-    this.CELL_SIZE,
-    this.CELL_SIZE
-  );
-  ctx.fillRect(
-    this.CELL_MARGIN*2.5+this.CELL_SIZE*2,
-    this.CELL_MARGIN*1.5+this.CELL_SIZE,
-    this.CELL_SIZE,
-    this.CELL_SIZE
-  );
-  this.addPony(1,1,1);
-  this.addPony(2,1,1);
 }
 
 Grid.prototype.CELL_MARGIN = 20;
-Grid.prototype.CELL_SIZE = 100;
+Grid.prototype.CELL_SIZE = 150;
 
 Grid.prototype.addPony = function(gridX,gridY,pony){
   this.ponies[gridX+","+gridY] = pony;
   pony.position = [gridX,gridY];
+  pony.parent = this;
 };
 
 Grid.prototype.getPony = function(gridX,gridY){

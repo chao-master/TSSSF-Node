@@ -1,0 +1,87 @@
+[{
+  "name":"Glitter Shell",
+  "image":"../art/glitter.jpeg",
+  "gender":"malefemale",
+  "race":"unicorn",
+  "icon":"time",
+  "effect":"replace"
+},{
+  "name":"Fluttershy",
+  "image":"../art/flutter.png",
+  "gender":"female",
+  "race":"pegasus",
+  "effect":"swap"
+},{
+  "name":"Braeburn",
+  "image":"../art/brae.png",
+  "gender":"male",
+  "race":"earth",
+  "effect":"draw"
+},{
+  "name":"Fausticorn",
+  "image":"../art/faust.png",
+  "gender":"female",
+  "race":"alicorn",
+  "effect":"newGoal"
+},{
+  "name":"Gummy",
+  "image":"../art/gummy.png",
+  "gender":"male",
+  "icon":"time",
+  "effect":"search"
+},{
+  "name":"Ripp",
+  "image":"../art/ripp.png",
+  "gender":"male",
+  "race":"pegasus",
+  "effect":"copy"
+},{
+  "name":"Eiro",
+  "image":"../art/eiro.jpg",
+  "gender":"female",
+  "race":"pegasus",
+  "effect":"replace"
+},{
+  "name":"Silvia",
+  "image":"../art/silvia.png",
+  "gender":"female",
+  "race":"pegasus",
+  "effect":"swap"
+},{
+  "name":"Coke",
+  "image":"../art/coke.png",
+  "gender":"female",
+  "race":"earth",
+  "effect":"draw"
+},{
+  "name":"camc0n",
+  "image":"../art/camc0n.jpg",
+  "gender":"female",
+  "race":"earth",
+  "effect":"newGoal"
+},{
+  "name":"Kissing booth",
+  "image":"../art/booth.png"
+},{
+  "name":"On the seas",
+  "image":"../art/ship.png"
+},{
+  "name":"Ear nibbles",
+  "image":"../art/ear.jpg"
+},{
+  "name":"Pony Hugs",
+  "image":"../art/triple.png"
+},{
+  "name":"Married",
+  "image":"../art/married.png"
+},{
+  "name":"Baby Pics",
+  "image":"../art/babyPics.jpg"
+},{
+  "name":"Gay for dash",
+  "image":"../art/gayForDashie.png"
+},{
+  "name":"BURN THE GRID",
+  "condition":"Remove 20 or more cards from the grid as a result of a single play",
+  "score":4
+}]

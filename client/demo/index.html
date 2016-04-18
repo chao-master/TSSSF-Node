@@ -44,7 +44,7 @@
       </header>
       <main>
         <header>Game board</header>
-        <canvas id="demoCanvas" width="500" height="500"></canvas>
+        <canvas id="demoCanvas" width="680" height="680"></canvas>
       </main>
       <aside>
         <section>
@@ -64,8 +64,23 @@
   <script src="handlers.js"></script>
   <script src="demo.js"></script>
 	<script src="../Grid.js"></script>
+	<script src="../Card.js"></script>
   <script>
-    new Grid(document.querySelector("#demoCanvas"));
+    var grid = new Grid(document.querySelector("#demoCanvas"));
+
+    fetch("../cards/testSet.json")
+      .then(resp=>resp.json())
+      .then(cards=>cards.map(Card.prototype.fromObject))
+      .then(function(cards){
+        var x=0,y=0;
+        cards.forEach(function(card){
+          grid.addPony(x,y,card);
+          if(++x>4){
+            x=0; y++;
+          }
+        })
+      })
+    grid.render();
   </script>
   </body>
 </html>

@@ -44,6 +44,7 @@
       </header>
       <main>
         <header>Game board</header>
+        <canvas id="demoCanvas" width="500" height="500"></canvas>
       </main>
       <aside>
         <section>
@@ -62,5 +63,9 @@
 
   <script src="handlers.js"></script>
   <script src="demo.js"></script>
+	<script src="../Grid.js"></script>
+  <script>
+    new Grid(document.querySelector("#demoCanvas"));
+  </script>
   </body>
 </html>

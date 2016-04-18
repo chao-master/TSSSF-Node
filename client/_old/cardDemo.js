@@ -33,27 +33,27 @@ function init(){
 	stage.addChild(decks);
 
 	var cards = [
-		["Glitter Shell","art/glitter.jpeg","malefemale","unicorn",1,"replace"],
-		["Fluttershy","art/flutter.png","female","pegasus",0,"swap"],
-		["Braeburn","art/brae.png","male","earth",0,"draw"],
-		["Fausticorn","art/faust.png","female","alicorn",0,"newGoal"],
-		["Gummy","art/gummy.png","male",0,1,"search"],
-		["Ripp","art/ripp.jpg","male","pegasus",0,"copy"],
-		["Eiro","art/eiro.jpg","female","pegasus",0,"replace"],
-		["Silvia","art/silvia.png","female","pegasus",0,"swap"],
-		["Coke","art/coke.png","female","earth",0,"draw"],
-		["camc0n","art/camc0n.jpg","female","earth",0,"newGoal"]
+		["Glitter Shell","../art/glitter.jpeg","malefemale","unicorn",1,"replace"],
+		["Fluttershy","../art/flutter.png","female","pegasus",0,"swap"],
+		["Braeburn","../art/brae.png","male","earth",0,"draw"],
+		["Fausticorn","../art/faust.png","female","alicorn",0,"newGoal"],
+		["Gummy","../art/gummy.png","male",0,1,"search"],
+		["Ripp","../art/ripp.jpg","male","pegasus",0,"copy"],
+		["Eiro","../art/eiro.jpg","female","pegasus",0,"replace"],
+		["Silvia","../art/silvia.png","female","pegasus",0,"swap"],
+		["Coke","../art/coke.png","female","earth",0,"draw"],
+		["camc0n","../art/camc0n.jpg","female","earth",0,"newGoal"]
 	], ships = [
-		["Kissing booth","art/booth.png",""],
-		["On the seas","art/ship.png",""],
-		["Ear nibbles","art/ear.jpg",""],
-		["Pony Hugs","art/triple.png",""],
-		["Married","art/married.png",""],
-		["Baby Pics","art/babyPics.jpg",""],
-		["Gay for dash","art/gayForDashie.png",""]
+		["Kissing booth","../art/booth.png",""],
+		["On the seas","../art/ship.png",""],
+		["Ear nibbles","../art/ear.jpg",""],
+		["Pony Hugs","../art/triple.png",""],
+		["Married","../art/married.png",""],
+		["Baby Pics","../art/babyPics.jpg",""],
+		["Gay for dash","../art/gayForDashie.png",""]
 	];
 
-	var s = new StartCard("Give me money.png","art/giveMoney","female","alicorn",0);
+	var s = new StartCard("Give me money.png","../art/giveMoney","female","alicorn",0);
 	window.grid.addPony(s,0,0);
 	var i,c;
 	for(i=0;i<ships.length;i++){

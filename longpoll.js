@@ -75,9 +75,10 @@ function longPoll(req,res){
   } else {
     var host = req.get("Host");
     if(req.query.query){
-        host += req.query.query;
+        host += "/"+req.query.query;
     }
-    var proxy = new connection(host,req.ip);
+    console.debug(host);
+    var proxy = new connection(host,req.ips);
     proxy.getId().then(id=>{
       res.json({_key:id});
       connections[id] = proxy;

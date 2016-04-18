@@ -21,6 +21,7 @@ var server = new gameServer();
 
 //Websockets
 wss.on('connection', function(ws) {
+  console.debug(ws.upgradeReq.url);
   var query = url.parse(ws.upgradeReq.url, true).query;
   new client(ws,server,query.name,query.room);
 });
@@ -30,6 +31,7 @@ app.use(express.static(__dirname + '/client'));
 
 //Longpolling...
 app.get("/ws",require("./longpoll"))
+app.enable('trust proxy')
 
 //Bind to http server and start
 httpServer.on('request', app);

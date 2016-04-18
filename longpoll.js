@@ -4,9 +4,21 @@ WebSocket = require("ws");
 
 connections = {};
 
-function connection(proxyTo){
+setInterval(function(){
+  console.debug("Checking for dead longpolls")
+  var keys = Object.keys(connections),
+      now = Date.now()
+  for(var i=0;i<keys.length;i++){
+    var proxy = connections[keys[i]];
+    if (proxy.lastSeen < now-60000){
+      proxy.ws.close();
+    }
+  }
+},30000)
+
+function connection(proxyTo,forIp){
   this.proxyTo = proxyTo;
-  console.info("Long poll proxying to",proxyTo);
+  console.info("Long poll proxying to",proxyTo,"for",forIp);
   this.id = undefined;
   this.queue = [];
   this.notify = undefined;
@@ -15,7 +27,6 @@ connection.prototype.getId = function(){
   return new Promise(good => {
     this.ws = new WebSocket("ws://"+this.proxyTo);
     this.ws.on("message",d=>{
-      console.debug("queue",d,this.notify);
       if(this.id === undefined){
         var data = JSON.parse(d);
         if(data.type == "self"){
@@ -30,17 +41,25 @@ connection.prototype.getId = function(){
     });
   });
 };
-connection.prototype.send = function(send){
+connection.prototype.send = function(send,slave){
+  this.lastSeen = Date.now();
   if (send) {
     this.ws.send(send);
   }
-  return new Promise((good,bad) => {
-    this.notify = good;
-    if(this.queue.length>0) good();
-    setTimeout(bad,10000)
-  }).then(_=>this.queue[0])
-  .catch(_=>"{}")
-  .then(n=>{this.notify=undefined;return n});
+  if (slave) {
+    slaveObj = {}
+    slaveObj.next = (_=>slaveObj)
+    slaveObj.catch = slaveObj.next
+    return slaveObj
+  } else {
+    return new Promise((good,bad) => {
+      this.notify = good;
+      if(this.queue.length>0) good();
+      setTimeout(bad,10000)
+    }).then(_=>this.queue[0])
+    .catch(_=>"{}")
+    .then(n=>{this.notify=undefined;return n});
+  }
 };
 
 function longPoll(req,res){
@@ -49,12 +68,16 @@ function longPoll(req,res){
     if (proxy === undefined){
       res.json({_err:"bad key"});
     } else {
-      proxy.send(req.query.msg)
+      proxy.send(req.query.msg,req.query.slave)
         .then(reply => res.send(reply))
         .then(_=>proxy.queue.shift());
     }
   } else {
-    var proxy = new connection(req.get("Host"));
+    var host = req.get("Host");
+    if(req.query.query){
+        host += req.query.query;
+    }
+    var proxy = new connection(host,req.ip);
     proxy.getId().then(id=>{
       res.json({_key:id});
       connections[id] = proxy;

@@ -1,25 +1,28 @@
 /*jshint esnext:true*/
-LongPoll = function(addr){
+LongPoll = function(addr,query){
   this.addr = addr;
   this._key = undefined;
-  this.getForever();
-  this.toSend = [];
+  this.getForever(query);
 };
-LongPoll.prototype.getForever = function(){
-  var addr = this.addr+"?"+(
-    [["key",this._key],["msg",this.toSend.shift()]]
-    .filter(v=>v[1])
+LongPoll.prototype.getAddr = function(query){
+  query.push([["key"],[this._key]]);
+  return this.addr+"?"+(query.filter(v=>v[1])
     .map(v=>encodeURIComponent(v[0])+"="+encodeURIComponent(v[1]))
     .join("&")
   );
-  console.debug(addr);
-  request(addr).then(r=>r.json()).then(data=>{
+}
+
+LongPoll.prototype.getForever = function(query){
+  fetch(this.getAddr([["query"],[query]])).then(r=>r.json()).then(data=>{
     if (data._key){
       this._key = data._key;
     } else if (data.type){
       if (this.onmessage){
-        this.onmessage(data);
+        this.onmessage({data:JSON.stringify(data)});
       }
     }
   }).then(_=>this.getForever());
 };
+LongPoll.prototype.send = function(data){
+  fetch(this.getAddr([["msg",data],["slave","1"]]);
+}

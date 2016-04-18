@@ -8,7 +8,8 @@ var console = require("./colourConsole");
 
 var httpServer = require('http').createServer(),
     url = require('url'),
-    WebSocketServer = require('ws').Server,
+    WebSocket = require('ws')
+    WebSocketServer = WebSocket.Server,
     wss = new WebSocketServer({ server: httpServer }),
     express = require('express'),
     app = express(),
@@ -26,6 +27,9 @@ wss.on('connection', function(ws) {
 
 //Express app
 app.use(express.static(__dirname + '/client'));
+
+//Longpolling...
+app.get("/ws",require("./longpoll"))
 
 //Bind to http server and start
 httpServer.on('request', app);

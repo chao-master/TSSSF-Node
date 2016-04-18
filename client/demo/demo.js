@@ -7,7 +7,7 @@ function addModal(element){
 function removeModal(element){
   var modals = document.querySelector(".modals");
   modals.removeChild(element);
-  if(modals.childNodes.length==0){
+  if(modals.childNodes.length===0){
     modals.style.display = "none";
   }
 }
@@ -57,7 +57,8 @@ function showError(err){
   addModal(modal);
 }
 
-var ws = new WebSocket("ws://" + location.host + location.search);
+//var ws = new WebSocket("ws://" + location.host + location.search);
+var ws = new LongPoll("ws");
 ws.onmessage = function(msg){
   var data = JSON.parse(msg.data),
       handler = handlers[data.type];

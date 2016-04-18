@@ -7,7 +7,7 @@ function Grid(canvas){
     var gridCoords = Grid.prototype.mouseToGridCoords(e.offsetX,e.offsetY),
         card = this.getPony(gridCoords[0],gridCoords[1]);
     var modal = document.createElement("pre");
-    modal.style.whiteSpace = "pre-wrap"
+    modal.style.whiteSpace = "pre-wrap";
     modal.textContent = card.constructor.name+" "+JSON.stringify(
       card,
       ["name","gender","race","extraIcon","effect","condition","score"],

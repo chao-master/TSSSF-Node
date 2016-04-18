@@ -35,6 +35,7 @@ Grid.prototype.getPony = function(gridX,gridY){
 Grid.prototype.removePony = function(gridX,gridY){
   var pony = this.getPony(gridX,gridY);
   if(pony !== undefined){
+    pony.parent = undefined;
     var that=this;
     delete this.ponies[gridX+","+gridY];
     return ["up","down","left","right"].map(function(dir){
@@ -55,8 +56,10 @@ Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
 };
 
 Grid.prototype.addShip = function(gridX,gridY,direction,ship){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction).join(",");
-  this.ships[coord] = ship;
+  var coord = this.normalizeShipCoord(gridX,gridY,direction);
+  this.ships[coord.join(",")] = ship;
+  ship.position = coord;
+  ship.parent = this;
 };
 
 Grid.prototype.getShip = function(gridX,gridY,direction){
@@ -68,6 +71,7 @@ Grid.prototype.removeShip = function(gridX,gridY,direction){
   var coord = this.normalizeShipCoord(gridX,gridY,direction).join(","),
       ship = ship.ships[coord];
   if (ship !== undefined){
+    ship.parent = undefined;
     delete this.ships[coord];
   }
   return ship;
@@ -75,6 +79,7 @@ Grid.prototype.removeShip = function(gridX,gridY,direction){
 
 Grid.prototype.render = function(){
   var keys = Object.keys(this.ponies);
+
   for(var i=0;i<keys.length;i++){
     var pony = this.ponies[keys[i]];
     pony.render();

@@ -12,15 +12,17 @@
       flex-direction: column;
       max-width: 300px;
       margin: auto;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid black;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid white;
       border-bottom: none;
+      color:white;
     }
     .modals>* {
       display: flex;
       flex-direction: column;
       padding:20px;
-      border-bottom:1px solid black;
+      border-bottom:1px solid white;
+      margin:0;
     }
     .flexLayout{
       display: flex;
@@ -44,7 +46,7 @@
       </header>
       <main>
         <header>Game board</header>
-        <canvas id="demoCanvas" width="680" height="680"></canvas>
+        <canvas id="demoCanvas" width="680" height="850"></canvas>
       </main>
       <aside>
         <section>
@@ -75,7 +77,7 @@
         var x=0,y=0;
         cards.forEach(function(card){
           grid.addPony(x,y,card);
-          if(++x>4){
+          if(++x>=4){
             x=0; y++;
           }
         })

@@ -2,6 +2,23 @@ function Grid(canvas){
   this.ponies = {};
   this.ships = {};
   this.canvas = canvas;
+
+  this.canvas.oncontextmenu = e => {
+    var gridCoords = Grid.prototype.mouseToGridCoords(e.offsetX,e.offsetY),
+        card = this.getPony(gridCoords[0],gridCoords[1]);
+    var modal = document.createElement("pre");
+    modal.style.whiteSpace = "pre-wrap"
+    modal.textContent = card.constructor.name+" "+JSON.stringify(
+      card,
+      ["name","gender","race","extraIcon","effect","condition","score"],
+      1
+    );
+    modal.onclick = function(){
+      removeModal(modal);
+    };
+    addModal(modal);
+    return false;
+  };
 }
 
 Grid.prototype.CELL_MARGIN = 20;

@@ -10,7 +10,7 @@ LongPoll.prototype.getAddr = function(query){
     .map(v=>encodeURIComponent(v[0])+"="+encodeURIComponent(v[1]))
     .join("&")
   );
-}
+};
 
 LongPoll.prototype.getForever = function(query){
   fetch(this.getAddr([["query"],[query]])).then(r=>r.json()).then(data=>{
@@ -24,5 +24,5 @@ LongPoll.prototype.getForever = function(query){
   }).then(_=>this.getForever());
 };
 LongPoll.prototype.send = function(data){
-  fetch(this.getAddr([["msg",data],["slave","1"]]);
-}
+  fetch(this.getAddr([["msg",data],["slave","1"]]));
+};

@@ -75,15 +75,24 @@
       .then(resp=>resp.json())
       .then(cards=>cards.map(Card.prototype.fromObject))
       .then(function(cards){
-        var x=0,y=0;
+        var ponyX=0,ponyY=0,
+            shipX=0,shipY=0;
         cards.forEach(function(card){
-          grid.addPony(x,y,card);
-          if(++x>=4){
-            x=0; y++;
+          if(card instanceof PonyCard){
+            grid.addPony(ponyX,ponyY,card);
+            if(++ponyX>=4){
+              ponyX=0; ponyY++;
+            }
+          } else if(card instanceof ShipCard){
+            grid.addShip(shipX,shipY,"right",card)
+            if(++shipX>=3){
+              shipX=0; shipY++;
+            }
           }
         })
+      }).then(function(){
+        grid.render();
       })
-    grid.render();
   </script>
   </body>
 </html>

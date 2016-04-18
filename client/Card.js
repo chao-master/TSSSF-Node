@@ -46,7 +46,7 @@ function Card(name,imgSrc){
     .then(function(img){
       that.image = resizeImage(img,that.IMG_WIDTH,that.IMG_HEIGHT);
       if(that.parent){
-        that.render();
+        that.parent.render();
       }
     });
 }
@@ -113,3 +113,22 @@ ShipCard.prototype = Object.create(Card.prototype);
 ShipCard.prototype.constructor = ShipCard;
 
 ShipCard.prototype.color = "pink";
+
+ShipCard.prototype.render = function(){
+  var cardSize = this.parent.CELL_SIZE/2,
+      cellSize = this.parent.CELL_SIZE + this.parent.CELL_MARGIN,
+      cellOffset = (cardSize + this.parent.CELL_MARGIN)/2,
+      canvasX = cellSize*this.position[0]+cellOffset,
+      canvasY = cellSize*this.position[1]+cellOffset,
+      ctx = this.parent.canvas.getContext("2d");
+      if(this.position[2] == "down"){
+        canvasY+=cardSize*1+this.parent.CELL_MARGIN/2;
+      } else if(this.position[2] == "right"){
+        canvasX+=cardSize*1+this.parent.CELL_MARGIN/2;
+      }
+  ctx.fillStyle = this.color;
+  ctx.fillRect(canvasX,canvasY,cardSize,cardSize);
+  if(this.image){
+    ctx.drawImage(this.image,0,0,this.image.width,this.image.height,canvasX+5,canvasY+13,this.image.width/2,this.image.height/2);
+  }
+};

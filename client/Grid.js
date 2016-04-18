@@ -4,7 +4,7 @@ function Grid(canvas){
   this.canvas = canvas;
 
   this.canvas.oncontextmenu = e => {
-    var gridCoords = Grid.prototype.mouseToGridCoords(e.offsetX,e.offsetY),
+    var gridCoords = this.mouseToGridCoords(e.offsetX,e.offsetY),
         card = this.getPony(gridCoords[0],gridCoords[1]);
     var modal = document.createElement("pre");
     modal.style.whiteSpace = "pre-wrap";
@@ -38,9 +38,11 @@ Grid.prototype.removePony = function(gridX,gridY){
     pony.parent = undefined;
     var that=this;
     delete this.ponies[gridX+","+gridY];
-    return ["up","down","left","right"].map(function(dir){
-      return that.removeShip(gridX,gridY,direction);
-    }).filter(function(n){return n!==undefined;}).push(pony);
+    var rtn = ["up","down","left","right"].map(function(dir){
+      return that.removeShip(gridX,gridY,dir);
+    }).filter(function(n){return n!==undefined;});
+    rtn.push(pony);
+    return rtn;
   }
 };
 
@@ -69,7 +71,7 @@ Grid.prototype.getShip = function(gridX,gridY,direction){
 
 Grid.prototype.removeShip = function(gridX,gridY,direction){
   var coord = this.normalizeShipCoord(gridX,gridY,direction).join(","),
-      ship = ship.ships[coord];
+      ship = this.ships[coord];
   if (ship !== undefined){
     ship.parent = undefined;
     delete this.ships[coord];
@@ -78,9 +80,16 @@ Grid.prototype.removeShip = function(gridX,gridY,direction){
 };
 
 Grid.prototype.render = function(){
-  var keys = Object.keys(this.ponies);
-
+  var ctx = this.canvas.getContext("2d"),
+      keys = Object.keys(this.ships);
+  ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
   for(var i=0;i<keys.length;i++){
+    var ship = this.ships[keys[i]];
+    ship.render();
+  }
+
+  keys = Object.keys(this.ponies);
+  for(i=0;i<keys.length;i++){
     var pony = this.ponies[keys[i]];
     pony.render();
   }
@@ -94,6 +103,8 @@ Grid.prototype.mouseToGridCoords = function(mouseX,mouseY,float){
   if(!float || float == "sperate" || float == "direction"){
     gridXPart = gridX%1;
     gridYPart = gridY%1;
+    gridX = Math.floor(gridX);
+    gridY = Math.floor(gridY);
   }
   if (float == "seperate"){
     return [gridX,gridY,gridXPart,gridYPart];

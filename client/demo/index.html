@@ -77,7 +77,11 @@
 
     game.addAsChild("grid",grid,0,0,680,680);
     game.addAsChild("hand",hand,0,680,680,150);
-    game.render();
+    handlers.cardList = function(data){
+      data.cardList.forEach(function(c){
+        hand.addCard(Card.fromObject(c));
+      });
+    }
   </script>
   </body>
 </html>

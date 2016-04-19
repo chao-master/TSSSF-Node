@@ -61,13 +61,13 @@ Card.prototype.IMG_WIDTH = 130;
 Card.prototype.IMG_HEIGHT = 96;
 Card.prototype.color = "black";
 
-Card.prototype.fromObject = function(obj){
+Card.fromObject = function(obj){
   if("gender" in obj || "race" in obj || "icon" in obj){
-    return new PonyCard(obj.name,obj.image,obj.gender,obj.race,obj.icon,obj.effect);
+    return new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   } else if("condition" in obj){
-    return new GoalCard(obj.name,obj.image,obj.condition,obj.score);
+    return new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
   } else {
-    return new ShipCard(obj.name,obj.image,obj.gender,obj.race,obj.icon,obj.effect);
+    return new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   }
 };
 

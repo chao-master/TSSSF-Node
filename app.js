@@ -22,7 +22,6 @@ var server = new gameServer();
 
 //Websockets
 wss.on('connection', function(ws) {
-  console.debug(ws.upgradeReq.url);
   var query = url.parse(ws.upgradeReq.url, true).query;
   new client(ws,server,query.name,query.room);
 });
@@ -32,6 +31,7 @@ app.use(express.static(__dirname + '/client'));
 
 //Longpolling...
 if(argv.longpoll){
+  console.log("Starting longpilling on /ws");
   app.get("/ws",require("./longpoll"));
   app.enable('trust proxy');
 }

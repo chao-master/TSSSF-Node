@@ -72,7 +72,6 @@ ws.onmessage = function(msg){
   if(handler === undefined){
     console.warn("No handler for ",data.type,data);
   } else {
-    console.debug(data);
     handlers[data.type](data);
   }
 };

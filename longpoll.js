@@ -1,20 +1,23 @@
 /*jshint esnext:true*/
 //Longpolling...
 WebSocket = require("ws");
-
 connections = {};
 
+var CLIENT_TIMEOUT = 60*1000,
+    CHECKRATE = 30*1000,
+    POLL_TIMEOUT = 30*1000;
+
 setInterval(function(){
-  console.debug("Checking for dead longpolls")
+  console.log("Checking for dead longpolls");
   var keys = Object.keys(connections),
-      now = Date.now()
+      now = Date.now();
   for(var i=0;i<keys.length;i++){
     var proxy = connections[keys[i]];
-    if (proxy.lastSeen < now-60000){
+    if (proxy.lastSeen < now-CLIENT_TIMEOUT){
       proxy.ws.close();
     }
   }
-},30000)
+},CHECKRATE);
 
 function connection(proxyTo,forIp){
   this.proxyTo = proxyTo;
@@ -47,24 +50,25 @@ connection.prototype.send = function(send,slave){
     this.ws.send(send);
   }
   if (slave) {
-    slaveObj = {}
-    slaveObj.next = (_=>slaveObj)
-    slaveObj.catch = slaveObj.next
-    return slaveObj
+    slaveObj = {};
+    slaveObj.next = (_=>slaveObj);
+    slaveObj.catch = slaveObj.next;
+    return slaveObj;
   } else {
     return new Promise((good,bad) => {
       this.notify = good;
       if(this.queue.length>0) good();
-      setTimeout(bad,10000)
+      setTimeout(bad,POLL_TIMEOUT);
     }).then(_=>this.queue[0])
     .catch(_=>"{}")
-    .then(n=>{this.notify=undefined;return n});
+    .then(n=>{this.notify=undefined;return n;});
   }
 };
 
 function longPoll(req,res){
+  var proxy;
   if (req.query.key){
-    var proxy = connections[req.query.key];
+    proxy = connections[req.query.key];
     if (proxy === undefined){
       res.json({_err:"bad key"});
     } else {
@@ -77,8 +81,7 @@ function longPoll(req,res){
     if(req.query.query){
         host += "/"+req.query.query;
     }
-    console.debug(host);
-    var proxy = new connection(host,req.ips);
+    proxy = new connection(host,req.ips);
     proxy.getId().then(id=>{
       res.json({_key:id});
       connections[id] = proxy;

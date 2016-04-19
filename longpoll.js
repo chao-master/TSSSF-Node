@@ -7,6 +7,10 @@ var CLIENT_TIMEOUT = 60*1000,
     CHECKRATE = 30*1000,
     POLL_TIMEOUT = 30*1000;
 
+var FakePromise = {};
+FakePromise.next = function(){return FakePromise;};
+FakePromise.catch = FakePromise.next;
+
 setInterval(function(){
   console.log("Checking for dead longpolls");
   var keys = Object.keys(connections),
@@ -44,16 +48,14 @@ connection.prototype.getId = function(){
     });
   });
 };
+
 connection.prototype.send = function(send,slave){
   this.lastSeen = Date.now();
   if (send) {
     this.ws.send(send);
   }
   if (slave) {
-    slaveObj = {};
-    slaveObj.next = (_=>slaveObj);
-    slaveObj.catch = slaveObj.next;
-    return slaveObj;
+    return FakePromise;
   } else {
     return new Promise((good,bad) => {
       this.notify = good;

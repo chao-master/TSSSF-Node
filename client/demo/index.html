@@ -67,31 +67,50 @@
   <script src="longpoll.js"></script>
   <script src="demo.js"></script>
 	<script src="../Grid.js"></script>
+	<script src="../Hand.js"></script>
 	<script src="../Card.js"></script>
+  <script src="../Game.js"></script>
   <script>
-    var grid = new Grid(document.querySelector("#demoCanvas"));
+    var game = new Game(document.querySelector("canvas")),
+        grid = new Grid(),
+        hand = new Hand();
+
+    game.addAsChild("grid",grid,0,0,680,680);
+    game.addAsChild("hand",hand,0,680,680,150);
+    game.render();
+
 
     fetch("../cards/testSet.json")
       .then(resp=>resp.json())
       .then(cards=>cards.map(Card.prototype.fromObject))
       .then(function(cards){
         var ponyX=0,ponyY=0,
-            shipX=0,shipY=0;
+            shipX=0,shipY=0,
+            ponyHand = 0,
+            shipHand = 0;
         cards.forEach(function(card){
           if(card instanceof PonyCard){
-            grid.addPony(ponyX,ponyY,card);
-            if(++ponyX>=4){
-              ponyX=0; ponyY++;
+            if (ponyHand<4){
+              hand.addCard(card);
+              ponyHand++;
+            } else {
+              grid.addPony(ponyX,ponyY,card);
+              if(++ponyX>=4){
+                ponyX=0; ponyY++;
+              }
             }
           } else if(card instanceof ShipCard){
-            grid.addShip(shipX,shipY,"right",card)
-            if(++shipX>=3){
-              shipX=0; shipY++;
+            if (shipHand<3){
+              hand.addCard(card);
+              shipHand++;
+            } else {
+              grid.addShip(shipX,shipY,"right",card)
+              if(++shipX>=3){
+                shipX=0; shipY++;
+              }
             }
           }
         })
-      }).then(function(){
-        grid.render();
       })
   </script>
   </body>

@@ -1,9 +1,8 @@
-function Grid(canvas){
+function Grid(){
   this.ponies = {};
   this.ships = {};
-  this.canvas = canvas;
 
-  this.canvas.oncontextmenu = e => {
+  /*this.canvas.oncontextmenu = e => {
     var gridCoords = this.mouseToGridCoords(e.offsetX,e.offsetY),
         card = this.getPony(gridCoords[0],gridCoords[1]);
     var modal = document.createElement("pre");
@@ -16,11 +15,11 @@ function Grid(canvas){
     };
     addModal(modal);
     return false;
-  };
+  };*/
 }
 
-Grid.prototype.CELL_MARGIN = 20;
-Grid.prototype.CELL_SIZE = 150;
+var CELL_MARGIN = 20,
+    CELL_SIZE = 150;
 
 Grid.prototype.addPony = function(gridX,gridY,pony){
   this.ponies[gridX+","+gridY] = pony;
@@ -79,25 +78,23 @@ Grid.prototype.removeShip = function(gridX,gridY,direction){
   return ship;
 };
 
-Grid.prototype.render = function(){
-  var ctx = this.canvas.getContext("2d"),
-      keys = Object.keys(this.ships);
-  ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+Grid.prototype.render = function(ctx){
+  var keys = Object.keys(this.ships);
   for(var i=0;i<keys.length;i++){
     var ship = this.ships[keys[i]];
-    ship.render();
+    ship.render(ctx);
   }
 
   keys = Object.keys(this.ponies);
   for(i=0;i<keys.length;i++){
     var pony = this.ponies[keys[i]];
-    pony.render();
+    pony.render(ctx);
   }
 };
 
 Grid.prototype.mouseToGridCoords = function(mouseX,mouseY,float){
-  var gridX = mouseX/(this.CELL_MARGIN+this.CELL_SIZE),
-      gridY = mouseY/(this.CELL_MARGIN+this.CELL_SIZE),
+  var gridX = mouseX/(CELL_MARGIN+CELL_SIZE),
+      gridY = mouseY/(CELL_MARGIN+CELL_SIZE),
       gridXPart,gridYPart;
 
   if(!float || float == "sperate" || float == "direction"){

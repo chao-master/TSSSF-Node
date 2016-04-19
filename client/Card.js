@@ -1,3 +1,6 @@
+var CELL_MARGIN = 20,
+    CELL_SIZE = 150;
+
 function loadImage(imgSrc){
   return new Promise(function(good,bad){
     var img = new Image();
@@ -40,13 +43,16 @@ function Card(name,imgSrc){
   this.image = undefined;
   var that = this;
   loadImage(imgSrc)
-    .catch(function(){
-      return loadImage("../art/404.jpeg");
+    .catch(function(e){
+      if(imgSrc != "../art/404.jpeg"){
+        return loadImage("../art/404.jpeg");
+      }
+      throw e;
     })
     .then(function(img){
       that.image = resizeImage(img,that.IMG_WIDTH,that.IMG_HEIGHT);
       if(that.parent){
-        that.parent.render();
+        that.parent.update();
       }
     });
 }
@@ -65,13 +71,18 @@ Card.prototype.fromObject = function(obj){
   }
 };
 
-Card.prototype.render = function(){
-  var cardSize = this.parent.CELL_SIZE,
-      cellSize = cardSize + this.parent.CELL_MARGIN,
-      cellOffset = this.parent.CELL_MARGIN/2,
-      canvasX = cellSize*this.position[0]+cellOffset,
-      canvasY = cellSize*this.position[1]+cellOffset,
-      ctx = this.parent.canvas.getContext("2d");
+Card.prototype.render = function(ctx,x){
+  var cardSize = CELL_SIZE,
+      cellSize = cardSize + CELL_MARGIN,
+      cellOffset = CELL_MARGIN/2,
+      canvasX, canvasY;
+  if(x === undefined){
+    canvasX = cellSize*this.position[0]+cellOffset;
+    canvasY = cellSize*this.position[1]+cellOffset;
+  } else {
+    canvasX = x;
+    canvasY = 0;
+  }
 
   ctx.fillStyle = this.color;
   ctx.fillRect(canvasX,canvasY,cardSize,cardSize);
@@ -114,17 +125,21 @@ ShipCard.prototype.constructor = ShipCard;
 
 ShipCard.prototype.color = "pink";
 
-ShipCard.prototype.render = function(){
-  var cardSize = this.parent.CELL_SIZE/2,
-      cellSize = this.parent.CELL_SIZE + this.parent.CELL_MARGIN,
-      cellOffset = (cardSize + this.parent.CELL_MARGIN)/2,
+ShipCard.prototype.render = function(ctx,x){
+  if(x !== undefined){ //For rendering in hand, we render the grid size version
+    return Card.prototype.render.call(this,ctx,x);
+  }
+
+  //Otherwise we render the half grid sized version.
+  var cardSize = CELL_SIZE/2,
+      cellSize = CELL_SIZE + CELL_MARGIN,
+      cellOffset = (cardSize + CELL_MARGIN)/2,
       canvasX = cellSize*this.position[0]+cellOffset,
-      canvasY = cellSize*this.position[1]+cellOffset,
-      ctx = this.parent.canvas.getContext("2d");
+      canvasY = cellSize*this.position[1]+cellOffset;
       if(this.position[2] == "down"){
-        canvasY+=cardSize*1+this.parent.CELL_MARGIN/2;
+        canvasY+=cardSize*1+CELL_MARGIN/2;
       } else if(this.position[2] == "right"){
-        canvasX+=cardSize*1+this.parent.CELL_MARGIN/2;
+        canvasX+=cardSize*1+CELL_MARGIN/2;
       }
   ctx.fillStyle = this.color;
   ctx.fillRect(canvasX,canvasY,cardSize,cardSize);

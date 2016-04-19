@@ -71,7 +71,7 @@ Card.prototype.fromObject = function(obj){
   }
 };
 
-Card.prototype.render = function(ctx,x){
+Card.prototype.render = function(ctx,x,y){
   var cardSize = CELL_SIZE,
       cellSize = cardSize + CELL_MARGIN,
       cellOffset = CELL_MARGIN/2,
@@ -81,7 +81,7 @@ Card.prototype.render = function(ctx,x){
     canvasY = cellSize*this.position[1]+cellOffset;
   } else {
     canvasX = x;
-    canvasY = 0;
+    canvasY = y===undefined?0:y;
   }
 
   ctx.fillStyle = this.color;
@@ -125,9 +125,10 @@ ShipCard.prototype.constructor = ShipCard;
 
 ShipCard.prototype.color = "pink";
 
-ShipCard.prototype.render = function(ctx,x){
+ShipCard.prototype.render = function(ctx,x,y){
   if(x !== undefined){ //For rendering in hand, we render the grid size version
-    return Card.prototype.render.call(this,ctx,x);
+    if(y===undefined) y=0;
+    return Card.prototype.render.call(this,ctx,x,y);
   }
 
   //Otherwise we render the half grid sized version.

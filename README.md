@@ -50,3 +50,8 @@ Sends a chat message to the room
 Indicates a chat message has been received
 * `msg` Chat message that was received
 * `client` User object of whom sent the chat
+
+## `cardList` &darr;
+Lists the cards that will be used in the game
+* `cardList` The list of cards
+* `room` The current room

@@ -1,5 +1,6 @@
 /*jshint esnext:true*/
 var console = require("../colourConsole");
+var Game = require("./Game");
 
 function Room(server){
   this.server = server;
@@ -8,7 +9,7 @@ function Room(server){
   this.clients = {};
   this.owner = undefined;
 
-  this.name = undefined;
+  this.game = new Game(this,["cards/testSet.json"]);
 }
 
 Room.prototype.addClient = function(client) {
@@ -18,6 +19,7 @@ Room.prototype.addClient = function(client) {
   this.clients[client.id] = client;
   this.broadcast({type:"join",client:client,room:this});
   client.send(this.packet("clients"));
+  client.send(this.packet("cardList"))
   console.info(client.name,"has joined",this.id);
 };
 
@@ -65,14 +67,21 @@ Room.prototype.toJSON = function(){
 
 /*Room Packets*/
 Room.prototype.packet = function(packet){
-  if (this.packets[packet] !== undefined){
-    var rtn = this.packets[packet].call(this);
-    rtn.type = packet;
-    rtn.room = this;
-    return rtn;
+  var roomPacket = this.packets[packet],
+      rtn;
+  if (roomPacket !== undefined){
+    rtn = roomPacket.call(this);
   } else {
-    return this.server.packet(packet);
+    var gamePacket = this.game.packets[packet];
+    if(gamePacket !== undefined){
+      rtn = gamePacket.call(this.game);
+    } else {
+      return this.server.packet(packet);
+    }
   }
+  rtn.type = packet;
+  rtn.room = this;
+  return rtn;
 };
 
 Room.prototype.packets =  {

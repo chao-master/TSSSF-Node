@@ -78,40 +78,6 @@
     game.addAsChild("grid",grid,0,0,680,680);
     game.addAsChild("hand",hand,0,680,680,150);
     game.render();
-
-
-    fetch("../cards/testSet.json")
-      .then(resp=>resp.json())
-      .then(cards=>cards.map(Card.prototype.fromObject))
-      .then(function(cards){
-        var ponyX=0,ponyY=0,
-            shipX=0,shipY=0,
-            ponyHand = 0,
-            shipHand = 0;
-        cards.forEach(function(card){
-          if(card instanceof PonyCard){
-            if (ponyHand<4){
-              hand.addCard(card);
-              ponyHand++;
-            } else {
-              grid.addPony(ponyX,ponyY,card);
-              if(++ponyX>=4){
-                ponyX=0; ponyY++;
-              }
-            }
-          } else if(card instanceof ShipCard){
-            if (shipHand<3){
-              hand.addCard(card);
-              shipHand++;
-            } else {
-              grid.addShip(shipX,shipY,"right",card)
-              if(++shipX>=3){
-                shipX=0; shipY++;
-              }
-            }
-          }
-        })
-      })
   </script>
   </body>
 </html>

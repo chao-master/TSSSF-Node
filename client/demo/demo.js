@@ -61,6 +61,7 @@ var ws;
 try {
   ws = new WebSocket("ws://" + location.host + location.search);
 } catch(e) {
+  console.warn("Websocket failed, trying longpoll fallback");
   ws = new LongPoll("../ws",location.search);
 }
 ws.onmessage = function(msg){

@@ -6,6 +6,7 @@ var argv = require('yargs')
     .help('h').alias('h', 'help')
     .argv;
 var console = require("./colourConsole");
+var colors = require('colors');
 
 var httpServer = require('http').createServer(),
     url = require('url'),
@@ -40,4 +41,32 @@ if(argv.longpoll){
 httpServer.on('request', app);
 httpServer.listen(argv.p,argv.H, function () {
   console.log('Listening on',httpServer.address());
+});
+
+//Do stdin
+commands = {
+  "clients":function(){
+    var keys = Object.keys(server.clients)
+    console._log(keys.length+" clients connected")
+    keys.forEach(k=>{
+      var c=server.clients[k],
+          r=c.room? c.room.id : "no room"
+      console._log(c.id+"\t"+c.name+"\t"+r)
+    })
+  },"rooms":function(){
+    var keys = Object.keys(server.clients)
+    console._log(keys.length+" rooms connected")
+    keys.forEach(k=>{
+      var r=server.rooms[k];
+      console._log(c.id+"\t"+c.room.id.green)
+    })
+  }
+}
+
+process.stdin.setEncoding('utf8')
+process.stdin.on('readable', () => {
+  var chunk = process.stdin.read();
+  if (chunk === null) return
+  var input = chunk.trim();
+  if(commands[input]) commands[input]()
 });

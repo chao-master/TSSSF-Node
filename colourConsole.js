@@ -30,6 +30,7 @@ function getFilename() {
 
 ["error","log","info","warn"].forEach(function(name){
   var fn = console[name];
+  console["_"+name] = fn;
   console[name] = function N(){
     var prefix = getFilename();
     if(prefix.length<INDENT){

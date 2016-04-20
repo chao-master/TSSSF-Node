@@ -131,24 +131,39 @@ Grid.prototype.ondrop = function(x,y,event){
   var type = this.parent.DRAG_DATA.type,
       card = this.parent.DRAG_DATA.card,
       action = this.getActions(x,y).filter(function(n){return n.type==type;})[0];
-  console.log(action);
-  if(action.type == "pony"){
-    ws.send({ //DEMO - unfinilised
-      type:"playCards",
-      cards:[
-        {id:card.id,position:[action.gridX,action.gridY]},
-        {id:this.parent.hand.anyShip().id,position:[action.gridX,action.gridY,action.direction]},
-      ]
-    });
-  } else if (action.type == "ship"){
-    ws.send({ //DEMO - unfinilised
-      type:"playCards",
-      cards:[
-        {id:card.id,position:[action.gridX,action.gridY,action.direction]}
-      ]
-    });
-  }
   event.preventDefault();
+
+  var triggeredCard, playedCards;
+  if(action.type == "pony"){
+    triggeredCard = card;
+    playedCards = [
+      {id:card.id,position:[action.gridX,action.gridY]},
+      {id:this.parent.hand.anyShip().id,position:[action.gridX,action.gridY,action.direction]},
+    ];
+  } else if (action.type == "ship"){
+    triggeredCard = this.getCard([action.gridX,action.gridY]);
+    playedCards = [{id:card.id,position:[action.gridX,action.gridY,action.direction]}];
+  }
+  if(playedCards === undefined) return;
+
+  //Do effects
+  var effect = triggeredCard.effect,prom;
+  switch(effect){
+    case "draw":
+      prom=getUserSelection("Select a card to draw",[
+        {text:"Pony card",value:"pony"},
+        {text:"Ship card",value:"ship"}
+      ]); break;
+    default: prom=Promise.resolve();
+  }
+  prom.then(function(result){
+    ws.send({
+      type:"playCards",
+      cards:playedCards,
+      effect:effect,
+      params:[result]
+    });
+  });
 };
 
 Grid.prototype.ondragstart = false;

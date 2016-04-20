@@ -4,6 +4,7 @@ function Grid(){
 }
 
 Grid.prototype.addPony = function(gridX,gridY,pony){
+  console.debug(gridX,gridY,pony.id,pony.parent,this.constructor.name);
   var coord = [gridX,gridY];
   if (coord in this.ponies) throw "Pony already at position";
   if (pony.parent === this) throw "Pony already on grid";
@@ -48,7 +49,7 @@ Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
 Grid.prototype.addShip = function(gridX,gridY,direction,ship){
   var coord = this.normalizeShipCoord(gridX,gridY,direction);
   if (coord in this.ships) throw "Ship already at position";
-  if (ship.parent === this) throw "Pony already on grid";
+  if (ship.parent === this) throw "Ship already on grid";
   if (ship.parent !== undefined){
     ship.parent.removeShip(ship);
   }

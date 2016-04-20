@@ -74,6 +74,8 @@ function longPoll(req,res){
       if(reply !== undefined){
         reply.then(reply => res.send(reply))
         .then(_=>proxy.queue.shift());
+      } else {
+        res.status(200).end();
       }
     }
   } else {

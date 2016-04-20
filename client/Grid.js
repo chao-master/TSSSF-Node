@@ -6,44 +6,68 @@ function Grid(){
 var CELL_MARGIN = 20,
     CELL_SIZE = 150;
 
-Grid.prototype.addPony = function(gridX,gridY,pony){
-  var coord = [gridX,gridY];
-  if (coord in this.ponies) {
-    console.warn("Pony already at position");
-    return;
+Grid.prototype.addCard = function(coord,card){
+  if(typeof(card) == "number"){
+    card = this.parent.cardList[card];
   }
-  if (pony.parent === this) {
-    console.warn("Pony already on grid");
-    return;
+  var addTo;
+  if (card instanceof ShipCard){
+    addTo = this.ships;
+    coord = this.normalizeShipCoord(coord);
+  } else {
+    addTo = this.ponies;
   }
-  if (pony.parent !== undefined){
-    pony.parent.removePony(pony);
+  if(coord in addTo){
+    console.warn("Card already at position");
+  } else if (card.parent === this){
+    console.warn("Card already on grid");
+  } else {
+    if (card.parent !== undefined){
+      card.parent.removeCard(card);
+    }
+    addTo[coord] = card;
+    card.position = coord;
+    card.parent = this;
   }
-  this.ponies[[gridX,gridY]] = pony;
-  pony.position = [gridX,gridY];
-  pony.parent = this;
 };
 
-Grid.prototype.getPony = function(gridX,gridY){
-  return this.ponies[[gridX,gridY]];
+Grid.prototype.getCard = function(coord){
+  if (coord.length == 3){
+    coord = this.normalizeShipCoord(coord);
+    return this.ships[coord];
+  } else {
+    return this.ponies[coord];
+  }
 };
 
-Grid.prototype.removePony = function(gridX,gridY){
-  var pony = this.getPony(gridX,gridY);
-  if (pony === undefined){
-    console.warn("No pony to remove");return;
+Grid.prototype.removeCard = function(coord){
+  if(coord === undefined) return;
+  if(coord instanceof Card){
+    coord = gridX.position;
   }
-  pony.parent = undefined;
-  var that=this;
-  delete this.ponies[[gridX,gridY]];
-  var rtn = ["up","down","left","right"].map(function(dir){
-    return that.removeShip(gridX,gridY,dir);
-  }).filter(function(n){return n!==undefined;});
-  rtn.push(pony);
-  return rtn;
+  var removeFrom,card;
+  if(coord.length == 3){
+    coord = this.normalizeShipCoord(coord);
+    removeFrom = this.ships;
+  } else {
+    removeFrom = this.ponies;
+  }
+  card = removeFrom[coord];
+  if(card === undefined){
+    console.warn("No card to remove");
+  } else {
+    card.parent = undefined;
+    delete removeFrom[coord];
+    return card;
+  }
 };
 
 Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
+  if(Array.isArray(gridX)){
+    direction = gridX[2];
+    gridY = gridX[1];
+    gridX = gridX[0];
+  }
   if (direction == "up"){
     gridY--;
     direction = "down";
@@ -52,41 +76,6 @@ Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
     gridX--;
   }
   return [gridX,gridY,direction];
-};
-
-Grid.prototype.addShip = function(gridX,gridY,direction,ship){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction);
-  if (coord in this.ships) {
-    console.warn("Ship already at position");
-    return;
-  }
-  if (ship.parent === this) {
-    console.warn("Pony already on grid");
-    return;
-  }
-  if (ship.parent !== undefined){
-    ship.parent.removeShip(ship);
-  }
-  this.ships[coord] = ship;
-  ship.position = coord;
-  ship.parent = this;
-};
-
-Grid.prototype.getShip = function(gridX,gridY,direction){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction).join(",");
-  return this.ships[coord];
-};
-
-Grid.prototype.removeShip = function(gridX,gridY,direction){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction),
-      ship = this.ships[coord];
-  if(ship === undefined) {
-    console.warn("No ship at position to remove");
-    return;
-  }
-  ship.parent = undefined;
-  delete this.ships[coord];
-  return ship;
 };
 
 Grid.prototype.render = function(ctx){
@@ -111,18 +100,12 @@ Grid.prototype.on = function(x,y,eventType,event){
     return this.ondragover(x,y,event);
   }
   var gridCoords = this.mouseToGridCoords(x,y,"ship"),
-      handler = this["on"+eventType],
-      card;
+      handler = this["on"+eventType];
   if(handler === false){
     event.preventDefault();
     return false;
   }
-  if(gridCoords.length == 3){
-    card = this.getShip.apply(this,gridCoords);
-  } else {
-    card = this.getPony.apply(this,gridCoords);
-  }
-  return handler.call(this,card,event);
+  return handler.call(this,this.getCard(gridCoords),event);
 };
 
 Grid.prototype.onclick = function(card,coords){
@@ -196,7 +179,7 @@ Grid.prototype.getActions = function(mouseX,mouseY){
       gridX = gridCoords[0],
       gridY = gridCoords[1],
       direction = gridCoords[2],
-      targetPony = this.getPony(gridX,gridY),
+      targetPony = this.getCard([gridX,gridY]),
       gridNegiX = gridX,
       gridNegiY = gridY,
       targetNegiPony,
@@ -215,7 +198,7 @@ Grid.prototype.getActions = function(mouseX,mouseY){
     gridNegiX++;
     iDirection = "left";
   }
-  targetNegiPony = this.getPony(gridNegiX,gridNegiY);
+  targetNegiPony = this.getCard([gridNegiX,gridNegiY]);
 
   if(targetPony !== undefined){
     actions.push({type:"replace",target:targetPony,gridX:gridX,gridY:gridY});

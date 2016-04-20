@@ -61,22 +61,14 @@ handlers.cardList = function(data){
 
 handlers.gridState = function(data){
   data.grid.forEach(function(n){
-    if(n.position.length == 3){
-      game.grid.addShip(n.position[0],n.position[1],n.position[2],game.cardList[n.id]);
-    } else {
-      game.grid.addPony(n.position[0],n.position[1],game.cardList[n.id]);
-    }
+    game.grid.addCard(n.position,n.id);
   });
   game.render();
 };
 
 handlers.playCards = function(data){
   data.cards.forEach(function(n){
-    if(n.position.length == 3){
-      game.grid.addShip(n.position[0],n.position[1],n.position[2],game.cardList[n.id]);
-    } else {
-      game.grid.addPony(n.position[0],n.position[1],game.cardList[n.id]);
-    }
+    game.grid.addCard(n.position,n.id);
   });
   game.render();
 };

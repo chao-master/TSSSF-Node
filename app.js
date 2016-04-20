@@ -59,7 +59,7 @@ commands = {
     console._log(keys.length+" rooms connected");
     keys.forEach(k=>{
       var r=server.rooms[k];
-      console._log(c.id+"\t"+c.room.id.green);
+      console._log(r.id+"\t"+r.room.id.green);
     });
   }
 };

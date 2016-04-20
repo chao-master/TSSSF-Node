@@ -25,12 +25,14 @@ Hand.prototype.addCard = function(card){
   }
 };
 
-Hand.prototype.removePony = function(card){
-  this.ponies.splice(this.ponies.indexOf(card),1);
-};
-
-Hand.prototype.removeShip = function(card){
-  this.ships.splice(this.ships.indexOf(card),1);
+Hand.prototype.removeCard = function(card){
+  var removeFrom = card instanceof ShipCard? this.ships:this.ponies,
+      rId = removeFrom.indexOf(card);
+  if(rId<0){
+    console.error("Card ",card,"is not in hand");
+  } else {
+    removeFrom.splice(rId,1);
+  }
 };
 
 Hand.prototype.anyShip = function(){

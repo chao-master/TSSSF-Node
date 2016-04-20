@@ -101,13 +101,23 @@ Client.prototype.onMessage = function(data){
   if(this.oneHooks[type] !== undefined){
     var tmp = this.oneHooks[type];
     delete this.oneHooks[type];
-    tmp.call(this,data,this);
+    try {
+      tmp.call(this,data,this);
+    } catch (e) {
+      this.send({type:"error",error:e});
+      console.error(e.stack);
+    }
   } else {
     var resolvers = [this,this.room,this.server], resolved = false;
     for(var i=0;i<resolvers.length;i++){
       var r = resolvers[i];
       if (r !== undefined && r.hooks[type] !== undefined){
-        r.hooks[type].call(r,data,this);
+        try {
+          r.hooks[type].call(r,data,this);
+        } catch (e) {
+          this.send({type:"error",error:e});
+          console.error(e.stack);
+        }
         resolved = true;
         break;
       }

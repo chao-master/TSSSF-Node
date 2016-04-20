@@ -47,14 +47,7 @@ Room.prototype.hooks = {
     this.broadcast(data);
   },
   playCards:function(data,client){ //XXX should be in Game.js
-    for(var i=0;i<data.cards.length;i++){
-      var c=data.cards[i];
-      if(c.position.length == 3){
-        this.game.grid.addShip(...c.position,this.game.cards[c.id]);
-      } else {
-        this.game.grid.addPony(...c.position,this.game.cards[c.id]);
-      }
-    }
+    data.cards = this.game.onPlay(data.cards,data.effect,data.params,client);
     data.client = client;
     data.type = "playCards";
     this.broadcast(data);

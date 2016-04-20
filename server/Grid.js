@@ -1,40 +1,93 @@
-function Grid(){
+var cards = require("./Card.js");
+
+function Grid(game){
   this.ponies = {};
   this.ships = {};
+  this.parent = game;
 }
 
-Grid.prototype.addPony = function(gridX,gridY,pony){
-  var coord = [gridX,gridY];
-  if (coord in this.ponies) throw "Pony already at position";
-  if (pony.parent === this) throw "Pony already on grid";
-  if (pony.parent !== undefined){
-    pony.parent.removePony(pony);
+Grid.prototype.addCard = function(coord,card){
+  if(typeof(card) == "number"){
+    card = this.parent.cardList[card];
   }
-  this.ponies[[gridX,gridY]] = pony;
-  pony.position = [gridX,gridY];
-  pony.parent = this;
+  var addTo;
+  if (card instanceof cards.ShipCard){
+    addTo = this.ships;
+    coord = this.normalizeShipCoord(coord);
+  } else {
+    addTo = this.ponies;
+  }
+  if(coord in addTo){
+    console.warn("Card already at position");
+  } else if (card.parent === this){
+    console.warn("Card already on grid");
+  } else {
+    if (card.parent !== undefined){
+      card.parent.removeCard(card);
+    }
+    addTo[coord] = card;
+    card.position = coord;
+    card.parent = this;
+  }
 };
 
-Grid.prototype.getPony = function(gridX,gridY){
-  return this.ponies[[gridX,gridY]];
+Grid.prototype.replaceCard = function(target,card){
+  if(Array.isArray(target)){
+    target = this.getCard(target);
+  }
+  if(typeof(target) == "number"){
+    target = this.parent.cardList[target];
+  }
+  if(typeof(card) == "number"){
+    card = this.parent.cardList[card];
+  }
+  if(target.parent !== this){
+    console.warn("Target card is not on grid");
+  } else if (card.parent === this) {
+    console.warn("Card is already on grid");
+  } else {
+    this.removeCard(target);
+    this.addCard(target.position,card);
+  }
 };
 
-Grid.prototype.removePony = function(gridX,gridY){
-  var pony = this.getPony(gridX,gridY);
-  if (pony === undefined){
-    throw "No pony to remove";
+Grid.prototype.getCard = function(coord){
+  if (coord.length == 3){
+    coord = this.normalizeShipCoord(coord);
+    return this.ships[coord];
+  } else {
+    return this.ponies[coord];
   }
-  pony.parent = undefined;
-  var that=this;
-  delete this.ponies[[gridX,gridY]];
-  var rtn = ["up","down","left","right"].map(function(dir){
-    return that.removeShip(gridX,gridY,dir);
-  }).filter(function(n){return n!==undefined;});
-  rtn.push(pony);
-  return rtn;
+};
+
+Grid.prototype.removeCard = function(coord){
+  if(coord === undefined) return;
+  if(coord instanceof cards.Card){
+    coord = coord.position;
+  }
+  var removeFrom,card;
+  if(coord.length == 3){
+    coord = this.normalizeShipCoord(coord);
+    removeFrom = this.ships;
+  } else {
+    removeFrom = this.ponies;
+  }
+  card = removeFrom[coord];
+  if(card === undefined){
+    console.warn("No card to remove");
+  } else {
+    card.parent = undefined;
+    delete removeFrom[coord];
+    return card;
+  }
 };
 
 Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
+  if(Array.isArray(gridX)){
+    direction = gridX[2];
+    gridY = gridX[1];
+    gridX = gridX[0];
+  }
   if (direction == "up"){
     gridY--;
     direction = "down";
@@ -43,32 +96,6 @@ Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
     gridX--;
   }
   return [gridX,gridY,direction];
-};
-
-Grid.prototype.addShip = function(gridX,gridY,direction,ship){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction);
-  if (coord in this.ships) throw "Ship already at position";
-  if (ship.parent === this) throw "Ship already on grid";
-  if (ship.parent !== undefined){
-    ship.parent.removeShip(ship);
-  }
-  this.ships[coord] = ship;
-  ship.position = coord;
-  ship.parent = this;
-};
-
-Grid.prototype.getShip = function(gridX,gridY,direction){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction).join(",");
-  return this.ships[coord];
-};
-
-Grid.prototype.removeShip = function(gridX,gridY,direction){
-  var coord = this.normalizeShipCoord(gridX,gridY,direction),
-      ship = this.ships[coord];
-  if(ship === undefined) throw "No ship at position to remove";
-  ship.parent = undefined;
-  delete this.ships[coord];
-  return ship;
 };
 
 module.exports = Grid;

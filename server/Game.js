@@ -6,25 +6,38 @@ var fs = require("fs"),
 function Game(room,cardSets){
   this.room = room;
   this.hands = [];
-  this.grid = new Grid();
-  this.cards = [];
+  this.grid = new Grid(this);
+  this.cardList = [];
   cardSets.forEach(this.loadCards.bind(this));
-  this.grid.addPony(0,0,this.cards[0]); //DEMO
+  this.grid.addCard([0,0],0); //DEMO
 }
 
 Game.prototype.loadCards = function(file){
   var that = this;
   JSON.parse(fs.readFileSync(file)).forEach(function(rawCard){
     var card = cards.Card.fromObject(rawCard);
-    card.id = that.cards.length;
-    that.cards.push(card);
+    card.id = that.cardList.length;
+    that.cardList.push(card);
   });
+};
+
+Game.prototype.onPlay = function(cards,effect,params,client){
+  if(effect == "replace"){
+    this.grid.replaceCard(params[0],cards[0].id);
+    return [
+      {id:params[0],position:null},
+      cards[0]
+    ];
+  } else {
+    cards.forEach(c => this.grid.addCard(c.position,c.id));
+    return cards;
+  }
 };
 
 /*Game Packets*/
 Game.prototype.packets={};
 Game.prototype.packets.cardList = function(){
-  return {cardList:this.cards};
+  return {cardList:this.cardList};
 };
 Game.prototype.packets.gridState = function(){
   var grid=this.grid;

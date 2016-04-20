@@ -104,8 +104,8 @@ Client.prototype.onMessage = function(data){
     try {
       tmp.call(this,data,this);
     } catch (e) {
-      this.send({type:"error",msg:e});
-      console.error(e);
+      this.send({type:"error",msg:e.message?e.message:e});
+      console.error(e.stack?e.stack:e);
     }
   } else {
     var resolvers = [this,this.room,this.server], resolved = false;
@@ -115,8 +115,8 @@ Client.prototype.onMessage = function(data){
         try {
           r.hooks[type].call(r,data,this);
         } catch (e) {
-          this.send({type:"error",msg:e});
-          console.error(e);
+          this.send({type:"error",msg:e.message?e.message:e});
+          console.error(e.stack?e.stack:e);
         }
         resolved = true;
         break;

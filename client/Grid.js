@@ -41,9 +41,12 @@ Grid.prototype.getCard = function(coord){
 };
 
 Grid.prototype.removeCard = function(coord){
-  if(coord === undefined) return;
-  if(coord instanceof Card){
-    coord = gridX.position;
+  if(coord === undefined){
+    return;
+  } else if(typeof(coord) == "number"){
+    coord = this.parent.cardList[coord].position;
+  } else if(coord instanceof Card){
+    coord = coord.position;
   }
   var removeFrom,card;
   if(coord.length == 3){
@@ -113,24 +116,29 @@ Grid.prototype.onclick = function(card,coords){
 };
 
 Grid.prototype.ondragover = function(x,y,event){
-  var type = this.parent.DRAG_DATA.type,
+  var types = this.parent.DRAG_DATA.types,
       img = this.parent.DRAG_DATA.img,
       actions = this.getActions(event.offsetX,event.offsetY)
-        .filter(function(n){return n.type == type;});
+        .filter(function(n){return types.indexOf(n.type)>=0;});
   if(actions.length > 0){
     if(actions[0].type == "pony" && this.parent.hand.ships.length === 0){
       //Trying to play a pony without a ship
       return;
     }
-    event.dataTransfer.dropEffect = "move";
+    if(actions[0].type == "replace"){
+      event.dataTransfer.dropEffect = "copy";
+    } else {
+      event.dataTransfer.dropEffect = "move";
+    }
     event.preventDefault();
   }
 };
 
+//Main event handler for playing cards.
 Grid.prototype.ondrop = function(x,y,event){
-  var type = this.parent.DRAG_DATA.type,
+  var types = this.parent.DRAG_DATA.types,
       card = this.parent.DRAG_DATA.card,
-      action = this.getActions(x,y).filter(function(n){return n.type==type;})[0];
+      action = this.getActions(x,y).filter(function(n){return types.indexOf(n.type)>=0;})[0];
   event.preventDefault();
 
   var triggeredCard, playedCards;
@@ -143,18 +151,32 @@ Grid.prototype.ondrop = function(x,y,event){
   } else if (action.type == "ship"){
     triggeredCard = this.getCard([action.gridX,action.gridY]);
     playedCards = [{id:card.id,position:[action.gridX,action.gridY,action.direction]}];
+  } else if (action.type == "replace"){
+    triggeredCard = card;
+    playedCards = [
+      {id:card.id,position:[action.gridX,action.gridY]}
+    ];
   }
   if(playedCards === undefined) return;
 
   //Do effects
-  var effect = triggeredCard.effect,prom;
+  var effect = triggeredCard.effect,
+      prom;
+  if(effect == "replace" && action.type != "replace"){
+    effect = undefined;
+  }
   switch(effect){
     case "draw":
       prom=getUserSelection("Select a card to draw",[
         {text:"Pony card",value:"pony"},
         {text:"Ship card",value:"ship"}
-      ]); break;
-    default: prom=Promise.resolve();
+      ]);
+      break;
+    case "replace":
+      prom = Promise.resolve(action.target.id);
+      break;
+    default:
+      prom=Promise.resolve();
   }
   prom.then(function(result){
     ws.send({

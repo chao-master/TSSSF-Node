@@ -42,17 +42,21 @@ Hand.prototype.anyShip = function(){
 Hand.prototype.on = function(x,y,eventType,event){
   var gap = (this.parent.canvas.width-150)/(this.ponies.length+this.ships.length),
       cardX = Math.floor(x/gap),
-      card,type;
+      card,types;
   if(cardX >= this.ponies.length){
     cardX -= this.ponies.length;
     if(cardX >= this.ships.length){
       cardX = this.ships.length-1;
     }
     card = this.ships[cardX];
-    type = "ship";
+    types = ["ship"];
   } else {
     card = this.ponies[cardX];
-    type = "pony";
+    if(card.effect == "replace"){
+      types = ["pony","replace"];
+    } else {
+      types = ["pony"];
+    }
   }
   if (eventType == "dragstart"){
     var canvas = document.createElement("canvas"),
@@ -63,6 +67,9 @@ Hand.prototype.on = function(x,y,eventType,event){
     card.render(ctx,0);
     img.src = canvas.toDataURL();
     event.dataTransfer.setDragImage(img, 75, 75);
-    this.parent.DRAG_DATA = {type:type,card:card};
+    this.parent.DRAG_DATA = {
+      types:types,
+      card:card
+    };
   }
 };

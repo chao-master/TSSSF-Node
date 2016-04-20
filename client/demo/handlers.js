@@ -68,7 +68,11 @@ handlers.gridState = function(data){
 
 handlers.playCards = function(data){
   data.cards.forEach(function(n){
-    game.grid.addCard(n.position,n.id);
+    if(n.position === null){
+      game.grid.removeCard(n.id);
+    } else {
+      game.grid.addCard(n.position,n.id);
+    }
   });
   game.render();
 };

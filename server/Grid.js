@@ -4,7 +4,6 @@ function Grid(){
 }
 
 Grid.prototype.addPony = function(gridX,gridY,pony){
-  console.debug(gridX,gridY,pony.id,pony.parent,this.constructor.name);
   var coord = [gridX,gridY];
   if (coord in this.ponies) throw "Pony already at position";
   if (pony.parent === this) throw "Pony already on grid";

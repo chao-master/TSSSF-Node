@@ -7,10 +7,6 @@ var CLIENT_TIMEOUT = 60*1000,
     CHECKRATE = 30*1000,
     POLL_TIMEOUT = 30*1000;
 
-var FakePromise = {};
-FakePromise.next = function(){return FakePromise;};
-FakePromise.catch = FakePromise.next;
-
 setInterval(function(){
   console.log("Checking for dead longpolls");
   var keys = Object.keys(connections),
@@ -55,7 +51,7 @@ connection.prototype.send = function(send,slave){
     this.ws.send(send);
   }
   if (slave) {
-    return FakePromise;
+    return;
   } else {
     return new Promise((good,bad) => {
       this.notify = good;
@@ -74,9 +70,11 @@ function longPoll(req,res){
     if (proxy === undefined){
       res.json({_err:"bad key"});
     } else {
-      proxy.send(req.query.msg,req.query.slave)
-        .then(reply => res.send(reply))
+      var reply = proxy.send(req.query.msg,req.query.slave)
+      if(reply !== undefined){
+        reply.then(reply => res.send(reply))
         .then(_=>proxy.queue.shift());
+      }
     }
   } else {
     var host = req.get("Host");

@@ -1,3 +1,4 @@
+/*jshint esnext:true*/
 var argv = require('yargs')
     .usage('Usage: $0 [options]')
     .alias('H', 'host').default('H','0.0.0.0')
@@ -46,27 +47,27 @@ httpServer.listen(argv.p,argv.H, function () {
 //Do stdin
 commands = {
   "clients":function(){
-    var keys = Object.keys(server.clients)
-    console._log(keys.length+" clients connected")
+    var keys = Object.keys(server.clients);
+    console._log(keys.length+" clients connected");
     keys.forEach(k=>{
       var c=server.clients[k],
-          r=c.room? c.room.id : "no room"
-      console._log(c.id+"\t"+c.name+"\t"+r)
-    })
+          r=c.room? c.room.id : "no room";
+      console._log(c.id+"\t"+c.name+"\t"+r);
+    });
   },"rooms":function(){
-    var keys = Object.keys(server.clients)
-    console._log(keys.length+" rooms connected")
+    var keys = Object.keys(server.clients);
+    console._log(keys.length+" rooms connected");
     keys.forEach(k=>{
       var r=server.rooms[k];
-      console._log(c.id+"\t"+c.room.id.green)
-    })
+      console._log(c.id+"\t"+c.room.id.green);
+    });
   }
-}
+};
 
-process.stdin.setEncoding('utf8')
+process.stdin.setEncoding('utf8');
 process.stdin.on('readable', () => {
   var chunk = process.stdin.read();
-  if (chunk === null) return
+  if (chunk === null) return;
   var input = chunk.trim();
-  if(commands[input]) commands[input]()
+  if(commands[input]) commands[input]();
 });

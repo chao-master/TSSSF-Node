@@ -67,6 +67,7 @@ handlers.gridState = function(data){
       game.grid.addPony(n.position[0],n.position[1],game.cardList[n.id]);
     }
   });
+  game.render();
 };
 
 handlers.playCards = function(data){

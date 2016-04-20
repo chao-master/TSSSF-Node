@@ -140,6 +140,13 @@ Grid.prototype.ondrop = function(x,y,event){
         {id:this.parent.hand.anyShip().id,position:[action.gridX,action.gridY,action.direction]},
       ]
     });
+  } else if (action.type == "ship"){
+    ws.send({ //DEMO - unfinilised
+      type:"playCards",
+      cards:[
+        {id:card.id,position:[action.gridX,action.gridY,action.direction]}
+      ]
+    });
   }
   event.preventDefault();
 };
@@ -203,7 +210,9 @@ Grid.prototype.getActions = function(mouseX,mouseY){
   if(targetPony !== undefined){
     actions.push({type:"replace",target:targetPony,gridX:gridX,gridY:gridY});
     if(targetNegiPony !== undefined){
-      actions.push({type:"ship", gridX:gridX, gridY:gridY, direction:direction});
+      if(this.getCard([gridX,gridY,direction]) === undefined){
+        actions.push({type:"ship", gridX:gridX, gridY:gridY, direction:direction});
+      }
     } else {
       actions.push({type:"pony", gridX:gridNegiX, gridY:gridNegiY, direction:iDirection, target:targetPony});
     }

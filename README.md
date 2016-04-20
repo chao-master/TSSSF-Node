@@ -62,13 +62,21 @@ Lists the cards that will be used in the game
 * `cardList` The list of cards
 * `room` The current room
 
+### `gridState` &darr;
+The grid as it currently stands
+* `grid` An array of card id's and their position in the grid
+
 ### `playCards` &uarr;
 Cards the client is playing
 * `cards` list of the cards the client is playing, identified by id and position
 * `triggeredCard` The id of the card who's effect is triggered
 * `params` The paramaters for the triggered card's effect, see effects below.
 
-## Effects
+## Misc & Debug
 
+### reSyncGrid &uarr;
+Requests the server to resend `gridState`
+
+## Effects
 ### Draw
  1. `pony` or `ship` - The deck the card is to be drawn from.

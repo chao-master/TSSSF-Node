@@ -46,7 +46,7 @@ Room.prototype.hooks = {
     data.type = "chat";
     this.broadcast(data);
   },
-  playCards:function(data,client){ //should be in Game.js
+  playCards:function(data,client){ //XXX should be in Game.js
     for(var i=0;i<data.cards.length;i++){
       var c=data.cards[i];
       if(c.position.length == 3){
@@ -58,6 +58,9 @@ Room.prototype.hooks = {
     data.client = client;
     data.type = "playCards";
     this.broadcast(data);
+  },
+  reSyncGrid:function(data,client){ //XXX should be in Game.js
+    client.send(this.packet("gridState"));
   }
 };
 

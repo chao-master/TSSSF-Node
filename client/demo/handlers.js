@@ -52,3 +52,30 @@ handlers.chat = function(data){
 handlers.error = function(data){
   showError("Error: "+data.msg);
 };
+handlers.cardList = function(data){
+  game.cardList = data.cardList.map(Card.fromObject);
+  for(var i=0;i<game.cardList.length;i++){
+    hand.addCard(game.cardList[i]);
+  }
+};
+
+handlers.gridState = function(data){
+  data.grid.forEach(function(n){
+    if(n.position.length == 3){
+      game.grid.addShip(n.position[0],n.position[1],n.position[2],game.cardList[n.id]);
+    } else {
+      game.grid.addPony(n.position[0],n.position[1],game.cardList[n.id]);
+    }
+  });
+};
+
+handlers.playCards = function(data){
+  data.cards.forEach(function(n){
+    if(n.position.length == 3){
+      game.grid.addShip(n.position[0],n.position[1],n.position[2],game.cardList[n.id]);
+    } else {
+      game.grid.addPony(n.position[0],n.position[1],game.cardList[n.id]);
+    }
+  });
+  game.render();
+};

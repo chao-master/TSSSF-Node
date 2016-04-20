@@ -65,23 +65,10 @@
 
   <script src="handlers.js"></script>
   <script src="longpoll.js"></script>
-  <script src="demo.js"></script>
 	<script src="../Grid.js"></script>
 	<script src="../Hand.js"></script>
 	<script src="../Card.js"></script>
   <script src="../Game.js"></script>
-  <script>
-    var game = new Game(document.querySelector("canvas")),
-        grid = new Grid(),
-        hand = new Hand();
-
-    game.addAsChild("grid",grid,0,0,680,680);
-    game.addAsChild("hand",hand,0,680,680,150);
-    handlers.cardList = function(data){
-      data.cardList.forEach(function(c){
-        hand.addCard(Card.fromObject(c));
-      });
-    }
-  </script>
+  <script src="demo.js"></script>
   </body>
 </html>

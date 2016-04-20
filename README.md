@@ -55,3 +55,7 @@ Indicates a chat message has been received
 Lists the cards that will be used in the game
 * `cardList` The list of cards
 * `room` The current room
+
+## `playCards` &uarr;
+Cards the client is playing
+* `cards` list of the cards the client is playing, identified by id and position

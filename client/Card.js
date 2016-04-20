@@ -40,6 +40,7 @@ function resizeImage(img,width,height){
 
 function Card(name,imgSrc){
   this.name = name;
+  this.imgSrc = imgSrc;
   this.image = undefined;
   var that = this;
   loadImage(imgSrc)
@@ -63,12 +64,14 @@ Card.prototype.color = "black";
 
 Card.fromObject = function(obj){
   if("gender" in obj || "race" in obj || "icon" in obj){
-    return new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
+    card = new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   } else if("condition" in obj){
-    return new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
+    card = new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
   } else {
-    return new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
+    card = new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   }
+  card.id = obj.id;
+  return card;
 };
 
 Card.prototype.render = function(ctx,x,y){

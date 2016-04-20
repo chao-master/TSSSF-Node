@@ -1,6 +1,7 @@
 function Game(canvas){
   this.canvas = canvas;
   this.children = {};
+  this.cardList = [];
 
   var that = this;
   ["click","dragstart","dragover","drop"].forEach(function(event){

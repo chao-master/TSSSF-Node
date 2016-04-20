@@ -8,8 +8,14 @@ var CELL_MARGIN = 20,
 
 Grid.prototype.addPony = function(gridX,gridY,pony){
   var coord = [gridX,gridY];
-  if (coord in this.ponies) throw "Pony already at position";
-  if (pony.parent === this) throw "Pony already on grid";
+  if (coord in this.ponies) {
+    console.warn("Pony already at position");
+    return;
+  }
+  if (pony.parent === this) {
+    console.warn("Pony already on grid");
+    return;
+  }
   if (pony.parent !== undefined){
     pony.parent.removePony(pony);
   }
@@ -25,7 +31,7 @@ Grid.prototype.getPony = function(gridX,gridY){
 Grid.prototype.removePony = function(gridX,gridY){
   var pony = this.getPony(gridX,gridY);
   if (pony === undefined){
-    throw "No pony to remove";
+    console.warn("No pony to remove");return;
   }
   pony.parent = undefined;
   var that=this;
@@ -50,8 +56,14 @@ Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
 
 Grid.prototype.addShip = function(gridX,gridY,direction,ship){
   var coord = this.normalizeShipCoord(gridX,gridY,direction);
-  if (coord in this.ships) throw "Ship already at position";
-  if (ship.parent === this) throw "Pony already on grid";
+  if (coord in this.ships) {
+    console.warn("Ship already at position");
+    return;
+  }
+  if (ship.parent === this) {
+    console.warn("Pony already on grid");
+    return;
+  }
   if (ship.parent !== undefined){
     ship.parent.removeShip(ship);
   }
@@ -68,7 +80,10 @@ Grid.prototype.getShip = function(gridX,gridY,direction){
 Grid.prototype.removeShip = function(gridX,gridY,direction){
   var coord = this.normalizeShipCoord(gridX,gridY,direction),
       ship = this.ships[coord];
-  if(ship === undefined) throw "No ship at position to remove";
+  if(ship === undefined) {
+    console.warn("No ship at position to remove");
+    return;
+  }
   ship.parent = undefined;
   delete this.ships[coord];
   return ship;
@@ -135,9 +150,13 @@ Grid.prototype.ondrop = function(x,y,event){
       action = this.getActions(x,y).filter(function(n){return n.type==type;})[0];
   console.log(action);
   if(action.type == "pony"){
-    this.addPony(action.gridX,action.gridY,card);
-    this.addShip(action.gridX,action.gridY,action.direction,this.parent.hand.anyShip());
-    this.update();
+    ws.send({ //DEMO - unfinilised
+      type:"playCards",
+      cards:[
+        {id:card.id,position:[action.gridX,action.gridY]},
+        {id:this.parent.hand.anyShip().id,position:[action.gridX,action.gridY,action.direction]},
+      ]
+    });
   }
   event.preventDefault();
 };

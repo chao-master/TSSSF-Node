@@ -56,6 +56,12 @@ function showError(err){
   modal.textContent = err;
   addModal(modal);
 }
+var game = new Game(document.querySelector("canvas")),
+    grid = new Grid(),
+    hand = new Hand();
+
+game.addAsChild("grid",grid,0,0,680,680);
+game.addAsChild("hand",hand,0,680,680,150);
 
 var ws;
 try {

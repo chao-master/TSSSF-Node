@@ -19,7 +19,8 @@ Room.prototype.addClient = function(client) {
   this.clients[client.id] = client;
   this.broadcast({type:"join",client:client,room:this});
   client.send(this.packet("clients"));
-  client.send(this.packet("cardList"))
+  client.send(this.packet("cardList"));
+  client.send(this.packet("gridState"));
   console.info(client.name,"has joined",this.id);
 };
 
@@ -43,6 +44,19 @@ Room.prototype.hooks = {
   chat:function(data,client){
     data.client = client;
     data.type = "chat";
+    this.broadcast(data);
+  },
+  playCards:function(data,client){ //should be in Game.js
+    for(var i=0;i<data.cards.length;i++){
+      var c=data.cards[i];
+      if(c.position.length == 3){
+        this.game.grid.addShip(...c.position,this.game.cards[c.id]);
+      } else {
+        this.game.grid.addPony(...c.position,this.game.cards[c.id]);
+      }
+    }
+    data.client = client;
+    data.type = "playCards";
     this.broadcast(data);
   }
 };

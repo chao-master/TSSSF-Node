@@ -7,13 +7,18 @@ function Card(name,imgSrc){
 }
 
 Card.fromObject = function(obj){
+  var card;
   if("gender" in obj || "race" in obj || "icon" in obj){
-    return new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
+    card = new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   } else if("condition" in obj){
-    return new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
+    card = new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
   } else {
-    return new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
+    card = new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   }
+  if("id" in obj){
+    card.id = obj.id;
+  }
+  return card;
 };
 
 function PonyCard(name,imgSrc,gender,race,extraIcon,effect){

@@ -19,7 +19,7 @@ if(typeof(window) == "undefined"){
 }
 
 /**
- * Converts a cardish value into a cardish
+ * Converts a cardish value into a Card
  * @param  {Cardish} cardish          The Card object, it's id or it's position
  * @return {Card}                     The card described by the Cardish
  */

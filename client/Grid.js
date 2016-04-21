@@ -165,27 +165,46 @@ Grid.prototype.ondrop = function(x,y,event){
   if(effect == "replace" && action.type != "replace"){
     effect = undefined;
   }
-  switch(effect){
-    case "draw":
-      prom=getUserSelection("Select a card to draw",[
-        {text:"Pony card",value:"pony"},
-        {text:"Ship card",value:"ship"}
-      ]);
-      break;
-    case "replace":
-      prom = Promise.resolve(action.target.id);
-      break;
-    default:
-      prom=Promise.resolve();
-  }
-  prom.then(function(result){
+  this.doEffect(effect,action).then(function(result){
     ws.send({
       type:"playCards",
       cards:playedCards,
       effect:effect,
-      params:[result]
+      params:result
     });
   });
+};
+
+Grid.prototype.doEffect = function(effect,action){
+  var that = this;
+  switch(effect){
+    case "draw":
+      return getUserSelection("Select a card to draw",[
+        {text:"Pony card",value:"pony"},
+        {text:"Ship card",value:"ship"}
+      ]).then(function(n){return [n];});
+    case "replace":
+      return Promise.resolve([action.target.id]);
+    case "copy":
+      return getCardSelection(
+        "Select card to copy",
+        function(n){return n.effect && n.effect != "replace" && n.effect != "copy";}
+      ).then(function(card){
+        return that.doEffect(card.effect).then(function(n){
+          n.unshift(card.id);
+          return n;
+        });
+      });
+    case "swap":
+      var ponyFilter = function(n){return n instanceof PonyCard;};
+      return getCardSelection("Select first card to swap",ponyFilter).then(function(card1){
+        return getCardSelection("Select card to swap it with",ponyFilter).then(function(card2){
+          return [card1.id,card2.id];
+        });
+      });
+    default:
+      return Promise.resolve([]);
+  }
 };
 
 Grid.prototype.ondragstart = false;

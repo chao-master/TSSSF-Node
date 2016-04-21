@@ -12,6 +12,18 @@ function removeModal(element){
   }
 }
 
+function getCardSelection(prompt,filter){
+  var cards = [].concat(
+    Object.keys(grid.ponies).map(function(k){return grid.ponies[k];}),
+    Object.keys(grid.ships).map(function(k){return grid.ships[k];})
+  ).filter(filter).map(function(c){return {text:c.name+" ("+c.effect+")",value:c};});
+  cards.push({text:"Cancel",value:false});
+  return getUserSelection(prompt,cards).then(function(n){
+    if (n === false) throw "Canceled";
+    return n;
+  });
+}
+
 function getUserInput(prompt,type){
   return new Promise(function(good,bad){
     var modal = document.createElement("form"),

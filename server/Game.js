@@ -42,12 +42,16 @@ Game.prototype.loadCards = function(file){
 Game.prototype.onPlay = function(cards,effect,params,client){
   if(effect == "replace"){
     this.grid.replaceCard(params[0],cards[0].id);
-    return [
-      {id:params[0],position:null},
-      cards[0]
-    ];
+    return [{id:params[0],position:null},cards[0]];
   } else {
     cards.forEach(c => this.grid.addCard(c.position,c.id));
+    if(effect == "swap"){
+      var swappedCards = this.grid.swapCards([params[0],params[1]]);
+      cards = cards.concat(
+        swappedCards.map(c=>({id:c.id,position:null})), //Mark cards to remove
+        swappedCards.map(c=>({id:c.id,position:c.position})) //Readd cards
+      );
+    }
     return cards;
   }
 };

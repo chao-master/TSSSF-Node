@@ -30,6 +30,7 @@ wss.on('connection', function(ws) {
 
 //Express app
 app.use(express.static(__dirname + '/client'));
+app.use("/shared",express.static(__dirname + '/shared'));
 
 //Longpolling...
 if(argv.longpoll){

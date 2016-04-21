@@ -1,85 +1,9 @@
-function Grid(){
-  this.ponies = {};
-  this.ships = {};
-}
+/**
+ * Contains Client side Grid Methods, load after shared/Grid.js
+ */
 
 var CELL_MARGIN = 20,
     CELL_SIZE = 150;
-
-Grid.prototype.addCard = function(coord,card){
-  if(typeof(card) == "number"){
-    card = this.parent.cardList[card];
-  }
-  var addTo;
-  if (card instanceof ShipCard){
-    addTo = this.ships;
-    coord = this.normalizeShipCoord(coord);
-  } else {
-    addTo = this.ponies;
-  }
-  if(coord in addTo){
-    console.warn("Card already at position");
-  } else if (card.parent === this){
-    console.warn("Card already on grid");
-  } else {
-    if (card.parent !== undefined){
-      card.parent.removeCard(card);
-    }
-    addTo[coord] = card;
-    card.position = coord;
-    card.parent = this;
-  }
-};
-
-Grid.prototype.getCard = function(coord){
-  if (coord.length == 3){
-    coord = this.normalizeShipCoord(coord);
-    return this.ships[coord];
-  } else {
-    return this.ponies[coord];
-  }
-};
-
-Grid.prototype.removeCard = function(coord){
-  if(coord === undefined){
-    return;
-  } else if(typeof(coord) == "number"){
-    coord = this.parent.cardList[coord].position;
-  } else if(coord instanceof Card){
-    coord = coord.position;
-  }
-  var removeFrom,card;
-  if(coord.length == 3){
-    coord = this.normalizeShipCoord(coord);
-    removeFrom = this.ships;
-  } else {
-    removeFrom = this.ponies;
-  }
-  card = removeFrom[coord];
-  if(card === undefined){
-    console.warn("No card to remove");
-  } else {
-    card.parent = undefined;
-    delete removeFrom[coord];
-    return card;
-  }
-};
-
-Grid.prototype.normalizeShipCoord = function(gridX,gridY,direction){
-  if(Array.isArray(gridX)){
-    direction = gridX[2];
-    gridY = gridX[1];
-    gridX = gridX[0];
-  }
-  if (direction == "up"){
-    gridY--;
-    direction = "down";
-  } else if (direction == "left") {
-    direction = "right";
-    gridX--;
-  }
-  return [gridX,gridY,direction];
-};
 
 Grid.prototype.render = function(ctx){
   var keys = Object.keys(this.ships);
@@ -95,6 +19,14 @@ Grid.prototype.render = function(ctx){
   }
 };
 
+/**
+ * Called by Game when a mouse event happens on the grid.
+ * @param  {Number} x         X position of the event relative to the grid
+ * @param  {Number} y         Y position of the event relative to the grid
+ * @param  {String} eventType The event that was triggered
+ * @param  {Event} event      Event Object
+ * @return {Boolean}          Same return value as used by event handlers
+ */
 Grid.prototype.on = function(x,y,eventType,event){
   if(eventType == "drop"){
     return this.ondrop(x,y,event);

@@ -1,2 +1,2 @@
-var Grid  = require("../shared/Grid.js");
+var Grid  = require("../shared/Grid");
 module.exports = Grid;

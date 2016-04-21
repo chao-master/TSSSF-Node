@@ -9,9 +9,9 @@ function Grid(game){
 }
 
 //If running on node export Grid & Import cards
-if("module" in window){
+if(typeof(window) == "undefined"){
   module.exports = Grid;
-  var cards = require("../server/Card");
+  var cards = require("../server/Cards");
   Card = cards.Card;
   PonyCard = cards.PonyCard;
   ShipCard = cards.ShipCard;

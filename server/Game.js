@@ -1,6 +1,6 @@
 /*jshint esnext:true*/
 var fs = require("fs"),
-    cards = require("./Card"),
+    cards = require("./Cards"),
     Grid = require("./Grid");
 
 /**

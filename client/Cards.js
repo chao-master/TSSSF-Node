@@ -38,17 +38,11 @@ function resizeImage(img,width,height){
   return canvas;
 }
 
-function Card(name,imgSrc){
-  this.name = name;
-  this.imgSrc = imgSrc;
-  this.image = undefined;
+Card.prototype.loadImage = function(){
   var that = this;
-  loadImage(imgSrc)
+  loadImage(this.imgSrc)
     .catch(function(e){
-      if(imgSrc != "../art/404.jpeg"){
-        return loadImage("../art/404.jpeg");
-      }
-      throw e;
+      return loadImage("../art/404.jpeg");
     })
     .then(function(img){
       that.image = resizeImage(img,that.IMG_WIDTH,that.IMG_HEIGHT);
@@ -56,23 +50,11 @@ function Card(name,imgSrc){
         that.parent.update();
       }
     });
-}
+};
 
 Card.prototype.IMG_WIDTH = 130;
 Card.prototype.IMG_HEIGHT = 96;
 Card.prototype.color = "black";
-
-Card.fromObject = function(obj){
-  if("gender" in obj || "race" in obj || "icon" in obj){
-    card = new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
-  } else if("condition" in obj){
-    card = new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
-  } else {
-    card = new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
-  }
-  card.id = obj.id;
-  return card;
-};
 
 Card.prototype.render = function(ctx,x,y){
   var cardSize = CELL_SIZE,
@@ -94,46 +76,14 @@ Card.prototype.render = function(ctx,x,y){
   }
 };
 
-function PonyCard(name,imgSrc,gender,race,extraIcon,effect){
-  Card.call(this,name,imgSrc);
-  this.gender = gender;
-  this.race = race;
-  this.effect = effect;
-  this.extraIcon = extraIcon;
-}
 
-PonyCard.prototype = Object.create(Card.prototype);
-PonyCard.prototype.constructor = PonyCard;
-
-PonyCard.prototype.color = "purple";
-
-function GoalCard(name,imgSrc,condition,score){
-  Card.call(this,name,imgSrc);
-  this.condition = condition;
-  this.score = score;
-}
-
-GoalCard.prototype = Object.create(Card.prototype);
-GoalCard.prototype.constructor = GoalCard;
-
-GoalCard.prototype.color = "blue";
-
-function ShipCard(name,imgSrc,effect){
-  Card.call(this,name,imgSrc);
-  this.effect = effect;
-}
-
-ShipCard.prototype = Object.create(Card.prototype);
-ShipCard.prototype.constructor = ShipCard;
 
 ShipCard.prototype.color = "pink";
-
 ShipCard.prototype.render = function(ctx,x,y){
   if(x !== undefined){ //For rendering in hand, we render the grid size version
     if(y===undefined) y=0;
     return Card.prototype.render.call(this,ctx,x,y);
   }
-
   //Otherwise we render the half grid sized version.
   var cardSize = CELL_SIZE/2,
       cellSize = CELL_SIZE + CELL_MARGIN,
@@ -151,3 +101,6 @@ ShipCard.prototype.render = function(ctx,x,y){
     ctx.drawImage(this.image,0,0,this.image.width,this.image.height,canvasX+5,canvasY+13,this.image.width/2,this.image.height/2);
   }
 };
+
+PonyCard.prototype.color = "purple";
+GoalCard.prototype.color = "blue";

@@ -1,7 +1,6 @@
 /**
  * Contains Client side Grid Methods, load after shared/Grid.js
  */
-
 var CELL_MARGIN = 20,
     CELL_SIZE = 150;
 

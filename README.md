@@ -46,7 +46,7 @@ Indicate a change of room ownership
 * `owner` User object of the new owner
 * `room` Room object the change corresponds to
 
-## `chat` &uaddr;
+## `chat` &uarr;
 Sends a chat message to the room
 * `msg` Chat message being Sent
 
@@ -80,3 +80,12 @@ Requests the server to resend `gridState`
 ## Effects
 ### Draw
  1. `pony` or `ship` - The deck the card is to be drawn from.
+
+### Copy
+ 1. The id of the pony card who's effect is being copied
+ 2. The first paramater for the copied effects
+ 3. Secon paramater ect...
+
+### Swap
+ 1. The first card to be swapped
+ 2. The second card to be swapped

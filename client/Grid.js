@@ -177,7 +177,7 @@ Grid.prototype.getActions = function(mouseX,mouseY){
       gridNegiX = gridX,
       gridNegiY = gridY,
       targetNegiPony,
-      iDirection;
+      iDirection,
       actions = [];
   if (direction == "up"){
     gridNegiY--;

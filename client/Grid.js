@@ -96,17 +96,17 @@ Grid.prototype.ondrop = function(x,y,event){
   if(effect == "replace" && action.type != "replace"){
     effect = undefined;
   }
-  this.doEffect(effect,action).then(function(result){
+  this.doEffect(effect,action).then(function(params){
+    params.unshift(card.id);
     ws.send({
       type:"playCards",
       cards:playedCards,
-      effect:effect,
-      params:result
+      params:params
     });
   });
 };
 
-Grid.prototype.doEffect = function(effect,action){
+Grid.prototype.doEffect = function(card,action){
   var that = this;
   switch(effect){
     case "draw":

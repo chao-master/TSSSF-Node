@@ -47,7 +47,7 @@ Room.prototype.hooks = {
     this.broadcast(data);
   },
   playCards:function(data,client){ //XXX should be in Game.js
-    data.cards = this.game.onPlay(data.cards,data.effect,data.params,client);
+    data.cards = this.game.onPlay(data.cards,data.params,client);
     data.client = client;
     data.type = "playCards";
     this.broadcast(data);

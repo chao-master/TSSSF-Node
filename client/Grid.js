@@ -94,12 +94,21 @@ Grid.prototype.ondrop = function(x,y,event){
   var effect = triggeredCard.effect,
       prom;
   if(effect == "replace" && action.type != "replace"){
-    effect = undefined;
+    prom = Promise.resolve([]);
+  } else {
+    prom = this.doEffect(triggeredCard,action).then(function(params){
+        params.unshift(triggeredCard.id);
+        return params;
+    })
   }
+<<<<<<< HEAD
   this.doEffect(effect,action).then(function(params){
     if(effect !== undefined){
       params.unshift(card.id);
     }
+=======
+  prom.then(function(params){
+>>>>>>> d9aae158c6f38277e4e59b61b3445eee960838f0
     ws.send({
       type:"playCards",
       cards:playedCards,
@@ -108,7 +117,13 @@ Grid.prototype.ondrop = function(x,y,event){
   });
 };
 
+<<<<<<< HEAD
 Grid.prototype.doEffect = function(effect,action){
+=======
+Grid.prototype.doEffect = function(card,action){
+  var that = this,
+      effect = card.effect;
+>>>>>>> d9aae158c6f38277e4e59b61b3445eee960838f0
   switch(effect){
     case "draw":
       return getUserSelection("Select a card to draw",[
@@ -122,7 +137,7 @@ Grid.prototype.doEffect = function(effect,action){
         "Select card to copy",
         function(n){return n.effect && n.effect != "replace" && n.effect != "copy";}
       ).then(function(card){
-        return that.doEffect(card.effect).then(function(n){
+        return that.doEffect(card).then(function(n){
           n.unshift(card.id);
           return n;
         });

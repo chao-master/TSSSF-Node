@@ -97,7 +97,9 @@ Grid.prototype.ondrop = function(x,y,event){
     effect = undefined;
   }
   this.doEffect(effect,action).then(function(params){
-    params.unshift(card.id);
+    if(effect !== undefined){
+      params.unshift(card.id);
+    }
     ws.send({
       type:"playCards",
       cards:playedCards,
@@ -106,8 +108,7 @@ Grid.prototype.ondrop = function(x,y,event){
   });
 };
 
-Grid.prototype.doEffect = function(card,action){
-  var that = this;
+Grid.prototype.doEffect = function(effect,action){
   switch(effect){
     case "draw":
       return getUserSelection("Select a card to draw",[

@@ -40,7 +40,10 @@ Game.prototype.loadCards = function(file){
  * @return {Array}            List of Card id's and positions that should be reported back to the client to update their grid
  */
 Game.prototype.onPlay = function(cards,params,client){
-  var effect = this.cardList[params.shift()].effect;
+  var effect;
+  if(params.length > 0){
+    effect = this.cardList[params.shift()].effect;
+  }
   if(effect == "replace"){
     this.grid.replaceCard(params[0],cards[0].id);
     return [{id:params[0],position:null},cards[0]];

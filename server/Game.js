@@ -41,8 +41,8 @@ Game.prototype.loadCards = function(file){
  */
 Game.prototype.onPlay = function(cards,params,client){;
   if(params.length > 0 && this.cardList[params[0]].effect == "replace"){
-    this.grid.replaceCard(params[1],params.shift());
-    return [{id:params.shift(),position:null},cards[0]];
+    this.grid.replaceCard(params[0],params[1]);
+    return [{id:params[0],position:null},cards[0]];
   } else {
     cards.forEach(c => this.grid.addCard(c.position,c.id));
     return cards.concat(this.resolveEffect(params))
@@ -50,10 +50,6 @@ Game.prototype.onPlay = function(cards,params,client){;
 };
 
 Game.prototype.resolveEffect = function(params){
-  if(params.length == 0){
-    console.warn("Empty effect paramaters - this is only normal if no effect triggered")
-    return [];
-  }
   var effect = this.cardList[params.shift()].effect
   if(effect in this.effects){
     return this.effects[effect].call(this,params);

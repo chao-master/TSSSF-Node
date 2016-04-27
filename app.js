@@ -3,7 +3,7 @@ var argv = require('yargs')
     .usage('Usage: $0 [options]')
     .alias('H', 'host').default('H','0.0.0.0')
     .alias('p', 'port').default('p','3000')
-    .boolean('longpoll')
+    .boolean('lonpoll')
     .help('h').alias('h', 'help')
     .argv;
 var console = require("./colourConsole");

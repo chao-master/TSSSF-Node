@@ -20,6 +20,12 @@ Room.prototype.addClient = function(client) {
   this.broadcast({type:"join",client:client,room:this});
   client.send(this.packet("clients"));
   client.send(this.packet("cardList"));
+
+  client.send({ //DEMO;
+    type:"drawCards",
+    cards:this.game.__demo__hand.map(n=>n.id)
+  });
+
   client.send(this.packet("gridState"));
   console.info(client.name,"has joined",this.id);
 };

@@ -54,8 +54,13 @@ handlers.error = function(data){
 };
 handlers.cardList = function(data){
   game.cardList = data.cardList.map(Card.fromObject);
-  for(var i=0;i<game.cardList.length;i++){
-    hand.addCard(game.cardList[i]);
+};
+
+handlers.drawCards = function(data){
+  if(true || data.client.id == ourId){ // "true || " - DEMO
+    for(var i=0;i<data.cards.length;i++){
+      hand.addCard(game.cardList[data.cards[i]]);
+    }
   }
 };
 

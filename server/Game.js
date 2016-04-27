@@ -17,7 +17,10 @@ function Game(room,cardSets){
   this.cardList = [];
   cardSets.forEach(this.loadCards.bind(this));
   this.setupDecks();
-  this.grid.addCard([0,0],this.decks.drawPonies()[0]); //DEMO
+
+  //---DEMO---
+  this.grid.addCard([0,0],this.decks.drawPonies()[0]);
+  this.__demo__hand = this.decks.drawCards(4,3);
 }
 
 /**
@@ -57,35 +60,48 @@ Game.prototype.onPlay = function(cards,params,client){
     return [{id:params.shift(),position:null},cards[0]];
   } else {
     cards.forEach(c => this.grid.addCard(c.position,c.id));
-    return cards.concat(this.resolveEffect(params));
+    return cards.concat(this.resolveEffect(params,client));
   }
 };
 
-Game.prototype.resolveEffect = function(params){
+Game.prototype.resolveEffect = function(params,client){
   if(params.length === 0){
     console.warn("Empty effect paramaters - this is only normal if no effect triggered");
     return [];
   }
   var effect = this.cardList[params.shift()].effect;
   if(effect in this.effects){
-    return this.effects[effect].call(this,params);
+    return this.effects[effect].call(this,params,client);
   } else {
     console.warn("No handler for effect",effect);
     return [];
   }
 };
 Game.prototype.effects = {
-  swap:function(params){
+  swap:function(params,client){
     var swappedCards = this.grid.swapCards([params[0],params[1]]);
     return [].concat(
       swappedCards.map(c=>({id:c.id,position:null})), //Mark cards to remove
       swappedCards.map(c=>({id:c.id,position:c.position})) //Readd cards
     );
   },
+  draw:function(params,client){
+    var type = params.shift(),drawnCards;
+    if(type == "pony"){
+      drawnCards = this.decks.drawPonies(1);
+    } else {
+      drawnCards = this.decks.drawShips(1);
+    }
+    client.send({
+      type:"drawCards",
+      cards:drawnCards.map(n=>n.id)
+    });
+    return [];
+  },
   copy:Game.prototype.resolveEffect
 };
 
-/*Game Packets*/
+/*Game Packets - Called from Room.packet()*/
 Game.prototype.packets={};
 Game.prototype.packets.cardList = function(){
   return {cardList:this.cardList};

@@ -26,12 +26,12 @@ function Decks(parent){
 
 Decks.prototype.drawPonies = function(n){
   n = n === undefined?1:n;
-  return this.ponyCards.splice(n);
+  return this.ponyCards.splice(0,n);
 };
 
 Decks.prototype.drawShips = function(n){
   n = n === undefined?1:n;
-  return this.shipCards.splice(n);
+  return this.shipCards.splice(0,n);
 };
 
 Decks.prototype.drawGoals = function(n){
@@ -46,7 +46,7 @@ Decks.prototype.resetAll = function(){
 };
 
 Decks.prototype.drawCards = function(ponies,ships){
-  return [this.drawPonies(ponies),this.drawShips(ships)];
+  return this.drawPonies(ponies).concat(this.drawShips(ships));
 };
 
 Decks.prototype.addCard = function(cardish){
@@ -55,6 +55,8 @@ Decks.prototype.addCard = function(cardish){
     this.ponyCards.push(card);
   } else if (card instanceof cards.ShipCard){
     this.shipCards.push(card);
+  } else if (card instanceof cards.GoalCard){
+    this.goalCards.push(card);
   } else {
     console.warn("Warning:",card,"is neither a pony or ship card");
   }

@@ -1,7 +1,8 @@
 /*jshint esnext:true*/
 var fs = require("fs"),
     cards = require("./Cards"),
-    Grid = require("./Grid");
+    Grid = require("./Grid"),
+    Decks = require("./Decks.js");
 
 /**
  * Represents a game
@@ -12,9 +13,11 @@ function Game(room,cardSets){
   this.room = room;
   this.hands = [];
   this.grid = new Grid(this);
+  this.decks = new Decks(this);
   this.cardList = [];
   cardSets.forEach(this.loadCards.bind(this));
-  this.grid.addCard([0,0],0); //DEMO
+  this.setupDecks();
+  this.grid.addCard([0,0],this.decks.drawPonies()[0]); //DEMO
 }
 
 /**
@@ -30,6 +33,15 @@ Game.prototype.loadCards = function(file){
   });
 };
 
+Game.prototype.setupDecks = function(){
+  for(var i=0;i<this.cardList.length;i++){
+    this.decks.addCard(i);
+  }
+  this.decks.shuffleShips();
+  this.decks.shuffleGoals();
+  this.decks.shufflePonies();
+};
+
 /**
  * Event handler to be called when a player plays a cards
  * Calculates all the results of the play then returns what needs to be done
@@ -39,29 +51,29 @@ Game.prototype.loadCards = function(file){
  * @param  {Client}   Client  The client who made the play
  * @return {Array}            List of Card id's and positions that should be reported back to the client to update their grid
  */
-Game.prototype.onPlay = function(cards,params,client){;
+Game.prototype.onPlay = function(cards,params,client){
   if(params.length > 0 && this.cardList[params[0]].effect == "replace"){
     this.grid.replaceCard(params[1],params.shift());
     return [{id:params.shift(),position:null},cards[0]];
   } else {
     cards.forEach(c => this.grid.addCard(c.position,c.id));
-    return cards.concat(this.resolveEffect(params))
+    return cards.concat(this.resolveEffect(params));
   }
 };
 
 Game.prototype.resolveEffect = function(params){
-  if(params.length == 0){
-    console.warn("Empty effect paramaters - this is only normal if no effect triggered")
+  if(params.length === 0){
+    console.warn("Empty effect paramaters - this is only normal if no effect triggered");
     return [];
   }
-  var effect = this.cardList[params.shift()].effect
+  var effect = this.cardList[params.shift()].effect;
   if(effect in this.effects){
     return this.effects[effect].call(this,params);
   } else {
     console.warn("No handler for effect",effect);
     return [];
   }
-}
+};
 Game.prototype.effects = {
   swap:function(params){
     var swappedCards = this.grid.swapCards([params[0],params[1]]);
@@ -71,7 +83,7 @@ Game.prototype.effects = {
     );
   },
   copy:Game.prototype.resolveEffect
-}
+};
 
 /*Game Packets*/
 Game.prototype.packets={};

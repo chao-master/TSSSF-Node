@@ -40,21 +40,42 @@ Game.prototype.loadCards = function(file){
  * @return {Array}            List of Card id's and positions that should be reported back to the client to update their grid
  */
 Game.prototype.onPlay = function(cards,params,client){
-  var effect = this.cardList[params.shift()].effect;
+  var effect;
+  if(params.length > 0){
+    effect = this.cardList[params.shift()].effect;
+  }
   if(effect == "replace"){
     this.grid.replaceCard(params[0],cards[0].id);
     return [{id:params[0],position:null},cards[0]];
   } else {
     cards.forEach(c => this.grid.addCard(c.position,c.id));
-    if(effect == "swap"){
-      var swappedCards = this.grid.swapCards([params[0],params[1]]);
-      cards = cards.concat(
-        swappedCards.map(c=>({id:c.id,position:null})), //Mark cards to remove
-        swappedCards.map(c=>({id:c.id,position:c.position})) //Readd cards
-      );
-    }
-    return cards;
+    return cards.concat(this.resolveEffect(params));
   }
+};
+
+Game.prototype.resolveEffect = function(params){
+  if(params.length === 0){
+    console.warn("Empty effect paramaters - this is only normal if no effect triggered");
+    return [];
+  }
+  var effect = this.cardList[params.shift()].effect;
+  if(effect in this.effects){
+    return this.effects[effect].call(this,params);
+  } else {
+    console.warn("No handler for effect",effect);
+    return [];
+  }
+};
+
+Game.prototype.effects = {
+  swap:function(params){
+    var swappedCards = this.grid.swapCards([params[0],params[1]]);
+    return [].concat(
+      swappedCards.map(c=>({id:c.id,position:null})), //Mark cards to remove
+      swappedCards.map(c=>({id:c.id,position:c.position})) //Readd cards
+    );
+  },
+  copy:Game.prototype.resolveEffect
 };
 
 /*Game Packets*/

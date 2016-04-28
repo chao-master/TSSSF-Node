@@ -42,7 +42,8 @@ Card.prototype.loadImage = function(){
   var that = this;
   loadImage(this.imgSrc)
     .catch(function(e){
-      return loadImage("../art/404.jpeg");
+      var i = Math.floor(Math.random()*7)+1;
+      return loadImage("../art2/artmissing0"+i+".png");
     })
     .then(function(img){
       that.image = resizeImage(img,that.IMG_WIDTH,that.IMG_HEIGHT);

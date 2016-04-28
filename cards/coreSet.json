@@ -1,0 +1,939 @@
+[
+ {
+  "name": "Fanfic Author Twilight",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "start",
+  "imgSrc": "../art2/Start-FanficAuthorTwilight.png"
+ },
+ {
+  "name": "Star Student Twilight",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "copy",
+  "imgSrc": "../art2/Pony-StarStudentTwilight.png"
+ },
+ {
+  "name": "Super Spy Twilight",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "search",
+  "imgSrc": "../art2/Pony-SuperSpyTwilight.png"
+ },
+ {
+  "name": "Private Eye Twilight",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-PrivateEyeTwilight.png"
+ },
+ {
+  "name": "Heartless Dictator Rarity",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-HeartlessDictatorRarity.png"
+ },
+ {
+  "name": "Dramatically Wounded Rarity",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-DramaticallyWoundedRarity.png"
+ },
+ {
+  "name": "Black Widow Rarity",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-BlackWidowRarity.png"
+ },
+ {
+  "name": "Tsundere Rainbow Dash",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-TsundereRainbowDash.png"
+ },
+ {
+  "name": "Major General Dash",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-MajorGeneralDash.png"
+ },
+ {
+  "name": "Broken-Wing Rainbow Dash",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-BrokenWingRainbowDash.png"
+ },
+ {
+  "name": "Druid Fluttershy",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-DruidFluttershy.png"
+ },
+ {
+  "name": "Cult Leader Fluttershy",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-CultLeaderFluttershy.png"
+ },
+ {
+  "name": "Moe Fluttershy",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-MoeFluttershy.png"
+ },
+ {
+  "name": "Pinkamena",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "special",
+  "imgSrc": "../art2/Pony-Pinkamena.png"
+ },
+ {
+  "name": "Gypsy Witch Pinkie Pie",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "special",
+  "imgSrc": "../art2/Pony-GypsyWitchPinkiePie.png"
+ },
+ {
+  "name": "Freedom Fighter Pinkie Pie",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "special",
+  "imgSrc": "../art2/Pony-FreedomFighterPinkiePie.png"
+ },
+ {
+  "name": "Cider Season Applejack",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-CiderSeasonApplejack.png"
+ },
+ {
+  "name": "Sharpshooter Applejack",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-SharpshooterApplejack.png"
+ },
+ {
+  "name": "Applejack: the Cutest, Smartest, All-Around-Best Background Pony",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-ApplejacktheCutestSmartestAllAroundBestBackgroundPony.png"
+ },
+ {
+  "name": "Princess Celestia",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "search",
+  "imgSrc": "../art2/Pony-PrincessCelestia.png"
+ },
+ {
+  "name": "Mortal Celestia",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-MortalCelestia.png"
+ },
+ {
+  "name": "Princess Luna",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-PrincessLuna.png"
+ },
+ {
+  "name": "Nightmare Moon",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-NightmareMoon.png"
+ },
+ {
+  "name": "Big Macintosh",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-BigMacintosh.png"
+ },
+ {
+  "name": "Braeburn",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-Braeburn.png"
+ },
+ {
+  "name": "Doctor Whooves",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-DoctorWhooves.png"
+ },
+ {
+  "name": "Road Warrior Spike",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-RoadWarriorSpike.png"
+ },
+ {
+  "name": "Derpy Hooves",
+  "gender": "female",
+  "race": "pegasus",
+  "imgSrc": "../art2/Pony-DerpyHooves.png"
+ },
+ {
+  "name": "Granny Smith",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "search",
+  "imgSrc": "../art2/Pony-GrannySmith.png"
+ },
+ {
+  "name": "Young and Hot Granny Smith",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-YoungandHotGrannySmith.png"
+ },
+ {
+  "name": "Starswirl the Bearded",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "search",
+  "imgSrc": "../art2/Pony-StarswirltheBearded.png"
+ },
+ {
+  "name": "Royal Guard Shining Armor",
+  "gender": "male",
+  "race": "unicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-RoyalGuardShiningArmor.png"
+ },
+ {
+  "name": "B.B.B.F.F. Shining Armor",
+  "gender": "male",
+  "race": "unicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-BBBFFShiningArmor.png"
+ },
+ {
+  "name": "Princess Cadance",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-PrincessCadance.png"
+ },
+ {
+  "name": "Best Foalsitter Cadance",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-BestFoalsitterCadance.png"
+ },
+ {
+  "name": "Bon Bon",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-BonBon.png"
+ },
+ {
+  "name": "Gilda",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-Gilda.png"
+ },
+ {
+  "name": "Berry Punch",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-BerryPunch.png"
+ },
+ {
+  "name": "Crackle",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-Crackle.png"
+ },
+ {
+  "name": "Mahou Shoujo Derpy",
+  "gender": "female",
+  "race": "pegasus",
+  "effect": "special",
+  "imgSrc": "../art2/Pony-MahouShoujoDerpy.png"
+ },
+ {
+  "name": "Mr. Cake",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-MrCake.png"
+ },
+ {
+  "name": "Mrs. Cake",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-MrsCake.png"
+ },
+ {
+  "name": "Octavia",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-Octavia.png"
+ },
+ {
+  "name": "Vinyl Scratch",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-VinylScratch.png"
+ },
+ {
+  "name": "Pony Joe",
+  "gender": "male",
+  "race": "unicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-PonyJoe.png"
+ },
+ {
+  "name": "Caramel",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-Caramel.png"
+ },
+ {
+  "name": "Cheerilee",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "special",
+  "imgSrc": "../art2/Pony-Cheerilee.png"
+ },
+ {
+  "name": "Lyra",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-Lyra.png"
+ },
+ {
+  "name": "Royal Guard Hank",
+  "gender": "male",
+  "race": "pegasus",
+  "effect": "draw",
+  "imgSrc": "../art2/Pony-RoyalGuardHank.png"
+ },
+ {
+  "name": "Changeling",
+  "race": "earthpony",
+  "imgSrc": "../art2/Pony-EarthPonyChangeling.png"
+ },
+ {
+  "name": "Changeling",
+  "race": "unicorn",
+  "imgSrc": "../art2/Pony-UnicornChangeling.png"
+ },
+ {
+  "name": "Changeling",
+  "race": "pegasus",
+  "imgSrc": "../art2/Pony-PegasusChangeling.png"
+ },
+ {
+  "name": "Queen Chrysalis",
+  "gender": "female",
+  "race": "alicorn",
+  "imgSrc": "../art2/Pony-QueenChrysalis.png"
+ },
+ {
+  "name": "Zecora",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-Zecora.png"
+ },
+ {
+  "name": "The Great and Powerful Trixie",
+  "gender": "female",
+  "race": "unicorn",
+  "effect": "copy",
+  "imgSrc": "../art2/Pony-TheGreatandPowerfulTrixie.png"
+ },
+ {
+  "name": "Kefentse",
+  "gender": "female",
+  "race": "alicorn",
+  "effect": "copy",
+  "imgSrc": "../art2/Pony-Kefentse.png"
+ },
+ {
+  "name": "Discord",
+  "gender": "male",
+  "race": "alicorn",
+  "effect": "3swap",
+  "imgSrc": "../art2/Pony-Discord.png"
+ },
+ {
+  "name": "Flim & Flam",
+  "gender": "male",
+  "race": "unicorn",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-FlimFlam.png"
+ },
+ {
+  "name": "Aloe & Lotus",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-AloeLotus.png"
+ },
+ {
+  "name": "Smarty Pants",
+  "gender": "female",
+  "race": "earthpony",
+  "effect": "search",
+  "imgSrc": "../art2/Pony-SmartyPants.png"
+ },
+ {
+  "name": "Bulk Biceps",
+  "gender": "male",
+  "race": "pegasus",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-BulkBiceps.png"
+ },
+ {
+  "name": "The Wonderbolts",
+  "gender": "malefemale",
+  "race": "pegasus",
+  "effect": "hermaphrodite",
+  "imgSrc": "../art2/Pony-TheWonderbolts.png"
+ },
+ {
+  "name": "Prince Blueblood",
+  "gender": "male",
+  "race": "unicorn",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-PrinceBlueblood.png"
+ },
+ {
+  "name": "Iron Will",
+  "gender": "male",
+  "race": "earthpony",
+  "effect": "swap",
+  "imgSrc": "../art2/Pony-IronWill.png"
+ },
+ {
+  "name": "Tom",
+  "gender": "male",
+  "effect": "replace",
+  "imgSrc": "../art2/Pony-Tom.png"
+ },
+ {
+  "name": "Bloomberg",
+  "gender": "male",
+  "effect": "goal",
+  "imgSrc": "../art2/Pony-Bloomberg.png"
+ },
+ {
+  "name": "So THAT'S What That Does!",
+  "effect": "race_change",
+  "imgSrc": "../art2/Ship-SoTHATSWhatThatDoes.png"
+ },
+ {
+  "name": "Checking It Off My List",
+  "imgSrc": "../art2/Ship-CheckingItOffMyList.png"
+ },
+ {
+  "name": "Beach Episode",
+  "imgSrc": "../art2/Ship-BeachEpisode.png"
+ },
+ {
+  "name": "Stuck on a Blacony All Night",
+  "imgSrc": "../art2/Ship-StuckonaBlaconyAllNight.png"
+ },
+ {
+  "name": "Trapped in a Storm",
+  "imgSrc": "../art2/Ship-TrappedinaStorm.png"
+ },
+ {
+  "name": "Put a Ring on It",
+  "imgSrc": "../art2/Ship-PutaRingonIt.png"
+ },
+ {
+  "name": "Do You Think Yove Can Bloom? Even on a Battlefield?",
+  "effect": "timeline_change",
+  "imgSrc": "../art2/Ship-DoYouThinkYoveCanBloomEvenonaBattlefield.png"
+ },
+ {
+  "name": "Saw You in a Dream",
+  "imgSrc": "../art2/Ship-SawYouinaDream.png"
+ },
+ {
+  "name": "Cabin in the Woods, Awooo!",
+  "effect": "play_from_discard",
+  "imgSrc": "../art2/Ship-CabinintheWoodsAwooo.png"
+ },
+ {
+  "name": "They're at It Again?!",
+  "imgSrc": "../art2/Ship-TheyreatItAgain.png"
+ },
+ {
+  "name": "Unexpected Pregnancy",
+  "imgSrc": "../art2/Ship-UnexpectedPregnancy.png"
+ },
+ {
+  "name": "You Had Me at \"Neigh\"",
+  "imgSrc": "../art2/Ship-YouHadMeatNeigh.png"
+ },
+ {
+  "name": "Step into My Basement",
+  "effect": "race_change",
+  "imgSrc": "../art2/Ship-StepintoMyBasement.png"
+ },
+ {
+  "name": "On the Lam",
+  "effect": "timeline_change",
+  "imgSrc": "../art2/Ship-OntheLam.png"
+ },
+ {
+  "name": "Time For an Experiment!",
+  "effect": "race_change",
+  "imgSrc": "../art2/Ship-TimeForanExperiment.png"
+ },
+ {
+  "name": "I Read That in a Book Once!",
+  "imgSrc": "../art2/Ship-IReadThatinaBookOnce.png"
+ },
+ {
+  "name": "Slap-Slap Kiss",
+  "imgSrc": "../art2/Ship-SlapSlapKiss.png"
+ },
+ {
+  "name": "Love Poison Is No Joke!",
+  "effect": "love_poison",
+  "imgSrc": "../art2/Ship-LovePoisonIsNoJoke.png"
+ },
+ {
+  "name": "Shmoopy Boo!",
+  "effect": "love_poison",
+  "imgSrc": "../art2/Ship-ShmoopyBoo.png"
+ },
+ {
+  "name": "Want It. Need It.",
+  "effect": "love_poison",
+  "imgSrc": "../art2/Ship-WantItNeedIt.png"
+ },
+ {
+  "name": "Leaving on a Personal Crusade",
+  "imgSrc": "../art2/Ship-LeavingonaPersonalCrusade.png"
+ },
+ {
+  "name": "My Little Shotgun Wedding",
+  "imgSrc": "../art2/Ship-MyLittleShotgunWedding.png"
+ },
+ {
+  "name": "Bored on a Sunday Afternoon",
+  "imgSrc": "../art2/Ship-BoredonaSundayAfternoon.png"
+ },
+ {
+  "name": "What Did I Do Last Night?!",
+  "imgSrc": "../art2/Ship-WhatDidIDoLastNight.png"
+ },
+ {
+  "name": "Have You Met My Friend?",
+  "imgSrc": "../art2/Ship-HaveYouMetMyFriend.png"
+ },
+ {
+  "name": "Can I Tell You a Secret?",
+  "effect": "gender_change",
+  "imgSrc": "../art2/Ship-CanITellYouaSecret.png"
+ },
+ {
+  "name": "Oops! Wrong Spell.",
+  "effect": "gender_change",
+  "imgSrc": "../art2/Ship-OopsWrongSpell.png"
+ },
+ {
+  "name": "Dude Looks Like a Lady",
+  "effect": "gender_change",
+  "imgSrc": "../art2/Ship-DudeLooksLikeaLady.png"
+ },
+ {
+  "name": "Rule 63",
+  "effect": "gender_change",
+  "imgSrc": "../art2/Ship-Rule63.png"
+ },
+ {
+  "name": "I Wish I Knew How to Quit You!",
+  "imgSrc": "../art2/Ship-IWishIKnewHowtoQuitYou.png"
+ },
+ {
+  "name": "There Are No Brakes on the Love Train",
+  "imgSrc": "../art2/Ship-ThereAreNoBrakesontheLoveTrain.png"
+ },
+ {
+  "name": "Suspiciously Romantic Random Picnic",
+  "imgSrc": "../art2/Ship-SuspiciouslyRomanticRandomPicnic.png"
+ },
+ {
+  "name": "Nothing in Common; Perfect Anyway",
+  "imgSrc": "../art2/Ship-NothinginCommonPerfectAnyway.png"
+ },
+ {
+  "name": "We've Got to Stop Meeting Like This",
+  "imgSrc": "../art2/Ship-WeveGottoStopMeetingLikeThis.png"
+ },
+ {
+  "name": "Cult Meeting",
+  "effect": "race_change",
+  "imgSrc": "../art2/Ship-CultMeeting.png"
+ },
+ {
+  "name": "Detention",
+  "imgSrc": "../art2/Ship-Detention.png"
+ },
+ {
+  "name": "How to Pick Up Mares: A Reference Guide",
+  "imgSrc": "../art2/Ship-HowtoPickUpMaresAReferenceGuide.png"
+ },
+ {
+  "name": "Divine Intervention",
+  "imgSrc": "../art2/Ship-DivineIntervention.png"
+ },
+ {
+  "name": "It's a Sign",
+  "imgSrc": "../art2/Ship-ItsaSign.png"
+ },
+ {
+  "name": "Amnesia!",
+  "effect": "play_from_discard",
+  "imgSrc": "../art2/Ship-Amnesia.png"
+ },
+ {
+  "name": "The Other Mare",
+  "imgSrc": "../art2/Ship-TheOtherMare.png"
+ },
+ {
+  "name": "Startling Confession",
+  "effect": "gender_change",
+  "imgSrc": "../art2/Ship-StartlingConfession.png"
+ },
+ {
+  "name": "Now Kiss!",
+  "imgSrc": "../art2/Ship-NowKiss.png"
+ },
+ {
+  "name": "It Was You All Along!",
+  "imgSrc": "../art2/Ship-ItWasYouAllAlong.png"
+ },
+ {
+  "name": "Trading Up",
+  "imgSrc": "../art2/Ship-TradingUp.png"
+ },
+ {
+  "name": "Yer a Princess, Harry!",
+  "imgSrc": "../art2/Ship-YeraPrincessHarry.png"
+ },
+ {
+  "name": "Cutie Mark Crusaders: Matchmakers!",
+  "imgSrc": "../art2/Ship-CutieMarkCrusadersMatchmakers.png"
+ },
+ {
+  "name": "Fillyhood Crush",
+  "imgSrc": "../art2/Ship-FillyhoodCrush.png"
+ },
+ {
+  "name": "Crossover Fic!",
+  "effect": "play_from_discard",
+  "imgSrc": "../art2/Ship-CrossoverFic.png"
+ },
+ {
+  "name": "Bad Pony! Go to My Room!",
+  "effect": "play_from_discard",
+  "imgSrc": "../art2/Ship-BadPonyGotoMyRoom.png"
+ },
+ {
+  "name": "Life-Threatening Illness",
+  "imgSrc": "../art2/Ship-LifeThreateningIllness.png"
+ },
+ {
+  "name": "Worldwide Threat of Destruction",
+  "imgSrc": "../art2/Ship-WorldwideThreatofDestruction.png"
+ },
+ {
+  "name": "Closed Door Negotiations",
+  "imgSrc": "../art2/Ship-ClosedDoorNegotiations.png"
+ },
+ {
+  "name": "They Fight Crime",
+  "imgSrc": "../art2/Ship-TheyFightCrime.png"
+ },
+ {
+  "name": "From an Alternate Dimension",
+  "effect": "timeline_change",
+  "imgSrc": "../art2/Ship-FromanAlternateDimension.png"
+ },
+ {
+  "name": "Self-Insertion",
+  "score": 2,
+  "condition": "3 Twilight Sparkles are shipped in a chain.",
+  "imgSrc": "../art2/Goal-SelfInsertion.png"
+ },
+ {
+  "name": "Fabulosity",
+  "score": 2,
+  "condition": "2 Rarities are shipped together.",
+  "imgSrc": "../art2/Goal-Fabulosity.png"
+ },
+ {
+  "name": "Rainbow Dash Fan Club",
+  "score": 2,
+  "condition": "2 Rainbow Dashes are shipped together.",
+  "imgSrc": "../art2/Goal-RainbowDashFanClub.png"
+ },
+ {
+  "name": "The Quiet Game",
+  "score": 2,
+  "condition": "2 Fluttershies are shipped together.",
+  "imgSrc": "../art2/Goal-TheQuietGame.png"
+ },
+ {
+  "name": "Paradox",
+  "score": 2,
+  "condition": "2 Pinkies are shipped together.",
+  "imgSrc": "../art2/Goal-Paradox.png"
+ },
+ {
+  "name": "Rodeo",
+  "score": 2,
+  "condition": "2 Applejacks are shipped together.",
+  "imgSrc": "../art2/Goal-Rodeo.png"
+ },
+ {
+  "name": "I Swear I'm Not Gay!",
+  "score": 1,
+  "condition": "Any {male} is shipped with 3 other {male}",
+  "imgSrc": "../art2/Goal-ISwearImNotGay.png"
+ },
+ {
+  "name": "It's Not EXACTLY Cheating...",
+  "score": 2,
+  "condition": "Any single Pony is shipped with 2 versions of another Pony.",
+  "imgSrc": "../art2/Goal-ItsNotEXACTLYCheating.png"
+ },
+ {
+  "name": "Princess Pile",
+  "score": 2,
+  "condition": "3 Ponies with the Princess keyword are shipped in a chain.\nTwilight doesn't count for this Goal.\nShe gets to watch.",
+  "imgSrc": "../art2/Goal-PrincessPile.png"
+ },
+ {
+  "name": "Shining Armor Approves of This Experiment!",
+  "score": 1,
+  "condition": "Cadance is shipped with any {female}",
+  "imgSrc": "../art2/Goal-ShiningArmorApprovesofThisExperiment.png"
+ },
+ {
+  "name": "I Guess You'll Do",
+  "score": 2,
+  "condition": "Twilight Sparkle is shipped with any Cheerilee.",
+  "imgSrc": "../art2/Goal-IGuessYoullDo.png"
+ },
+ {
+  "name": "Well...Maybe",
+  "score": 2,
+  "condition": "Twilight Sparkle is shipped with any Zecora.",
+  "imgSrc": "../art2/Goal-WellMaybe.png"
+ },
+ {
+  "name": "Good Enough",
+  "score": 2,
+  "condition": "Twilight Sparkle is shipped with any Luna",
+  "imgSrc": "../art2/Goal-GoodEnough.png"
+ },
+ {
+  "name": "Hot for Teacher",
+  "score": 2,
+  "condition": "Twilight Sparkle is shipped with any Celestia.",
+  "imgSrc": "../art2/Goal-HotforTeacher.png"
+ },
+ {
+  "name": "Pomf!",
+  "score": 1,
+  "condition": "3 {pegasus}/{pegasus} Ships are on the grid.\n{alicorn} count as {pegasus} for this Goal.",
+  "imgSrc": "../art2/Goal-Pomf.png"
+ },
+ {
+  "name": "\"Just Experimenting\"",
+  "score": 2,
+  "condition": "3 {female} are shipped with any Rainbow Dash.",
+  "imgSrc": "../art2/Goal-JustExperimenting.png"
+ },
+ {
+  "name": "Friendship is Benefits",
+  "score": "3-4",
+  "condition": "Each of the Mane 6 are shipped in a chain.\nThis Goal is worth 4 points if nopony appears in the chain more than once.",
+  "imgSrc": "../art2/Goal-FriendshipisBenefits.png"
+ },
+ {
+  "name": "Help! I'm Trapped in a Shipping Card Game!",
+  "score": 0,
+  "condition": "Cheerilee is shipped with anypony.\nAnypony at all.\nThe player who completes this Goal increases their hand size by 1 for the rest of the game.",
+  "imgSrc": "../art2/Goal-HelpImTrappedinaShippingCardGame.png"
+ },
+ {
+  "name": "Time Travelers Among Us",
+  "score": 3,
+  "condition": "At least 5 {postapocalypse} Ponies are on the grid.",
+  "imgSrc": "../art2/Goal-TimeTravelersAmongUs.png"
+ },
+ {
+  "name": "It's Magical: Horns Are Touching",
+  "score": 1,
+  "condition": "3 {unicorn}/{unicorn} Ships are on the grid.\n{alicorn} count as {unicorn} for this Goal.",
+  "imgSrc": "../art2/Goal-ItsMagicalHornsAreTouching.png"
+ },
+ {
+  "name": "It's Not Creepy!",
+  "score": 2,
+  "condition": "Twilight Sparkle is shipped with any Shining Armor.",
+  "imgSrc": "../art2/Goal-ItsNotCreepy.png"
+ },
+ {
+  "name": "It's not Evil!",
+  "score": 1,
+  "condition": "You break up Shining Armor with any {female} (except Twilight).",
+  "imgSrc": "../art2/Goal-ItsnotEvil.png"
+ },
+ {
+  "name": "Hostile Takeover",
+  "score": 3,
+  "condition": "3 Ponies with the Changeling keyword are on the grid.",
+  "imgSrc": "../art2/Goal-HostileTakeover.png"
+ },
+ {
+  "name": "Chancellor Puddinghead's Entourage",
+  "score": 2,
+  "condition": "You play 3 {earthpony} in one turn.",
+  "imgSrc": "../art2/Goal-ChancellorPuddingheadsEntourage.png"
+ },
+ {
+  "name": "My First Slash",
+  "score": 1,
+  "condition": "Shining Armor is shipped with any {male}",
+  "imgSrc": "../art2/Goal-MyFirstSlash.png"
+ },
+ {
+  "name": "Queen Platinum's Court",
+  "score": 2,
+  "condition": "You play 3 {unicorn} in one turn.",
+  "imgSrc": "../art2/Goal-QueenPlatinumsCourt.png"
+ },
+ {
+  "name": "Commander Hurricane's Army",
+  "score": 2,
+  "condition": "You play 3 {pegasus} in one turn.",
+  "imgSrc": "../art2/Goal-CommanderHurricanesArmy.png"
+ },
+ {
+  "name": "Heh. Peasants",
+  "score": 3,
+  "condition": "You play 3 {alicorn} in one turn.",
+  "imgSrc": "../art2/Goal-HehPeasants.png"
+ },
+ {
+  "name": "Needs More Lesbians",
+  "score": 1,
+  "condition": "You play 3 {female}/{female} Ships in one turn.",
+  "imgSrc": "../art2/Goal-NeedsMoreLesbians.png"
+ },
+ {
+  "name": "Quite.",
+  "score": 2,
+  "condition": "You play 3 {male}/{male} Ships in one turn.",
+  "imgSrc": "../art2/Goal-Quite.png"
+ },
+ {
+  "name": "Shipwrecker",
+  "score": 2,
+  "condition": "You break up 12 Ships in one turn. Swapping a Pony card away from its original Ship counts as breaking up a Ship.",
+  "imgSrc": "../art2/Goal-Shipwrecker.png"
+ },
+ {
+  "name": "Invasive Species",
+  "score": 3,
+  "condition": "6 {earthpony}/{earthpony} Ships are on the grid.",
+  "imgSrc": "../art2/Goal-InvasiveSpecies.png"
+ },
+ {
+  "name": "Hold On; I Need to Make a Flow Chart",
+  "score": 3,
+  "condition": "You swap 6 Pony card positions in one turn.",
+  "imgSrc": "../art2/Goal-HoldOnINeedtoMakeaFlowChart.png"
+ },
+ {
+  "name": "Epidemic",
+  "score": 3,
+  "condition": "You play 2 Love Poisons in one turn.",
+  "imgSrc": "../art2/Goal-Epidemic.png"
+ },
+ {
+  "name": "Go Forth and Multiply",
+  "score": 1,
+  "condition": "You play 3 {male}/{female} Ships in one turn.",
+  "imgSrc": "../art2/Goal-GoForthandMultiply.png"
+ },
+ {
+  "name": "Pretty Pretty Princess",
+  "score": 3,
+  "condition": "You make Twilight Sparkle an {alicorn}.",
+  "imgSrc": "../art2/Goal-PrettyPrettyPrincess.png"
+ },
+ {
+  "name": "Sadfic",
+  "score": 1,
+  "condition": "You break up any Ship with Twilight Sparkle in it.",
+  "imgSrc": "../art2/Goal-Sadfic.png"
+ },
+ {
+  "name": "Deep Cover",
+  "score": 3,
+  "condition": "Any 2 Changelings are shipped together.",
+  "imgSrc": "../art2/Goal-DeepCover.png"
+ },
+ {
+  "name": "Budding Curiosity",
+  "score": 3,
+  "condition": "Any Pony is shipped with an opposite-gendered version of themselves.",
+  "imgSrc": "../art2/Goal-BuddingCuriosity.png"
+ },
+ {
+  "name": "Charity Auction",
+  "score": 3,
+  "condition": "Any two gender-swapped Ponies are shipped together.",
+  "imgSrc": "../art2/Goal-CharityAuction.png"
+ },
+ {
+  "name": "Cargo Ship",
+  "score": 3,
+  "condition": "Any 2 Ponies with the Object keyword are shipped together.",
+  "imgSrc": "../art2/Goal-CargoShip.png"
+ }
+]

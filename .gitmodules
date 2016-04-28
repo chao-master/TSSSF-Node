@@ -1,0 +1,3 @@
+[submodule "art-large"]
+	path = art-large
+	url = git@github.com:secretshipfic/Card-Art.git

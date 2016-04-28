@@ -9,7 +9,7 @@ function Room(server){
   this.clients = {};
   this.owner = undefined;
 
-  this.game = new Game(this,["cards/testSet.json"]);
+  this.game = new Game(this,["cards/coreSet.json"]);
 }
 
 Room.prototype.addClient = function(client) {

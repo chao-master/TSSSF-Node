@@ -19,7 +19,7 @@ function Game(room,cardSets){
   this.setupDecks();
 
   //---DEMO---
-  this.grid.addCard([0,0],this.decks.drawPonies()[0]);
+  this.grid.addCard([0,0],0);
   this.__demo__hand = this.decks.drawCards(4,3);
 }
 

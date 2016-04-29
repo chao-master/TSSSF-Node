@@ -1,5 +1,17 @@
 Node TSSSF thing
 
+# Acknowledgments
+Majority of art work for the original cards by Pixel Prism
+Original Game by Horrible People
+Card list shamelessly taken from tsssf.cards
+Art for the testing set taken from a few places that I cannot remember, I am sorry.
+
+# Requirements
+
+## Submodules
+
+* Card-Art.git &rarr; large-art: Not needed unless you wish to redo the art assests
+
 # Protocol:
 
 ## Handshake

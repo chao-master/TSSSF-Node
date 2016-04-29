@@ -48,10 +48,26 @@ function resizeImage(img,width,height){
     sY = (img.height-sHeight)/2;
   }
   var ctx = canvas.getContext("2d");
-  ctx.fillStyle = "white";
-  ctx.fillRect(0,0,width,height);
+  /*ctx.fillStyle = "white"; //For the derp
+  ctx.fillRect(0,0,width,height);*/
   ctx.drawImage(img,sX,sY,sWidth,sHeight,0,0,width,height);
   return canvas;
+}
+
+//XXX Dirty code to facilitate specials;
+Card._fromObject = Card.fromObject;
+Card.fromObject = function(obj){
+  var specFunc = SpecialCards[obj.special];
+  if(specFunc === undefined) return Card._fromObject(obj);
+  if("gender" in obj || "race" in obj || "icon" in obj){
+    card = new specFunc(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);  
+  } else if("condition" in obj){
+    card = new specFunc(obj.name,obj.imgSrc,obj.condition,obj.score);
+  } else {
+    card = new specFunc(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
+  }
+  card.id = obj.id;
+  return card;
 }
 
 Card.prototype.loadImage = function(){
@@ -132,5 +148,8 @@ ShipCard.prototype.render = function(ctx,x,y){
   }
 };
 
+
 PonyCard.prototype.color = "purple";
 GoalCard.prototype.color = "blue";
+
+

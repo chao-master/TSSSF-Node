@@ -192,7 +192,8 @@
   "name": "Derpy Hooves",
   "gender": "female",
   "race": "pegasus",
-  "imgSrc": "../art2/Pony-DerpyHooves.png"
+  "imgSrc": "../art2/Pony-DerpyHooves.png",
+  "special": "Derpy"
  },
  {
   "name": "Granny Smith",

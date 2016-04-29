@@ -126,3 +126,18 @@ document.querySelector("#chat form").onsubmit = function(e){
   this.childNodes[0].value = "";
   return false;
 };
+
+//Key
+Object.keys(COLORS).forEach(function(k){
+  var v = COLORS[k],
+      d1 = document.createElement("div"),
+      d2 = document.createElement("div");
+  d2.style.display="inline-block";
+  d2.style.width="1em";
+  d2.style.height="1em";
+  d2.style.background=v;
+  d2.style.verticalAlign="middle";
+  d1.textContent = k;
+  d1.insertBefore(d2,d1.firstChild);
+  document.querySelector(".demo-key").appendChild(d1);
+})

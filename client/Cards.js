@@ -97,7 +97,12 @@ Card.prototype.render = function(ctx,x,y){
     var col = COLORS[that[attr]];
     if(col == undefined) return;
     ctx.fillStyle = col;
-    ctx.fillRect(canvasX+10+that.ICON_SIZE*i,canvasY+10+that.IMG_HEIGHT,that.ICON_SIZE,that.ICON_SIZE);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.rect(canvasX+10.5+that.ICON_SIZE*i,canvasY+10.5+that.IMG_HEIGHT,that.ICON_SIZE,that.ICON_SIZE);
+    ctx.fill();
+    ctx.stroke();
   })
 };
 

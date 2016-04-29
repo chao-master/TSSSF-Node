@@ -1,5 +1,21 @@
 var CELL_MARGIN = 20,
-    CELL_SIZE = 150;
+    CELL_SIZE = 150,
+    COLORS = {
+      male:       "blue",
+      female:     "pink",
+      malefemale: "gray",
+      pegasus:    "blue",
+      unicorn:    "green",
+      earthpony:  "orange",
+      alicorn:    "purple",
+      replace:    "#F44336",
+      swap:       "#9C27B0",
+      draw:       "#9C27B0",
+      newGoal:    "#03A9F4",
+      copy:       "#009688",
+      special:    "#8BC34A",
+      search:     "#FFEB3B"
+    }
 
 function loadImage(imgSrc){
   return new Promise(function(good,bad){
@@ -55,6 +71,7 @@ Card.prototype.loadImage = function(){
 
 Card.prototype.IMG_WIDTH = 130;
 Card.prototype.IMG_HEIGHT = 96;
+Card.prototype.ICON_SIZE = 25;
 Card.prototype.color = "black";
 
 Card.prototype.render = function(ctx,x,y){
@@ -75,6 +92,13 @@ Card.prototype.render = function(ctx,x,y){
   if(this.image){
     ctx.drawImage(this.image,canvasX+10,canvasY+10);
   }
+  var that = this;
+  ["gender","race","effect"].forEach(function(attr,i){
+    var col = COLORS[that[attr]];
+    if(col == undefined) return;
+    ctx.fillStyle = col;
+    ctx.fillRect(canvasX+10+that.ICON_SIZE*i,canvasY+10+that.IMG_HEIGHT,that.ICON_SIZE,that.ICON_SIZE);
+  })
 };
 
 

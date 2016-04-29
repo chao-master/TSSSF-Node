@@ -76,29 +76,50 @@ game.addAsChild("grid",grid,0,0,680,680);
 game.addAsChild("hand",hand,0,680,680,150);
 
 var ws;
-try {
-  ws = new WebSocket("ws://" + location.host + location.search);
-} catch(e) {
-  console.warn("Websocket failed, trying longpoll fallback");
-  ws = new LongPoll("../ws",location.search);
-}
-ws.onmessage = function(msg){
-  var data = JSON.parse(msg.data),
-      handler = handlers[data.type];
-  if(typeof(data) !== 'object'){
-    console.warn("Data is not a object origional data:",msg.data);
-  }
-  if(handler === undefined){
-    console.warn("No handler for ",data.type,data);
-  } else {
-    handlers[data.type](data);
-  }
-};
 
-ws._send = ws.send;
-ws.send = function(data){
-  ws._send(JSON.stringify(data));
-};
+function makeWs(global,fallbackLevel){
+  var ws;
+  switch (fallbackLevel){
+    case undefined:
+      fallbackLevel = 0;
+    case 0:
+      ws = new WebSocket("ws://" + location.host + location.search);
+      break;
+    case 1:
+      console.warn("Using long polling");
+      ws = new LongPoll("../ws",location.search);
+      break;
+    default:
+      throw "Unable to make a connection";
+      break;
+  }
+  global.ws = ws;
+  ws.onerror = function(err){
+    console.error(err);
+    console.warn("Trying next fallback level");
+    makeWs(global,fallbackLevel+1);
+    ws.close();
+  }
+  ws.onmessage = function(msg){
+    var data = JSON.parse(msg.data),
+        handler = handlers[data.type];
+    if(typeof(data) !== 'object'){
+      console.warn("Data is not a object origional data:",msg.data);
+    }
+    if(handler === undefined){
+      console.warn("No handler for ",data.type,data);
+    } else {
+      handlers[data.type](data);
+    }
+  };
+
+  ws._send = ws.send;
+  ws.send = function(data){
+    ws._send(JSON.stringify(data));
+  };  
+}
+
+makeWs(window,0);
 
 document.querySelector("#chat form").onsubmit = function(e){
   ws.send({type:"chat",msg:this.childNodes[0].value});

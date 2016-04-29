@@ -6,7 +6,7 @@ Original Game by Horrible People
 Card list shamelessly taken from tsssf.cards
 Art for the testing set taken from a few places that I cannot remember, I am sorry.
 
-# Requiements
+# Requirements
 
 ## Submodules
 

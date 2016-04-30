@@ -22,10 +22,7 @@ Room.prototype.addClient = function(client) {
   client.send(this.packet("cardList"));
 
   //----DEMO : Starting hand for everyone ----
-  client.send({ //DEMO;
-    type:"drawCards",
-    cards:this.game.decks.drawCards(4,3).map(n=>n.id)
-  });
+  this.game.newClient(client);
   //----END DEMO----
 
   client.send(this.packet("gridState"));

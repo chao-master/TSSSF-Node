@@ -2,7 +2,8 @@
 var fs = require("fs"),
     cards = require("./Cards"),
     Grid = require("./Grid"),
-    Decks = require("./Decks.js");
+    Decks = require("./Decks.js"),
+    Hand = require("./Hand.js");
 
 /**
  * Represents a game
@@ -24,8 +25,22 @@ function Game(room,cardSets){
     if (this.decks.ponyCards[i].id === 0) break;
   }
   this.decks.ponyCards.splice(i,1);
+  this.activePlayer = 0;
   //---- END DEMO ----
 }
+
+Game.prototype.newClient = function(client){
+  var newHand = new Hand(client);
+  client.send({
+    type:"drawCards",
+    cards:this.decks.drawCards(4,3).map(function(card){
+      newHand.addCard(card);
+      return card.id;
+    })
+  });
+  this.hands.push(newHand);
+  console.debug(this.hands);
+};
 
 /**
  * Loads a card set from the given file and adds them to the usable card List
@@ -63,6 +78,15 @@ Game.prototype.setupDecks = function(){
  * @return {Array}            List of Card id's and positions that should be reported back to the client to update their grid
  */
 Game.prototype.onPlay = function(cards,params,client){
+
+  //----DEMO: Rotate turn after each played
+  var cc = this.hands[this.activePlayer].client;
+  if(cc != client){
+    client.send({type:"error",msg:"Not your turn, it is "+cc.name+" turn"});
+    return;
+  }
+  this.activePlayer = (this.activePlayer+1)%this.hands.length;
+  //----END DEMO----
 
   //----DEMO: Endless Cards----
   this.resolveEffect([16,"pony"],client); //triggers draw pony

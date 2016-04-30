@@ -20,6 +20,10 @@ function Game(room,cardSets){
 
   //---- DEMO ----
   this.grid.addCard([0,0],this.cardList[0]);
+  for(var i=0;i<this.decks.ponyCards.length;i++){
+    if (this.decks.ponyCards[i].id === 0) break;
+  }
+  this.decks.ponyCards.splice(i,1);
   //---- END DEMO ----
 }
 
@@ -59,12 +63,12 @@ Game.prototype.setupDecks = function(){
  * @return {Array}            List of Card id's and positions that should be reported back to the client to update their grid
  */
 Game.prototype.onPlay = function(cards,params,client){
-  
+
   //----DEMO: Endless Cards----
   this.resolveEffect([16,"pony"],client); //triggers draw pony
   this.resolveEffect([16,"ship"],client); //triggers ship pony
   //----END DEMO----
-    
+
   if(params.length > 0 && this.cardList[params[0]].effect == "replace"){
     this.grid.replaceCard(params[1],params.shift());
     return [{id:params.shift(),position:null},cards[0]];

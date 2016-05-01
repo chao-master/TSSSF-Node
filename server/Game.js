@@ -30,16 +30,10 @@ function Game(room,cardSets){
 }
 
 Game.prototype.newClient = function(client){
-  var newHand = new Hand(client);
-  client.send({
-    type:"drawCards",
-    cards:this.decks.drawCards(4,3).map(function(card){
-      newHand.addCard(card);
-      return card.id;
-    })
-  });
+  var newHand = new Hand(client,this);
+  newHand.drawCards(4,3);
+  client.curHand = newHand;
   this.hands.push(newHand);
-  console.debug(this.hands);
 };
 
 /**
@@ -89,8 +83,7 @@ Game.prototype.onPlay = function(cards,params,client){
   //----END DEMO----
 
   //----DEMO: Endless Cards----
-  this.resolveEffect([16,"pony"],client); //triggers draw pony
-  this.resolveEffect([16,"ship"],client); //triggers ship pony
+  client.curHand.drawCards(1,1);
   //----END DEMO----
 
   if(params.length > 0 && this.cardList[params[0]].effect == "replace"){
@@ -124,16 +117,9 @@ Game.prototype.effects = {
     );
   },
   draw:function(params,client){
-    var type = params.shift(),drawnCards;
-    if(type == "pony"){
-      drawnCards = this.decks.drawPonies(1);
-    } else {
-      drawnCards = this.decks.drawShips(1);
-    }
-    client.send({
-      type:"drawCards",
-      cards:drawnCards.map(n=>n.id)
-    });
+    var type = params.shift(),drawnCards,
+        nPonies = type=="pony"? 1:0;
+    client.curHand.drawCards(nPonies,1-nPonies);
     return [];
   },
   copy:Game.prototype.resolveEffect

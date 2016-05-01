@@ -15,7 +15,7 @@ var CELL_MARGIN = 20,
       copy:       "#009688",
       special:    "#8BC34A",
       search:     "#FFEB3B"
-    }
+    };
 
 function loadImage(imgSrc){
   return new Promise(function(good,bad){
@@ -60,7 +60,7 @@ Card.fromObject = function(obj){
   var specFunc = SpecialCards[obj.special];
   if(specFunc === undefined) return Card._fromObject(obj);
   if("gender" in obj || "race" in obj || "icon" in obj){
-    card = new specFunc(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);  
+    card = new specFunc(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   } else if("condition" in obj){
     card = new specFunc(obj.name,obj.imgSrc,obj.condition,obj.score);
   } else {
@@ -68,7 +68,7 @@ Card.fromObject = function(obj){
   }
   card.id = obj.id;
   return card;
-}
+};
 
 Card.prototype.loadImage = function(){
   var that = this;
@@ -111,7 +111,7 @@ Card.prototype.render = function(ctx,x,y){
   var that = this;
   ["gender","race","effect"].forEach(function(attr,i){
     var col = COLORS[that[attr]];
-    if(col == undefined) return;
+    if(col === undefined) return;
     ctx.fillStyle = col;
     ctx.strokeStyle = "black";
     ctx.lineWidth = 1;
@@ -119,7 +119,7 @@ Card.prototype.render = function(ctx,x,y){
     ctx.rect(canvasX+10.5+that.ICON_SIZE*i,canvasY+10.5+that.IMG_HEIGHT,that.ICON_SIZE,that.ICON_SIZE);
     ctx.fill();
     ctx.stroke();
-  })
+  });
 };
 
 
@@ -151,5 +151,3 @@ ShipCard.prototype.render = function(ctx,x,y){
 
 PonyCard.prototype.color = "purple";
 GoalCard.prototype.color = "blue";
-
-

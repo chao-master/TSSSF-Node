@@ -108,7 +108,7 @@ Client.prototype.onMessage = function(data){
       console.error(e.stack?e.stack:e);
     }
   } else {
-    var resolvers = [this,this.room,this.server], resolved = false;
+    var resolvers = [this,this.room,this.room.game,this.server], resolved = false;
     for(var i=0;i<resolvers.length;i++){
       var r = resolvers[i];
       if (r !== undefined && r.hooks[type] !== undefined){

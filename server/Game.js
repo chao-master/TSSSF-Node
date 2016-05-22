@@ -36,6 +36,10 @@ Game.prototype.newClient = function(client){
   this.hands.push(newHand);
 };
 
+Game.prototype.isActivePlayer = function(client){
+  return this.hands[this.activePlayer].client = client;
+}
+
 /**
  * Loads a card set from the given file and adds them to the usable card List
  * @param  {String}   file    File location to load the card list from
@@ -102,6 +106,7 @@ Game.prototype.resolveEffect = function(params,client){
     return [];
   }
 };
+
 Game.prototype.effects = {
   swap:function(params,client){
     var swappedCards = this.grid.swapCards([params[0],params[1]]);
@@ -119,8 +124,39 @@ Game.prototype.effects = {
   copy:Game.prototype.resolveEffect
 };
 
+/*Game hooks, checked after room */
+Game.prototype.hooks = {};
+
+Game.prototype.hooks.playCards = function(data,client){ //XXX should be in Game.js
+  data.cards = this.onPlay(data.cards,data.params,client);
+  data.client = client;
+  data.type = "playCards";
+  this.broadcast(data);
+}
+
+Game.prototype.hooks.reSyncGrid = function(data,client){ //XXX should be in Game.js
+  client.send(this.room.packet("gridState"));
+}
+
+Game.prototype.hooks.endTurn = function(data,client){ //XXX should be in Game.js
+  if (!this.isActivePlayer(client)){
+    client.send({type:"error",msg:"Not your turn, it is "+cc.name+" turn"});
+    return
+  }
+  var cHand = client.curHand,
+    handSizeNow = cHand.ponies.length + cHand.ships.length,
+    handSizeAfter = handSizeNow + data.ponies + data.ships
+  if( handSizeAfter != 7){ //MAGIC Number
+    client.send({type:"error",msg:"Attempt to draw wrong number of cards"});
+    return;
+  }
+  client.curHand.drawCards(data.ponies, data.ships)
+  this.game.activePlayer = (this.game.activePlayer+1)%this.game.hands.length;
+  //TODO Add turnStart message
+}
+
 /*Game Packets - Called from Room.packet()*/
-Game.prototype.packets={};
+Game.prototype.packets = {};
 Game.prototype.packets.cardList = function(){
   return {cardList:this.cardList};
 };

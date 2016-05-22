@@ -127,6 +127,21 @@ document.querySelector("#chat form").onsubmit = function(e){
   return false;
 };
 
+document.querySelector("#endTurn").addEventListener("click",function(e){
+  var toDraw = 7-hand.ponies.length-hand.ships.length, //XXX
+      options = Array(toDraw+1).fill(0).map(function(_,i){
+        return {
+          text:(toDraw-i)+" ponies/"+i+" ships",
+          value:{ponies:toDraw-i,ships:i}
+        }
+      });
+  getUserSelection("Select cards to draw",options).then(function(draw){
+    draw.type="endTurn";
+    ws.send(draw);
+  })
+  
+});
+
 //Key
 Object.keys(COLORS).forEach(function(k){
   var v = COLORS[k],

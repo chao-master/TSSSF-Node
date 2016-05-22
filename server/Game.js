@@ -73,18 +73,12 @@ Game.prototype.setupDecks = function(){
  */
 Game.prototype.onPlay = function(cards,params,client){
 
-  //----DEMO: Rotate turn after each played
+  //XXX Should be tidied up, im thinking an assert statment, that might be helpful
   var cc = this.hands[this.activePlayer].client;
   if(cc != client){
     client.send({type:"error",msg:"Not your turn, it is "+cc.name+" turn"});
     return;
   }
-  this.activePlayer = (this.activePlayer+1)%this.hands.length;
-  //----END DEMO----
-
-  //----DEMO: Endless Cards----
-  client.curHand.drawCards(1,1);
-  //----END DEMO----
 
   if(params.length > 0 && this.cardList[params[0]].effect == "replace"){
     this.grid.replaceCard(params[1],params.shift());

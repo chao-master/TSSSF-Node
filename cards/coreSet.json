@@ -45,7 +45,7 @@
   "name": "Black Widow Rarity",
   "gender": "female",
   "race": "unicorn",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-BlackWidowRarity.png"
  },
  {
@@ -59,7 +59,7 @@
   "name": "Major General Dash",
   "gender": "female",
   "race": "pegasus",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-MajorGeneralDash.png"
  },
  {
@@ -185,7 +185,7 @@
   "name": "Road Warrior Spike",
   "gender": "male",
   "race": "earthpony",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-RoadWarriorSpike.png"
  },
  {
@@ -255,7 +255,7 @@
   "name": "Gilda",
   "gender": "female",
   "race": "pegasus",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-Gilda.png"
  },
  {
@@ -367,7 +367,7 @@
   "name": "Zecora",
   "gender": "female",
   "race": "earthpony",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-Zecora.png"
  },
  {
@@ -388,7 +388,7 @@
   "name": "Discord",
   "gender": "male",
   "race": "alicorn",
-  "effect": "3swap",
+  "effect": "special",
   "imgSrc": "../art2/Pony-Discord.png"
  },
  {
@@ -402,7 +402,7 @@
   "name": "Aloe & Lotus",
   "gender": "female",
   "race": "earthpony",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-AloeLotus.png"
  },
  {
@@ -449,12 +449,12 @@
  {
   "name": "Bloomberg",
   "gender": "male",
-  "effect": "goal",
+  "effect": "newGoal",
   "imgSrc": "../art2/Pony-Bloomberg.png"
  },
  {
   "name": "So THAT'S What That Does!",
-  "effect": "race_change",
+  "effect": "raceChange",
   "imgSrc": "../art2/Ship-SoTHATSWhatThatDoes.png"
  },
  {
@@ -479,7 +479,7 @@
  },
  {
   "name": "Do You Think Yove Can Bloom? Even on a Battlefield?",
-  "effect": "timeline_change",
+  "effect": "timelineChange",
   "imgSrc": "../art2/Ship-DoYouThinkYoveCanBloomEvenonaBattlefield.png"
  },
  {
@@ -488,7 +488,7 @@
  },
  {
   "name": "Cabin in the Woods, Awooo!",
-  "effect": "play_from_discard",
+  "effect": "playFromDiscard",
   "imgSrc": "../art2/Ship-CabinintheWoodsAwooo.png"
  },
  {
@@ -505,17 +505,17 @@
  },
  {
   "name": "Step into My Basement",
-  "effect": "race_change",
+  "effect": "raceChange",
   "imgSrc": "../art2/Ship-StepintoMyBasement.png"
  },
  {
   "name": "On the Lam",
-  "effect": "timeline_change",
+  "effect": "timelineChange",
   "imgSrc": "../art2/Ship-OntheLam.png"
  },
  {
   "name": "Time For an Experiment!",
-  "effect": "race_change",
+  "effect": "raceChange",
   "imgSrc": "../art2/Ship-TimeForanExperiment.png"
  },
  {
@@ -528,17 +528,17 @@
  },
  {
   "name": "Love Poison Is No Joke!",
-  "effect": "love_poison",
+  "effect": "lovePoison",
   "imgSrc": "../art2/Ship-LovePoisonIsNoJoke.png"
  },
  {
   "name": "Shmoopy Boo!",
-  "effect": "love_poison",
+  "effect": "lovePoison",
   "imgSrc": "../art2/Ship-ShmoopyBoo.png"
  },
  {
   "name": "Want It. Need It.",
-  "effect": "love_poison",
+  "effect": "lovePoison",
   "imgSrc": "../art2/Ship-WantItNeedIt.png"
  },
  {
@@ -563,22 +563,22 @@
  },
  {
   "name": "Can I Tell You a Secret?",
-  "effect": "gender_change",
+  "effect": "genderChange",
   "imgSrc": "../art2/Ship-CanITellYouaSecret.png"
  },
  {
   "name": "Oops! Wrong Spell.",
-  "effect": "gender_change",
+  "effect": "genderChange",
   "imgSrc": "../art2/Ship-OopsWrongSpell.png"
  },
  {
   "name": "Dude Looks Like a Lady",
-  "effect": "gender_change",
+  "effect": "genderChange",
   "imgSrc": "../art2/Ship-DudeLooksLikeaLady.png"
  },
  {
   "name": "Rule 63",
-  "effect": "gender_change",
+  "effect": "genderChange",
   "imgSrc": "../art2/Ship-Rule63.png"
  },
  {
@@ -603,7 +603,7 @@
  },
  {
   "name": "Cult Meeting",
-  "effect": "race_change",
+  "effect": "raceChange",
   "imgSrc": "../art2/Ship-CultMeeting.png"
  },
  {
@@ -624,7 +624,7 @@
  },
  {
   "name": "Amnesia!",
-  "effect": "play_from_discard",
+  "effect": "playFromDiscard",
   "imgSrc": "../art2/Ship-Amnesia.png"
  },
  {
@@ -633,7 +633,7 @@
  },
  {
   "name": "Startling Confession",
-  "effect": "gender_change",
+  "effect": "genderChange",
   "imgSrc": "../art2/Ship-StartlingConfession.png"
  },
  {
@@ -662,12 +662,12 @@
  },
  {
   "name": "Crossover Fic!",
-  "effect": "play_from_discard",
+  "effect": "playFromDiscard",
   "imgSrc": "../art2/Ship-CrossoverFic.png"
  },
  {
   "name": "Bad Pony! Go to My Room!",
-  "effect": "play_from_discard",
+  "effect": "playFromDiscard",
   "imgSrc": "../art2/Ship-BadPonyGotoMyRoom.png"
  },
  {
@@ -688,7 +688,7 @@
  },
  {
   "name": "From an Alternate Dimension",
-  "effect": "timeline_change",
+  "effect": "timelineChange",
   "imgSrc": "../art2/Ship-FromanAlternateDimension.png"
  },
  {

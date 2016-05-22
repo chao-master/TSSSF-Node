@@ -61,6 +61,7 @@ handlers.drawCards = function(data){
     for(var i=0;i<data.cards.length;i++){
       hand.addCard(game.cardList[data.cards[i]]);
     }
+    game.render()
   } else {
     //Other players cards
   }

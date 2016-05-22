@@ -59,6 +59,23 @@ Room.prototype.hooks = {
   },
   reSyncGrid:function(data,client){ //XXX should be in Game.js
     client.send(this.packet("gridState"));
+  },
+  endTurn:function(data,client){ //XXX should be in Game.js
+    var cc = this.game.hands[this.game.activePlayer].client;
+    if (cc != client){
+      client.send({type:"error",msg:"Not your turn, it is "+cc.name+" turn"});
+      return
+    }
+    var cHand = client.curHand,
+      handSizeNow = cHand.ponies.length + cHand.ships.length,
+      handSizeAfter = handSizeNow + data.ponies + data.ships
+    if( handSizeAfter != 7){ //MAGIC Number
+      client.send({type:"error",msg:"Attempt to draw wrong number of cards"});
+      return;
+    }
+    client.curHand.drawCards(data.ponies, data.ships)
+    this.game.activePlayer = (this.game.activePlayer+1)%this.game.hands.length;
+    //TODO Add turnStart message
   }
 };
 

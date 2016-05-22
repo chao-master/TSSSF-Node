@@ -6,16 +6,12 @@ var CELL_MARGIN = 20,
 
 Grid.prototype.render = function(ctx){
   var keys = Object.keys(this.ships);
-  for(var i=0;i<keys.length;i++){
-    var ship = this.ships[keys[i]];
+  Object.keys(this.ships).forEach(function(ship){
     ship.render(ctx);
-  }
-
-  keys = Object.keys(this.ponies);
-  for(i=0;i<keys.length;i++){
-    var pony = this.ponies[keys[i]];
+  });
+  Object.keys(this.ponies).forEach(function(pony){
     pony.render(ctx);
-  }
+  });
 };
 
 /**

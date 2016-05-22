@@ -127,18 +127,18 @@ Game.prototype.effects = {
 /*Game hooks, checked after room */
 Game.prototype.hooks = {};
 
-Game.prototype.hooks.playCards = function(data,client){ //XXX should be in Game.js
+Game.prototype.hooks.playCards = function(data,client){
   data.cards = this.onPlay(data.cards,data.params,client);
   data.client = client;
   data.type = "playCards";
-  this.broadcast(data);
+  this.room.broadcast(data);
 }
 
-Game.prototype.hooks.reSyncGrid = function(data,client){ //XXX should be in Game.js
+Game.prototype.hooks.reSyncGrid = function(data,client){
   client.send(this.room.packet("gridState"));
 }
 
-Game.prototype.hooks.endTurn = function(data,client){ //XXX should be in Game.js
+Game.prototype.hooks.endTurn = function(data,client){
   if (!this.isActivePlayer(client)){
     client.send({type:"error",msg:"Not your turn, it is "+cc.name+" turn"});
     return
@@ -151,7 +151,7 @@ Game.prototype.hooks.endTurn = function(data,client){ //XXX should be in Game.js
     return;
   }
   client.curHand.drawCards(data.ponies, data.ships)
-  this.game.activePlayer = (this.game.activePlayer+1)%this.game.hands.length;
+  this.activePlayer = (this.activePlayer+1)%this.hands.length;
   //TODO Add turnStart message
 }
 

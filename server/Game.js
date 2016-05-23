@@ -132,28 +132,28 @@ Game.prototype.hooks.playCards = function(data,client){
   data.client = client;
   data.type = "playCards";
   this.room.broadcast(data);
-}
+};
 
 Game.prototype.hooks.reSyncGrid = function(data,client){
   client.send(this.room.packet("gridState"));
-}
+};
 
 Game.prototype.hooks.endTurn = function(data,client){
   if (!this.isActivePlayer(client)){
     client.send({type:"error",msg:"Not your turn, it is "+cc.name+" turn"});
-    return
+    return;
   }
   var cHand = client.curHand,
     handSizeNow = cHand.ponies.length + cHand.ships.length,
-    handSizeAfter = handSizeNow + data.ponies + data.ships
+    handSizeAfter = handSizeNow + data.ponies + data.ships;
   if( handSizeAfter != 7){ //MAGIC Number
     client.send({type:"error",msg:"Attempt to draw wrong number of cards"});
     return;
   }
-  client.curHand.drawCards(data.ponies, data.ships)
+  client.curHand.drawCards(data.ponies, data.ships);
   this.activePlayer = (this.activePlayer+1)%this.hands.length;
   //TODO Add turnStart message
-}
+};
 
 /*Game Packets - Called from Room.packet()*/
 Game.prototype.packets = {};

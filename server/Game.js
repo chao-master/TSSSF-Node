@@ -37,8 +37,8 @@ Game.prototype.newClient = function(client){
 };
 
 Game.prototype.isActivePlayer = function(client){
-  return this.hands[this.activePlayer].client = client;
-}
+  return this.hands[this.activePlayer].client == client;
+};
 
 /**
  * Loads a card set from the given file and adds them to the usable card List

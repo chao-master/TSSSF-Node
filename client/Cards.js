@@ -17,17 +17,6 @@ var CELL_MARGIN = 20,
       search:     "#FFEB3B"
     };
 
-function loadImage(imgSrc){
-  return new Promise(function(good,bad){
-    var img = new Image();
-    img.src = imgSrc;
-    img.onload = function(){
-      good(img);
-    };
-    img.onerror = bad;
-  });
-}
-
 function resizeImage(img,width,height){
   var ratio = width/height,
       imgRatio = img.width/img.height,
@@ -48,8 +37,6 @@ function resizeImage(img,width,height){
     sY = (img.height-sHeight)/2;
   }
   var ctx = canvas.getContext("2d");
-  /*ctx.fillStyle = "white"; //For the derp
-  ctx.fillRect(0,0,width,height);*/
   ctx.drawImage(img,sX,sY,sWidth,sHeight,0,0,width,height);
   return canvas;
 }
@@ -72,17 +59,22 @@ Card.fromObject = function(obj){
 
 Card.prototype.loadImage = function(){
   var that = this;
-  loadImage(this.imgSrc)
-    .catch(function(e){
-      var i = Math.floor(Math.random()*7)+1;
-      return loadImage("../art2/artmissing0"+i+".png");
-    })
-    .then(function(img){
-      that.image = resizeImage(img,that.IMG_WIDTH,that.IMG_HEIGHT);
-      if(that.parent){
-        that.parent.update();
-      }
-    });
+  new Promise(function(good,bad){
+    var img = new Image();
+    img.src = that.imgSrc;
+    img.onload = function(){
+      good(img);
+    };
+    img.onerror = bad;
+  }).catch(function(e){
+    var i = Math.floor(Math.random()*7)+1;
+    return loadImage("../art2/artmissing0"+i+".png");
+  }).then(function(img){
+    that.image = resizeImage(img,that.IMG_WIDTH,that.IMG_HEIGHT);
+    if(that.parent){
+      that.parent.update();
+    }
+  });
 };
 
 Card.prototype.IMG_WIDTH = 130;

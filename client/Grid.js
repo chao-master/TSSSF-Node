@@ -134,6 +134,13 @@ Grid.prototype.doEffect = function(card,action){
           return [card1.id,card2.id];
         });
       });
+    case "newGoal":
+      var goalOptions = goals.map(function(g,n){
+        return {text:g.name,value:g.id};
+      });
+      return getUserSelection("Select goal to replace",goalOptions).then(function(cardId){
+        return [cardId];
+      });
     default:
       return Promise.resolve([]);
   }

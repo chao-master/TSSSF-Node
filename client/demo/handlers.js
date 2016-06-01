@@ -72,8 +72,8 @@ handlers.gridState = function(data){
     game.grid.addCard(n.position,n.id);
   });
   data.goals.forEach(function(n) {
-    goals[n] = n.id;
     var card = game.cardList[n.id];
+    goals[n.position] = card;
     document.querySelectorAll("#demo-goals div")[n.position].innerHTML = "<strong>"+card.name+" ("+card.score+")</strong></br>"+card.condition;
   });
   game.render();

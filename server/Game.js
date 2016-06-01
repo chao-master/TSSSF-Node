@@ -51,7 +51,6 @@ Game.prototype.loadCards = function(file){
     card.id = that.cardList.length;
     if("special" in rawCard){ //XXX Special hack
       card.special = rawCard.special;
-      console.log(JSON.stringify(card));
     }
     that.cardList.push(card);
   });

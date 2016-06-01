@@ -1,6 +1,6 @@
 SpecialCards = {};
 
-SpecialCards.Derpy=function(){PonyCard.apply(this,arguments);};
+SpecialCards.Derpy = function(){PonyCard.apply(this,arguments);};
 SpecialCards.Derpy.prototype = Object.create(PonyCard.prototype);
 SpecialCards.Derpy.prototype.constructor = SpecialCards.Derpy;
 SpecialCards.Derpy.prototype.IMG_HEIGHT = 200;

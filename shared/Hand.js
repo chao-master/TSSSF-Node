@@ -29,7 +29,7 @@ Hand.prototype.addCard = function(card){
     this.goals.push(card);
     card.parent = this;
   } else {
-    console.error(card,"Is neither a Pony or Ship card and hence cannot be added to Hand");
+    console.error(card,"Is neither a Pony, Ship or goal card and hence cannot be added to Hand");
   }
 };
 
@@ -46,7 +46,7 @@ Hand.prototype.removeCard = function(card){
   } else if (card instanceof PonyCard){
     removeFrom = this.ponies;
   } else {
-    console.error(card,"Is neither a Pony or Ship card and hence cannot be removed from Hand");
+    console.error(card,"Is neither a Pony, Ship or goal card and hence cannot be removed from Hand");
   }
   var rId = removeFrom.indexOf(card);
   if(rId<0){

@@ -61,7 +61,7 @@ handlers.drawCards = function(data){
     for(var i=0;i<data.cards.length;i++){
       hand.addCard(game.cardList[data.cards[i]]);
     }
-    game.render()
+    game.render();
   } else {
     //Other players cards
   }
@@ -70,6 +70,11 @@ handlers.drawCards = function(data){
 handlers.gridState = function(data){
   data.grid.forEach(function(n){
     game.grid.addCard(n.position,n.id);
+  });
+  data.goals.forEach(function(n) {
+    goals[n] = n.id;
+    var card = game.cardList[n.id];
+    document.querySelectorAll("#demo-goals div")[n.position].innerHTML = "<strong>"+card.name+" ("+card.score+")</strong></br>"+card.condition;
   });
   game.render();
 };

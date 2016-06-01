@@ -36,7 +36,7 @@ Decks.prototype.drawShips = function(n){
 
 Decks.prototype.drawGoals = function(n){
   n = n === undefined?1:n;
-  return this.goalCards.splice(n);
+  return this.goalCards.splice(0,n);
 };
 
 Decks.prototype.resetAll = function(){
@@ -58,7 +58,7 @@ Decks.prototype.addCard = function(cardish){
   } else if (card instanceof cards.GoalCard){
     this.goalCards.push(card);
   } else {
-    console.warn("Warning:",card,"is neither a pony or ship card");
+    console.warn("Warning:",card,"is neither a pony, ship or goal card");
   }
 };
 

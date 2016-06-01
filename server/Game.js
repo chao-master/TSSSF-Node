@@ -15,11 +15,13 @@ function Game(room,cardSets){
   this.hands = [];
   this.grid = new Grid(this);
   this.decks = new Decks(this);
+  this.currentGoals = [];
   this.cardList = [];
   cardSets.forEach(this.loadCards.bind(this));
   this.setupDecks();
 
   //---- DEMO ----
+  this.currentGoals = this.decks.drawGoals(3);
   this.grid.addCard([0,0],this.cardList[0]);
   for(var i=0;i<this.decks.ponyCards.length;i++){
     if (this.decks.ponyCards[i].id === 0) break;
@@ -120,7 +122,14 @@ Game.prototype.effects = {
     client.curHand.drawCards(nPonies,1-nPonies);
     return [];
   },
-  copy:Game.prototype.resolveEffect
+  copy:Game.prototype.resolveEffect,
+  newGoal:function(params,client){
+    var goalCard = this.decks.resolveCardish(params.shift()),
+        rId = this.currentGoals.indexOf(goalCard),
+        newGoal = this.decks.drawGoals(1)[0];
+    this.currentGoals = this.currentGoals.splice(rId,1,newGoal);
+    return [{id:goalCard.id,position:null},{id:newGoal.id,position:rId}];
+  }
 };
 
 /*Game hooks, checked after room */
@@ -161,10 +170,12 @@ Game.prototype.packets.cardList = function(){
 };
 Game.prototype.packets.gridState = function(){
   var grid=this.grid;
-  return {grid:[].concat(
-    Object.keys(grid.ponies).map(function(n){var c=grid.ponies[n];return {id:c.id,position:c.position};}),
-    Object.keys(grid.ships).map(function(n){var c=grid.ships[n];return {id:c.id,position:c.position};})
-  )};
+  return {
+    grid:[].concat(
+      Object.keys(grid.ponies).map(function(n){var c=grid.ponies[n];return {id:c.id,position:c.position};}),
+      Object.keys(grid.ships).map(function(n){var c=grid.ships[n];return {id:c.id,position:c.position};})
+    ),goals:this.currentGoals.map(function(c,n){return {id:c.id,position:n};})
+  };
 };
 
 module.exports = Game;

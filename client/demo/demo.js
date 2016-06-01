@@ -70,7 +70,8 @@ function showError(err){
 }
 var game = new Game(document.querySelector("canvas")),
     grid = new Grid(),
-    hand = new Hand();
+    hand = new Hand(),
+    goals = [];
 
 game.addAsChild("grid",grid,0,0,680,680);
 game.addAsChild("hand",hand,0,680,680,150);
@@ -91,7 +92,6 @@ function makeWs(global,fallbackLevel){
       break;
     default:
       throw "Unable to make a connection";
-      break;
   }
   global.ws = ws;
   ws.onerror = function(err){
@@ -99,7 +99,7 @@ function makeWs(global,fallbackLevel){
     console.warn("Trying next fallback level");
     makeWs(global,fallbackLevel+1);
     ws.close();
-  }
+  };
   ws.onmessage = function(msg){
     var data = JSON.parse(msg.data),
         handler = handlers[data.type];
@@ -116,7 +116,7 @@ function makeWs(global,fallbackLevel){
   ws._send = ws.send;
   ws.send = function(data){
     ws._send(JSON.stringify(data));
-  };  
+  };
 }
 
 makeWs(window,0);
@@ -133,13 +133,12 @@ document.querySelector("#endTurn").addEventListener("click",function(e){
         return {
           text:(toDraw-i)+" ponies/"+i+" ships",
           value:{ponies:toDraw-i,ships:i}
-        }
+        };
       });
   getUserSelection("Select cards to draw",options).then(function(draw){
     draw.type="endTurn";
     ws.send(draw);
-  })
-  
+  });
 });
 
 //Key
@@ -155,4 +154,4 @@ Object.keys(COLORS).forEach(function(k){
   d1.textContent = k;
   d1.insertBefore(d2,d1.firstChild);
   document.querySelector(".demo-key").appendChild(d1);
-})
+});

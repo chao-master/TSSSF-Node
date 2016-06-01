@@ -4,6 +4,7 @@ var sharedHand = require("../shared/Hand.js");
 function Hand(client,game){
   this.client = client;
   this.game = game;
+  this.goal = goal;
   sharedHand.call(this);
 }
 
@@ -12,6 +13,11 @@ Hand.prototype.constructor = Hand;
 
 module.exports = Hand;
 
+/**
+ * Sends one update message to the owner and another to all other players
+ * @param  {Object} self   The message to send to the owner
+ * @param  {Object} others The message to send to other users
+ */
 Hand.prototype.sendSpecifics = function(self,others){
   var clients = this.game.room.clients;
   Object.keys(clients).forEach(k=>{
@@ -20,6 +26,11 @@ Hand.prototype.sendSpecifics = function(self,others){
   });
 };
 
+/**
+ * Draws a combination of pony and/or ship cards
+ * @param  {Number} pony number of pony cards to draw
+ * @param  {Number} ship number of ship cards to draw
+ */
 Hand.prototype.drawCards = function(pony,ship){
   var drawnCards = this.game.decks.drawCards(pony,ship),
       drawCardIds = drawnCards.map(card=>{

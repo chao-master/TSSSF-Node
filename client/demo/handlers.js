@@ -67,24 +67,44 @@ handlers.drawCards = function(data){
   }
 };
 
+//DEMO
+function setGoal(id,card){
+  document.querySelectorAll("#demo-goals div")[id].innerHTML = !card ? "None":"<strong>"+card.name+" ("+card.score+")</strong></br>"+card.condition;
+  goals[id] = card;
+}
+
 handlers.gridState = function(data){
   data.grid.forEach(function(n){
     game.grid.addCard(n.position,n.id);
   });
   data.goals.forEach(function(n) {
     var card = game.cardList[n.id];
-    goals[n.position] = card;
-    document.querySelectorAll("#demo-goals div")[n.position].innerHTML = "<strong>"+card.name+" ("+card.score+")</strong></br>"+card.condition;
+    setGoal(n.position,card);
   });
   game.render();
 };
 
 handlers.playCards = function(data){
   data.cards.forEach(function(n){
-    if(n.position === null){
-      game.grid.removeCard(n.id);
+    var card = game.cardList[n.id],
+        pos = n.position;
+    if (card instanceof GoalCard){
+      if(pos === null){
+        var rId = goals.indexOf(card);
+        if(rId < 0){
+          console.warning("Removing goal not in goal list");
+        } else {
+          setGoal(rId,null);
+        }
+      } else {
+        setGoal(pos,card);
+      }
     } else {
-      game.grid.addCard(n.position,n.id);
+      if(pos === null){
+        game.grid.removeCard(card);
+      } else {
+        game.grid.addCard(pos,card);
+      }
     }
   });
   game.render();

@@ -127,7 +127,7 @@ Game.prototype.effects = {
     var goalCard = this.decks.resolveCardish(params.shift()),
         rId = this.currentGoals.indexOf(goalCard),
         newGoal = this.decks.drawGoals(1)[0];
-    this.currentGoals = this.currentGoals.splice(rId,1,newGoal);
+    this.currentGoals[rId] = newGoal;
     return [{id:goalCard.id,position:null},{id:newGoal.id,position:rId}];
   }
 };

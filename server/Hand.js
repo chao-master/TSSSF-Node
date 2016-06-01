@@ -4,7 +4,6 @@ var sharedHand = require("../shared/Hand.js");
 function Hand(client,game){
   this.client = client;
   this.game = game;
-  this.goal = goal;
   sharedHand.call(this);
 }
 

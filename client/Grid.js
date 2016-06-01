@@ -5,12 +5,12 @@ var CELL_MARGIN = 20,
     CELL_SIZE = 150;
 
 Grid.prototype.render = function(ctx){
-  var keys = Object.keys(this.ships);
+  var that = this;
   Object.keys(this.ships).forEach(function(ship){
-    ship.render(ctx);
+    that.ships[ship].render(ctx);
   });
   Object.keys(this.ponies).forEach(function(pony){
-    pony.render(ctx);
+    that.ponies[pony].render(ctx);
   });
 };
 

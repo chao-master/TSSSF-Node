@@ -95,7 +95,7 @@ Grid.prototype.ondrop = function(x,y,event){
     prom = this.doEffect(triggeredCard,action).then(function(params){
         params.unshift(triggeredCard.id);
         return params;
-    })
+    });
   }
   prom.then(function(params){
     ws.send({

@@ -695,85 +695,176 @@
   "name": "Self-Insertion",
   "score": 2,
   "condition": "3 Twilight Sparkles are shipped in a chain.",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"name":"twilight sarkle","count":3}]
+  },
   "imgSrc": "../art2/Goal-SelfInsertion.png"
  },
  {
   "name": "Fabulosity",
   "score": 2,
   "condition": "2 Rarities are shipped together.",
-  "imgSrc": "../art2/Goal-Fabulosity.png"
+  "imgSrc": "../art2/Goal-Fabulosity.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"name":"rarity","count":2}]
+  }
  },
  {
   "name": "Rainbow Dash Fan Club",
   "score": 2,
   "condition": "2 Rainbow Dashes are shipped together.",
-  "imgSrc": "../art2/Goal-RainbowDashFanClub.png"
+  "imgSrc": "../art2/Goal-RainbowDashFanClub.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"name":"rainbow dash","count":2}]
+  }
  },
  {
   "name": "The Quiet Game",
   "score": 2,
   "condition": "2 Fluttershies are shipped together.",
-  "imgSrc": "../art2/Goal-TheQuietGame.png"
+  "imgSrc": "../art2/Goal-TheQuietGame.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"name":"fluttershy","count":2}]
+  }
  },
  {
   "name": "Paradox",
   "score": 2,
   "condition": "2 Pinkies are shipped together.",
-  "imgSrc": "../art2/Goal-Paradox.png"
+  "imgSrc": "../art2/Goal-Paradox.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"name":"pinkie pie","count":2}]
+  }
  },
  {
   "name": "Rodeo",
   "score": 2,
   "condition": "2 Applejacks are shipped together.",
-  "imgSrc": "../art2/Goal-Rodeo.png"
+  "imgSrc": "../art2/Goal-Rodeo.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"name":"applejack","count":2}]
+  }
  },
  {
   "name": "I Swear I'm Not Gay!",
   "score": 1,
   "condition": "Any {male} is shipped with 3 other {male}",
-  "imgSrc": "../art2/Goal-ISwearImNotGay.png"
+  "imgSrc": "../art2/Goal-ISwearImNotGay.png",
+  "conditionLogic":{
+    "type":"ship",
+    "action":"create",
+    "cards":[
+      {"gender":"male"},
+      {"gender":"male","count":3}
+    ]
+  }
  },
  {
   "name": "It's Not EXACTLY Cheating...",
   "score": 2,
   "condition": "Any single Pony is shipped with 2 versions of another Pony.",
-  "imgSrc": "../art2/Goal-ItsNotEXACTLYCheating.png"
+  "imgSrc": "../art2/Goal-ItsNotEXACTLYCheating.png",
+  "conditionLogic":{
+    "type":"ship",
+    "action":"create",
+    "cards":[
+      {},
+      {"samePonies":2}
+    ]
+  }
  },
  {
   "name": "Princess Pile",
   "score": 2,
   "condition": "3 Ponies with the Princess keyword are shipped in a chain.\nTwilight doesn't count for this Goal.\nShe gets to watch.",
-  "imgSrc": "../art2/Goal-PrincessPile.png"
+  "imgSrc": "../art2/Goal-PrincessPile.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[{"keyword":"princess","count":3}]
+  }
  },
  {
   "name": "Shining Armor Approves of This Experiment!",
   "score": 1,
   "condition": "Cadance is shipped with any {female}",
-  "imgSrc": "../art2/Goal-ShiningArmorApprovesofThisExperiment.png"
+  "imgSrc": "../art2/Goal-ShiningArmorApprovesofThisExperiment.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"cadance"},
+      {"gender":"female"}
+    ]
+  }
  },
  {
   "name": "I Guess You'll Do",
   "score": 2,
   "condition": "Twilight Sparkle is shipped with any Cheerilee.",
-  "imgSrc": "../art2/Goal-IGuessYoullDo.png"
+  "imgSrc": "../art2/Goal-IGuessYoullDo.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {"name":"cheerilee"}
+    ]
+  }
  },
  {
   "name": "Well...Maybe",
   "score": 2,
   "condition": "Twilight Sparkle is shipped with any Zecora.",
-  "imgSrc": "../art2/Goal-WellMaybe.png"
+  "imgSrc": "../art2/Goal-WellMaybe.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {"name":"zecora"}
+    ]
+  }
  },
  {
   "name": "Good Enough",
   "score": 2,
   "condition": "Twilight Sparkle is shipped with any Luna",
-  "imgSrc": "../art2/Goal-GoodEnough.png"
+  "imgSrc": "../art2/Goal-GoodEnough.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {"name":"luna"}
+    ]
+  }
  },
  {
   "name": "Hot for Teacher",
   "score": 2,
   "condition": "Twilight Sparkle is shipped with any Celestia.",
-  "imgSrc": "../art2/Goal-HotforTeacher.png"
+  "imgSrc": "../art2/Goal-HotforTeacher.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {"name":"celestia"}
+    ]
+  }
  },
  {
   "name": "Pomf!",
@@ -785,19 +876,47 @@
   "name": "\"Just Experimenting\"",
   "score": 2,
   "condition": "3 {female} are shipped with any Rainbow Dash.",
-  "imgSrc": "../art2/Goal-JustExperimenting.png"
+  "imgSrc": "../art2/Goal-JustExperimenting.png",
+  "conditionLogic":{
+    "type":"ship",
+    "action":"create",
+    "cards":[
+      {"name":"rainbow dash"},
+      {"gender":"female","count":3}
+    ]
+  }
  },
  {
   "name": "Friendship is Benefits",
   "score": "3-4",
   "condition": "Each of the Mane 6 are shipped in a chain.\nThis Goal is worth 4 points if nopony appears in the chain more than once.",
-  "imgSrc": "../art2/Goal-FriendshipisBenefits.png"
+  "imgSrc": "../art2/Goal-FriendshipisBenefits.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {"name":"rarity"},
+      {"name":"rainbow dash"},
+      {"name":"pinkie pie"},
+      {"name":"fluttershy"},
+      {"name":"applejack"},
+    ]
+  }
  },
  {
   "name": "Help! I'm Trapped in a Shipping Card Game!",
   "score": 0,
   "condition": "Cheerilee is shipped with anypony.\nAnypony at all.\nThe player who completes this Goal increases their hand size by 1 for the rest of the game.",
-  "imgSrc": "../art2/Goal-HelpImTrappedinaShippingCardGame.png"
+  "imgSrc": "../art2/Goal-HelpImTrappedinaShippingCardGame.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"cheerilee"},
+      {}
+    ]
+  }
  },
  {
   "name": "Time Travelers Among Us",
@@ -815,7 +934,15 @@
   "name": "It's Not Creepy!",
   "score": 2,
   "condition": "Twilight Sparkle is shipped with any Shining Armor.",
-  "imgSrc": "../art2/Goal-ItsNotCreepy.png"
+  "imgSrc": "../art2/Goal-ItsNotCreepy.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {"name":"shining armour"}
+    ]
+  }
  },
  {
   "name": "It's not Evil!",
@@ -827,37 +954,80 @@
   "name": "Hostile Takeover",
   "score": 3,
   "condition": "3 Ponies with the Changeling keyword are on the grid.",
-  "imgSrc": "../art2/Goal-HostileTakeover.png"
+  "imgSrc": "../art2/Goal-HostileTakeover.png",
+  "conditionLogic":{
+    "type":"pony",
+    "action":"exist",
+    "cards":[
+      {"keyword":"changeling","count":5},
+    ]
+  }
  },
  {
   "name": "Chancellor Puddinghead's Entourage",
   "score": 2,
   "condition": "You play 3 {earthpony} in one turn.",
-  "imgSrc": "../art2/Goal-ChancellorPuddingheadsEntourage.png"
+  "imgSrc": "../art2/Goal-ChancellorPuddingheadsEntourage.png",
+  "conditionLogic":{
+    "type":"pony",
+    "action":"play",
+    "cards":[
+      {"race":"earth","count":3},
+    ]
+  }
  },
  {
   "name": "My First Slash",
   "score": 1,
   "condition": "Shining Armor is shipped with any {male}",
-  "imgSrc": "../art2/Goal-MyFirstSlash.png"
+  "imgSrc": "../art2/Goal-MyFirstSlash.png",
+  "conditionLogic":{
+    "type":"chain",
+    "action":"create",
+    "cards":[
+      {"name":"shining armour"},
+      {"gender":"male"}
+    ]
+  }
  },
  {
   "name": "Queen Platinum's Court",
   "score": 2,
   "condition": "You play 3 {unicorn} in one turn.",
-  "imgSrc": "../art2/Goal-QueenPlatinumsCourt.png"
+  "imgSrc": "../art2/Goal-QueenPlatinumsCourt.png",
+  "conditionLogic":{
+    "type":"pony",
+    "action":"play",
+    "cards":[
+      {"race":"unicorn","count":3},
+    ]
+  }
  },
  {
   "name": "Commander Hurricane's Army",
   "score": 2,
   "condition": "You play 3 {pegasus} in one turn.",
-  "imgSrc": "../art2/Goal-CommanderHurricanesArmy.png"
+  "imgSrc": "../art2/Goal-CommanderHurricanesArmy.png",
+  "conditionLogic":{
+    "type":"pony",
+    "action":"play",
+    "cards":[
+      {"race":"pegasus","count":3},
+    ]
+  }
  },
  {
   "name": "Heh. Peasants",
   "score": 3,
   "condition": "You play 3 {alicorn} in one turn.",
-  "imgSrc": "../art2/Goal-HehPeasants.png"
+  "imgSrc": "../art2/Goal-HehPeasants.png",
+  "conditionLogic":{
+    "type":"pony",
+    "action":"play",
+    "cards":[
+      {"race":"alicorn","count":3},
+    ]
+  }
  },
  {
   "name": "Needs More Lesbians",
@@ -887,13 +1057,26 @@
   "name": "Hold On; I Need to Make a Flow Chart",
   "score": 3,
   "condition": "You swap 6 Pony card positions in one turn.",
-  "imgSrc": "../art2/Goal-HoldOnINeedtoMakeaFlowChart.png"
+  "imgSrc": "../art2/Goal-HoldOnINeedtoMakeaFlowChart.png",
+  "conditionLogic":{
+    "type":"pony",
+    "method":"swap",
+    "count":6
+  }
  },
  {
   "name": "Epidemic",
   "score": 3,
   "condition": "You play 2 Love Poisons in one turn.",
-  "imgSrc": "../art2/Goal-Epidemic.png"
+  "imgSrc": "../art2/Goal-Epidemic.png",
+  "conditionLogic":{
+    "type":"ship card",
+    "method":"play",
+    "cards":[{
+      "keywords":"love posion",
+      "count":2
+    }]
+  }
  },
  {
   "name": "Go Forth and Multiply",
@@ -905,19 +1088,44 @@
   "name": "Pretty Pretty Princess",
   "score": 3,
   "condition": "You make Twilight Sparkle an {alicorn}.",
-  "imgSrc": "../art2/Goal-PrettyPrettyPrincess.png"
+  "imgSrc": "../art2/Goal-PrettyPrettyPrincess.png",
+  "conditionLogic":{
+    "type":"pony",
+    "method":"modify",
+    "from":{
+      "name":"twilight",
+    },
+    "to":{
+      "keyword":"princess"
+    }
+  }
  },
  {
   "name": "Sadfic",
   "score": 1,
   "condition": "You break up any Ship with Twilight Sparkle in it.",
-  "imgSrc": "../art2/Goal-Sadfic.png"
+  "imgSrc": "../art2/Goal-Sadfic.png",
+  "conditionLogic":{
+    "type":"ship",
+    "method":"destroy",
+    "cards":[
+      {"name":"twilight sparkle"},
+      {}
+    ]
+  }
  },
  {
   "name": "Deep Cover",
   "score": 3,
   "condition": "Any 2 Changelings are shipped together.",
-  "imgSrc": "../art2/Goal-DeepCover.png"
+  "imgSrc": "../art2/Goal-DeepCover.png",
+  "conditionLogic":{
+    "type":"ship",
+    "method":"create",
+    "cards":[
+      {"keyword":"changeling", "count":"2"},
+    ]
+  }
  },
  {
   "name": "Budding Curiosity",
@@ -935,6 +1143,13 @@
   "name": "Cargo Ship",
   "score": 3,
   "condition": "Any 2 Ponies with the Object keyword are shipped together.",
-  "imgSrc": "../art2/Goal-CargoShip.png"
+  "imgSrc": "../art2/Goal-CargoShip.png",
+  "conditionLogic":{
+    "type":"ship",
+    "method":"create",
+    "cards":[
+      {"keyword":"object", "count":"2"},
+    ]
+  }
  }
 ]

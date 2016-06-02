@@ -3,7 +3,8 @@ var fs = require("fs"),
     cards = require("./Cards"),
     Grid = require("./Grid"),
     Decks = require("./Decks.js"),
-    Hand = require("./Hand.js");
+    Hand = require("./Hand.js"),
+    goalLogic = require("../shared/GoalLogic.js");
 
 /**
  * Represents a game
@@ -15,13 +16,13 @@ function Game(room,cardSets){
   this.hands = [];
   this.grid = new Grid(this);
   this.decks = new Decks(this);
-  this.currentGoals = [];
+  this.currentGoals = new goalLogic.CurrentGoals(this);
   this.cardList = [];
   cardSets.forEach(this.loadCards.bind(this));
   this.setupDecks();
 
   //---- DEMO ----
-  this.currentGoals = this.decks.drawGoals(3);
+  this.currentGoals.replenishGoals();
   this.grid.addCard([0,0],this.cardList[0]);
   for(var i=0;i<this.decks.ponyCards.length;i++){
     if (this.decks.ponyCards[i].id === 0) break;
@@ -124,10 +125,8 @@ Game.prototype.effects = {
   },
   copy:Game.prototype.resolveEffect,
   newGoal:function(params,client){
-    var goalCard = this.decks.resolveCardish(params.shift()),
-        rId = this.currentGoals.indexOf(goalCard),
-        newGoal = this.decks.drawGoals(1)[0];
-    this.currentGoals[rId] = newGoal;
+    var oldGoal = this.decks.resolveCardish(params.shift()),
+        newGoal = this.currentGoals.replaceGoal(oldGoal);
     return [{id:goalCard.id,position:null},{id:newGoal.id,position:rId}];
   }
 };
@@ -159,6 +158,7 @@ Game.prototype.hooks.endTurn = function(data,client){
     return;
   }
   client.curHand.drawCards(data.ponies, data.ships);
+  this.currentGoals.replenishGoals(); //TODO Currently replenished goals aren't told to players
   this.activePlayer = (this.activePlayer+1)%this.hands.length;
   //TODO Add turnStart message
 };
@@ -174,7 +174,7 @@ Game.prototype.packets.gridState = function(){
     grid:[].concat(
       Object.keys(grid.ponies).map(function(n){var c=grid.ponies[n];return {id:c.id,position:c.position};}),
       Object.keys(grid.ships).map(function(n){var c=grid.ships[n];return {id:c.id,position:c.position};})
-    ),goals:this.currentGoals.map(function(c,n){return {id:c.id,position:n};})
+    ),goals:this.currentGoals.currentGoals.map(function(c,n){return {id:c.id,position:n};}) //XXX Move this line to CurrentGoals obj?
   };
 };
 

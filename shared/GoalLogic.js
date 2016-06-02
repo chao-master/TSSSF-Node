@@ -1,3 +1,70 @@
+function CurrentGoals(game){
+  this.game = game;
+  this.currentGoals = Array(this.GOAL_LIMIT).fill(null);
+  this.playedPonies = [];
+  this.playedShips = [];
+  this.shipsCreated = [];
+}
+
+CurrentGoals.prototype.GOAL_LIMIT = 3;
+
+CurrentGoals.prototype.replenishGoals = function(){
+  for(var i=0;i<this.GOAL_LIMIT;i++){
+    if (this.currentGoals[i] === null){
+      this.currentGoals[i] = this.game.decks.drawGoals(1)[0];
+    }
+  }
+};
+
+CurrentGoals.prototype.replaceGoal = function(oldGoal){
+  var rId = this.currentGoals.indexOf(oldCard),
+      newGoal = this.decks.drawGoals(1)[0];
+  this.currentGoals[rId] = newGoal;
+  return newGoal;
+};
+
+CurrentGoals.checkForCompletion = function(n){
+  var goal = this.currentGoals[n];
+  if(goal.action == "play"){
+    return this.hasPlayedCards(goal.goalCondition);
+  }
+};
+
+CurrentGoals.hasPlayedCards = function(goalCondition){
+  var checkAganist;
+  switch(goalCondition.type){
+    case "pony":
+      checkAganist = this.playedPonies;
+      break;
+    case "ship":
+      checkAganist = this.shipsCreated;
+      break;
+    case "ship card":
+      checkAganist = this.playedShips;
+      break;
+    default:
+      console.error("Goal condition's type is neither pony, ship or ship card");
+      return false;
+  }
+  var filter = cardFilter(goalCondition.cards),
+      count = goalCondition.count;
+  if(goalCondition.type != "ship"){
+    count = count !== undefined? count:goalCondition.cards.count; //XXX What do they counts mean?
+    var progress = 0;
+    for(var i=0;i<checkAganist.lengt;i++){
+        if(filter(checkAganist[i])){
+          progress ++;
+        }
+    }
+    return progress >= count;
+  } else {
+    //TODO Ships are going to have to be done diffrentlly
+    //Also: swapping ponies needs to be tracked
+    //And Breakups
+  }
+};
+
+
 function inList(item,list){
   //TODO: maybe check if list isn't a list...
   return list.indexOf(item) >= 0;
@@ -116,7 +183,7 @@ Hooks:
       Ship Destroy: [All ships with PonyR]
     Pony Play: PonyP
       Ship Form: [All the new ships]
-  
+
 
 Not implemented/Partly implemnted goal cards:
  - Pomf!
@@ -132,3 +199,5 @@ Not implemented/Partly implemnted goal cards:
  - Budding Curiosity
  - Charity Auction
 */
+
+module.exports = {CurrentGoals};

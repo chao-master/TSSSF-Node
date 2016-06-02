@@ -1060,7 +1060,7 @@
   "imgSrc": "../art2/Goal-HoldOnINeedtoMakeaFlowChart.png",
   "conditionLogic":{
     "type":"pony",
-    "method":"swap",
+    "action":"swap",
     "count":6
   }
  },
@@ -1071,7 +1071,7 @@
   "imgSrc": "../art2/Goal-Epidemic.png",
   "conditionLogic":{
     "type":"ship card",
-    "method":"play",
+    "action":"play",
     "cards":[{
       "keywords":"love posion",
       "count":2
@@ -1091,7 +1091,7 @@
   "imgSrc": "../art2/Goal-PrettyPrettyPrincess.png",
   "conditionLogic":{
     "type":"pony",
-    "method":"modify",
+    "action":"modify",
     "from":{
       "name":"twilight"
     },
@@ -1107,7 +1107,7 @@
   "imgSrc": "../art2/Goal-Sadfic.png",
   "conditionLogic":{
     "type":"ship",
-    "method":"destroy",
+    "action":"destroy",
     "cards":[
       {"name":"twilight sparkle"},
       {}
@@ -1121,7 +1121,7 @@
   "imgSrc": "../art2/Goal-DeepCover.png",
   "conditionLogic":{
     "type":"ship",
-    "method":"create",
+    "action":"create",
     "cards":[
       {"keyword":"changeling", "count":"2"}
     ]
@@ -1146,7 +1146,7 @@
   "imgSrc": "../art2/Goal-CargoShip.png",
   "conditionLogic":{
     "type":"ship",
-    "method":"create",
+    "action":"create",
     "cards":[
       {"keyword":"object", "count":"2"}
     ]

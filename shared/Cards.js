@@ -11,7 +11,7 @@ Card.fromObject = function(obj){
   if("gender" in obj || "race" in obj || "icon" in obj){
     card = new PonyCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   } else if("condition" in obj){
-    card = new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score);
+    card = new GoalCard(obj.name,obj.imgSrc,obj.condition,obj.score,obj.conditionLogic);
   } else {
     card = new ShipCard(obj.name,obj.imgSrc,obj.gender,obj.race,obj.icon,obj.effect);
   }
@@ -31,10 +31,11 @@ function PonyCard(name,imgSrc,gender,race,extraIcon,effect){
 PonyCard.prototype = Object.create(Card.prototype);
 PonyCard.prototype.constructor = PonyCard;
 
-function GoalCard(name,imgSrc,condition,score){
+function GoalCard(name,imgSrc,condition,score,goalCondition){
   Card.call(this,name,imgSrc);
   this.condition = condition;
   this.score = score;
+  this.goalCondition = goalCondition;
 }
 GoalCard.prototype = Object.create(Card.prototype);
 GoalCard.prototype.constructor = GoalCard;

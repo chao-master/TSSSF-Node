@@ -145,8 +145,8 @@ Game.prototype.effects = {
   copy:Game.prototype.resolveEffect,
   newGoal:function(params,client){
     var oldGoal = this.decks.resolveCardish(params.shift()),
-        newGoal = this.currentGoals.replaceGoal(oldGoal);
-    return [{id:goalCard.id,position:null},{id:newGoal.id,position:rId}];
+        newGoalInfo = this.currentGoals.replaceGoal(oldGoal);
+    return [{id:oldGoal.id,position:null},newGoalInfo];
   }
 };
 

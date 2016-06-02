@@ -18,19 +18,24 @@ CurrentGoals.prototype.replenishGoals = function(){
 
 CurrentGoals.prototype.replaceGoal = function(oldGoal){
   var rId = this.currentGoals.indexOf(oldGoal),
-      newGoal = this.decks.drawGoals(1)[0];
+      newGoal = this.game.decks.drawGoals(1)[0];
   this.currentGoals[rId] = newGoal;
-  return newGoal;
+  return {id:newGoal.id,position:rId};
 };
 
 CurrentGoals.prototype.checkForCompletion = function(n){
   var goal = this.currentGoals[n];
-  if(goal.action == "play"){
+  if(goal.goalCondition === undefined){
+    console.warn("Goal",goal.name,"is not implemented");
+    return false;
+  }
+  if(goal.goalCondition.action == "play"){
+    console.debug(goal.goalCondition);
     return this.hasPlayedCards(goal.goalCondition);
   }
 };
 
-CurrentGoals.hasPlayedCards = function(goalCondition){
+CurrentGoals.prototype.hasPlayedCards = function(goalCondition){
   var checkAganist;
   switch(goalCondition.type){
     case "pony":

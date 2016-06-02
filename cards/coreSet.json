@@ -900,7 +900,7 @@
       {"name":"rainbow dash"},
       {"name":"pinkie pie"},
       {"name":"fluttershy"},
-      {"name":"applejack"},
+      {"name":"applejack"}
     ]
   }
  },
@@ -959,7 +959,7 @@
     "type":"pony",
     "action":"exist",
     "cards":[
-      {"keyword":"changeling","count":5},
+      {"keyword":"changeling","count":5}
     ]
   }
  },
@@ -972,7 +972,7 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"earth","count":3},
+      {"race":"earth","count":3}
     ]
   }
  },
@@ -999,7 +999,7 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"unicorn","count":3},
+      {"race":"unicorn","count":3}
     ]
   }
  },
@@ -1012,7 +1012,7 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"pegasus","count":3},
+      {"race":"pegasus","count":3}
     ]
   }
  },
@@ -1025,7 +1025,7 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"alicorn","count":3},
+      {"race":"alicorn","count":3}
     ]
   }
  },
@@ -1093,7 +1093,7 @@
     "type":"pony",
     "method":"modify",
     "from":{
-      "name":"twilight",
+      "name":"twilight"
     },
     "to":{
       "keyword":"princess"
@@ -1123,7 +1123,7 @@
     "type":"ship",
     "method":"create",
     "cards":[
-      {"keyword":"changeling", "count":"2"},
+      {"keyword":"changeling", "count":"2"}
     ]
   }
  },
@@ -1148,7 +1148,7 @@
     "type":"ship",
     "method":"create",
     "cards":[
-      {"keyword":"object", "count":"2"},
+      {"keyword":"object", "count":"2"}
     ]
   }
  }

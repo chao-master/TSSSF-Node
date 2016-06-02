@@ -23,7 +23,11 @@ function samePonyGroupFilter(count){
   };
 }
 
-//XXX can not handle samePonies, since that only works on multiple ponies
+/**
+ * Returns a filter function, which returns true if none of the filters fail
+ * @param  {object} filterObject The filter object
+ * @return {function}            The filter function
+ */
 function cardFilter(filterObject){
   return function(card){
     var filterParts = Object.keys(filterObject);
@@ -77,7 +81,7 @@ Goal Logic Type:
   Pony: Refers to 1 or more pony cards
   Ship: Refers to a single pony being shipped with 1 or more cards
   Ship Card: Refers to 1 or more ship cards (as aposed to the ship)
-  Chain: Refers to a chain of poneis shipped together
+  Chain: Refers to a chain of ponies shipped together
 
 Goal Logic methods:
   Create: Completing the condition in a single play (may already be partly completed)
@@ -87,7 +91,34 @@ Goal Logic methods:
   Swap: Swapping 2 or more ponies on the grid (each pony counts inivially)
   Modify: You change a pony card's keyword ect, has "from" and "too" instead of "cards"
 
-/* not/Partly implemnted goal cards:
+Hooks:
+  Pony
+    Create/Exists/Play: Pony Play
+    Swap: Pony Moved
+    Destroy: Pony Removed
+    Modify: Pony Modified
+  Ship:
+    Create/Exists/Play: Ship Formed
+    Destroy: Ship Destroy
+  Ship Card:
+    Create/Exists/Play: Ship Card Play
+
+3 Basic plays:
+  Pony & Ship: PonyA, PonyB, Ship
+    Pony Play: PonyA
+    Ship Card Play: Ship
+    Ship Formed: PonyA, Ship, PonyB
+  Ship only: PonyA, PonyB, Ship
+    Ship Card Play: Ship
+    Ship Formed: PonyP, PonyR
+  Replace:
+    Pony Destory: PonyR
+      Ship Destroy: [All ships with PonyR]
+    Pony Play: PonyP
+      Ship Form: [All the new ships]
+  
+
+Not implemented/Partly implemnted goal cards:
  - Pomf!
  - Friendship is benefits (missing 4 points)
  - Time Travelers Among Us

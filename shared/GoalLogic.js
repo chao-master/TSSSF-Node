@@ -17,13 +17,13 @@ CurrentGoals.prototype.replenishGoals = function(){
 };
 
 CurrentGoals.prototype.replaceGoal = function(oldGoal){
-  var rId = this.currentGoals.indexOf(oldCard),
+  var rId = this.currentGoals.indexOf(oldGoal),
       newGoal = this.decks.drawGoals(1)[0];
   this.currentGoals[rId] = newGoal;
   return newGoal;
 };
 
-CurrentGoals.checkForCompletion = function(n){
+CurrentGoals.prototype.checkForCompletion = function(n){
   var goal = this.currentGoals[n];
   if(goal.action == "play"){
     return this.hasPlayedCards(goal.goalCondition);

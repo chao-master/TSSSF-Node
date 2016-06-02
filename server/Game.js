@@ -86,13 +86,32 @@ Game.prototype.onPlay = function(cards,params,client){
     return;
   }
 
+  var response;
+
   if(params.length > 0 && this.cardList[params[0]].effect == "replace"){
     this.grid.replaceCard(params[1],params.shift());
-    return [{id:params.shift(),position:null},cards[0]];
+    response = [{id:params.shift(),position:null},cards[0]];
   } else {
     cards.forEach(c => this.grid.addCard(c.position,c.id));
-    return cards.concat(this.resolveEffect(params,client));
+    response =  cards.concat(this.resolveEffect(params,client));
   }
+
+  //TODO Add the cards played to the tracked goals and then check for checkForCompletion
+  var that = this;
+  cards.forEach(function(card){
+    if(card instanceof ShipCard){
+      that.currentGoals.playedShips.push(card);
+      //TODO track the created ship
+    } else {
+      that.currentGoals.playedPonies.push(card);
+    }
+  });
+  console.debug(this.currentGoals.playedPonies);
+  console.debug(this.currentGoals.playedShips);
+  console.debug(this.currentGoals.checkForCompletion(0));
+  console.debug(this.currentGoals.checkForCompletion(1));
+  console.debug(this.currentGoals.checkForCompletion(2));
+  return response;
 };
 
 Game.prototype.resolveEffect = function(params,client){

@@ -100,10 +100,10 @@ Game.prototype.onPlay = function(cards,params,client){
   var that = this;
   cards.forEach(function(card){
     if(card instanceof ShipCard){
-      that.currentGoals.playedShips.push(card);
+      that.currentGoals.playedShips.push(that.cardList[card.id]);
       //TODO track the created ship
     } else {
-      that.currentGoals.playedPonies.push(card);
+      that.currentGoals.playedPonies.push(that.cardList[card.id]);
     }
   });
   console.debug(this.currentGoals.playedPonies);

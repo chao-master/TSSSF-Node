@@ -2,60 +2,70 @@ function inList(item,list){
   //TODO: maybe check if list isn't a list...
   return list.indexOf(item) >= 0;
 }
-
-/**
- * A collection of function generating functions to produce filters for cardSize
- * @type {[function]}
- */
-var cardFilters = {
-  keyword:function(keywords){
-    return function(card){
-      //WARNING cards still don't have keywords
-      return inList(card.keywords,keywords);
-    };
-  },
-  race:function(races){
-    return function(card){
-      return inList(card.race,races);
-    };
-  },
-  name:function(name){
-    //TODO: code in pony names to cards, needed for things like samePonies
-  },
-  gender:function(genders){
-    return function(card){
-      return inList(card.race,races);
-    };
-  },
-  extraIcon:function(extraIcons){
-    return function(card){
-      return inList(card.extraIcon,extraIcons);
-    };
-  }
-};
-
-var groupFilters = {
-  samePonies:function(count){
-    return function(cards){
-      var names = {},
-          highCount = 0;
-      cards.forEach(function(card){
-        if( names[card.ponyName] === undefined){
-          names[card.ponyName] = [card];
-        } else {
-          names[card.ponyName].push(card);
+function samePonyGroupFilter(count){
+  return function(cards){
+    var names = {},
+        highCount = 0;
+    cards.forEach(function(card){
+      if( names[card.ponyName] === undefined){
+        names[card.ponyName] = [card];
+      } else {
+        names[card.ponyName].push(card);
+      }
+      if(names[card.ponyName].length > highCount){
+        highCount = names[card.ponyName].length;
+        if(highCount > count){
+          return true;
         }
-        if(names[card.ponyName].length > highCount){
-          highCount = names[card.ponyName].length;
-          if(highCount > count){
-            return true;
-          }
+      }
+    });
+    return false;
+  };
+}
+
+//XXX can not handle samePonies, since that only works on multiple ponies
+function cardFilter(filterObject){
+  return function(card){
+    var filterParts = Object.keys(filterObject);
+    for(var i = 0;i<filterParts.length;i++){
+      var cardValue = [],
+          filterValue = filterObject[filterParts[i]],
+          match = false;
+      switch (filterParts[i]){
+        case "keyword":
+          cardValue = card.keywords;
+          break;
+        case "race":
+          cardValue = card.race;
+          break;
+        case "name":
+          cardValue = card.ponyName;
+          break;
+        case "gender":
+          cardValue = card.gender;
+          break;
+        case "extraIcon":
+          cardValue = card.extraIcon;
+          break;
+      }
+      if (!Array.isArray(cardValue)){
+        cardValue = [cardValue];
+      }
+      if (!Array.isArray(filterValue)){
+        filterValue = [filterValue];
+      }
+      for (var j=0;j<filterValue.length && !match;j++){
+        if(cardValue.indexOf(filterValue[j]) >= 0){
+          match = true;
         }
-      });
-      return false;
-    };
-  }
-};
+      }
+      if(!match){
+        return false;
+      }
+    }
+    return true;
+  };
+}
 
 /*
 Goal Logic Type:
@@ -83,4 +93,6 @@ Goal Logic methods:
  - Shipwrecker
  - Invasive species
  - Go Forth and Multiply
+ - Budding Curiosity
+ - Charity Auction
 */

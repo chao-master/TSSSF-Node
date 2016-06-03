@@ -34,6 +34,11 @@ CurrentGoals.prototype.cardPlayed = function(card){
   this.turnsPlays.push(new CardPlayRecord("play",card));
 };
 
+CurrentGoals.prototype.onTurnBegin = function(){
+  this.turnsPlays = [];
+  this.replenishGoals();
+};
+
 CurrentGoals.prototype.replenishGoals = function(){
   for(var i=0;i<this.GOAL_LIMIT;i++){
     if (this.currentGoals[i] === null){
@@ -56,10 +61,13 @@ CurrentGoals.prototype.checkForCompletion = function(n){
     return false;
   }
   if(goal.goalCondition.action == "play"){
-    var matches = this.turnsPlays.filter(function(p){return p.matchesGoalConditions(goal.goalCondition);}),
-        pass = matches.length >= goal.goalCondition.cards[0].count; //TODO fix count;
-    console.debug(matches,pass);
-    return pass;
+    var matches = this.turnsPlays.filter(function(p){
+      return p.matchesGoalConditions(goal.goalCondition);
+    });
+    return {
+      progress:matches.length,
+      needed:goal.goalCondition.cards[0].count //TODO fix count;
+    };
   }
 };
 

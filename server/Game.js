@@ -101,7 +101,6 @@ Game.prototype.onPlay = function(cards,params,client){
   cards.forEach(function(c){
     that.currentGoals.cardPlayed(that.cardList[c.id]);
   });
-  console.debug(this.currentGoals.turnsPlays);
   console.debug(this.currentGoals.checkForCompletion(0));
   console.debug(this.currentGoals.checkForCompletion(1));
   console.debug(this.currentGoals.checkForCompletion(2));
@@ -174,6 +173,7 @@ Game.prototype.hooks.endTurn = function(data,client){
   this.currentGoals.replenishGoals(); //TODO Currently replenished goals aren't told to players
   this.activePlayer = (this.activePlayer+1)%this.hands.length;
   //TODO Add turnStart message
+  this.currentGoals.onTurnBegin();
 };
 
 /*Game Packets - Called from Room.packet()*/

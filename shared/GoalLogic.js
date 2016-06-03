@@ -11,7 +11,6 @@ function CardPlayRecord(action,card){
     console.warn("Bad card type",card);
   }
 }
-
 CardPlayRecord.prototype.matchesGoalConditions = function(goalCondition){
   if(this.type != goalCondition.type || this.action != goalCondition.action){
     return false;
@@ -19,6 +18,23 @@ CardPlayRecord.prototype.matchesGoalConditions = function(goalCondition){
   var that = this;
   return goalCondition.cards.some(function(filterCard){
     return cardFilter(filterCard)(that.card);
+  });
+};
+
+function ShipRecord(action,pony1,pony2,shipCard){
+  this.action = action;
+  this.ponyCards = [pony1,pony2];
+  this.shipCard = shipCard;
+}
+ShipRecord.prototype.type = "ship";
+ShipRecord.prototype.matchesGoalConditions = function(goalCondition){
+  if(this.type != goalCondition.type || this.action != goalCondition.action){
+    return false;
+  }
+  var that=this;
+  goalCondition.cards.every(function(filterCard){
+    var count = filterCard.count !== undefined? filterCard.count:1;
+    return that.ponyCards.filter(cardFilter(filterCard)).length >= count;
   });
 };
 
@@ -32,6 +48,18 @@ CurrentGoals.prototype.GOAL_LIMIT = 3;
 
 CurrentGoals.prototype.cardPlayed = function(card){
   this.turnsPlays.push(new CardPlayRecord("play",card));
+  if(card instanceof cards.ShipCard){
+    var shipAt = card.position,
+        pony1At = shipAt.slice(0,2),
+        pony2At = shipAt.slice(0,2),
+        grid = this.game.grid;
+    if(shipAt[2] == "down"){
+      pony2At[1]++;
+    } else {
+      pony2At[0]++;
+    }
+    this.turnsPlays.push(new ShipRecord("play",grid.getCard(pony1At),grid.getCard(pony2At),shipAt));
+  }
 };
 
 CurrentGoals.prototype.onTurnBegin = function(){

@@ -1033,13 +1033,31 @@
   "name": "Needs More Lesbians",
   "score": 1,
   "condition": "You play 3 {female}/{female} Ships in one turn.",
-  "imgSrc": "../art2/Goal-NeedsMoreLesbians.png"
+  "imgSrc": "../art2/Goal-NeedsMoreLesbians.png",
+  "conditionLogic":{
+    "type":"ship",
+    "action":"play",
+    "cards":[
+      {"gender":"female"},
+      {"gender":"female"}
+    ],
+    "count":3
+  }
  },
  {
   "name": "Quite.",
   "score": 2,
   "condition": "You play 3 {male}/{male} Ships in one turn.",
-  "imgSrc": "../art2/Goal-Quite.png"
+  "imgSrc": "../art2/Goal-Quite.png",
+  "conditionLogic":{
+    "type":"ship",
+    "action":"play",
+    "cards":[
+      {"gender":"male"},
+      {"gender":"male"}
+    ],
+    "count":3
+  }
  },
  {
   "name": "Shipwrecker",
@@ -1082,7 +1100,16 @@
   "name": "Go Forth and Multiply",
   "score": 1,
   "condition": "You play 3 {male}/{female} Ships in one turn.",
-  "imgSrc": "../art2/Goal-GoForthandMultiply.png"
+  "imgSrc": "../art2/Goal-GoForthandMultiply.png",
+  "conditionLogic":{
+    "type":"ship",
+    "action":"play",
+    "cards":[
+      {"gender":"male"},
+      {"gender":"female"}
+    ],
+    "count":3
+  }
  },
  {
   "name": "Pretty Pretty Princess",

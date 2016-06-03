@@ -761,29 +761,13 @@
   "name": "I Swear I'm Not Gay!",
   "score": 1,
   "condition": "Any {male} is shipped with 3 other {male}",
-  "imgSrc": "../art2/Goal-ISwearImNotGay.png",
-  "conditionLogic":{
-    "type":"ship",
-    "action":"create",
-    "cards":[
-      {"gender":"male"},
-      {"gender":"male","count":3}
-    ]
-  }
+  "imgSrc": "../art2/Goal-ISwearImNotGay.png"
  },
  {
   "name": "It's Not EXACTLY Cheating...",
   "score": 2,
   "condition": "Any single Pony is shipped with 2 versions of another Pony.",
-  "imgSrc": "../art2/Goal-ItsNotEXACTLYCheating.png",
-  "conditionLogic":{
-    "type":"ship",
-    "action":"create",
-    "cards":[
-      {},
-      {"samePonies":2}
-    ]
-  }
+  "imgSrc": "../art2/Goal-ItsNotEXACTLYCheating.png"
  },
  {
   "name": "Princess Pile",
@@ -802,7 +786,7 @@
   "condition": "Cadance is shipped with any {female}",
   "imgSrc": "../art2/Goal-ShiningArmorApprovesofThisExperiment.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"cadance"},
@@ -816,7 +800,7 @@
   "condition": "Twilight Sparkle is shipped with any Cheerilee.",
   "imgSrc": "../art2/Goal-IGuessYoullDo.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"twilight sparkle"},
@@ -830,7 +814,7 @@
   "condition": "Twilight Sparkle is shipped with any Zecora.",
   "imgSrc": "../art2/Goal-WellMaybe.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"twilight sparkle"},
@@ -844,7 +828,7 @@
   "condition": "Twilight Sparkle is shipped with any Luna",
   "imgSrc": "../art2/Goal-GoodEnough.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"twilight sparkle"},
@@ -858,7 +842,7 @@
   "condition": "Twilight Sparkle is shipped with any Celestia.",
   "imgSrc": "../art2/Goal-HotforTeacher.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"twilight sparkle"},
@@ -876,15 +860,7 @@
   "name": "\"Just Experimenting\"",
   "score": 2,
   "condition": "3 {female} are shipped with any Rainbow Dash.",
-  "imgSrc": "../art2/Goal-JustExperimenting.png",
-  "conditionLogic":{
-    "type":"ship",
-    "action":"create",
-    "cards":[
-      {"name":"rainbow dash"},
-      {"gender":"female","count":3}
-    ]
-  }
+  "imgSrc": "../art2/Goal-JustExperimenting.png"
  },
  {
   "name": "Friendship is Benefits",
@@ -910,11 +886,10 @@
   "condition": "Cheerilee is shipped with anypony.\nAnypony at all.\nThe player who completes this Goal increases their hand size by 1 for the rest of the game.",
   "imgSrc": "../art2/Goal-HelpImTrappedinaShippingCardGame.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
-      {"name":"cheerilee"},
-      {}
+      {"name":"cheerilee"}
     ]
   }
  },
@@ -936,7 +911,7 @@
   "condition": "Twilight Sparkle is shipped with any Shining Armor.",
   "imgSrc": "../art2/Goal-ItsNotCreepy.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"twilight sparkle"},
@@ -959,7 +934,7 @@
     "type":"pony",
     "action":"exist",
     "cards":[
-      {"keyword":"changeling","count":5}
+      {"keyword":"changeling","count":3}
     ]
   }
  },
@@ -972,8 +947,9 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"earth","count":3}
-    ]
+      {"race":"earth"}
+    ],
+    "count":3
   }
  },
  {
@@ -982,7 +958,7 @@
   "condition": "Shining Armor is shipped with any {male}",
   "imgSrc": "../art2/Goal-MyFirstSlash.png",
   "conditionLogic":{
-    "type":"chain",
+    "type":"ship",
     "action":"create",
     "cards":[
       {"name":"shining armour"},
@@ -999,8 +975,9 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"unicorn","count":3}
-    ]
+      {"race":"unicorn"}
+    ],
+    "count":3
   }
  },
  {
@@ -1012,8 +989,9 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"pegasus","count":3}
-    ]
+      {"race":"pegasus"}
+    ],
+    "count":3
   }
  },
  {
@@ -1025,8 +1003,9 @@
     "type":"pony",
     "action":"play",
     "cards":[
-      {"race":"alicorn","count":3}
-    ]
+      {"race":"alicorn"}
+    ],
+    "count":3
   }
  },
  {
@@ -1136,8 +1115,7 @@
     "type":"ship",
     "action":"destroy",
     "cards":[
-      {"name":"twilight sparkle"},
-      {}
+      {"name":"twilight sparkle"}
     ]
   }
  },
@@ -1150,7 +1128,8 @@
     "type":"ship",
     "action":"create",
     "cards":[
-      {"keyword":"changeling", "count":"2"}
+      {"keyword":"changeling"},
+      {"keyword":"changeling"}
     ]
   }
  },
@@ -1175,7 +1154,8 @@
     "type":"ship",
     "action":"create",
     "cards":[
-      {"keyword":"object", "count":"2"}
+      {"keyword":"object"},
+      {"keyword":"object"}
     ]
   }
  }

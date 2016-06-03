@@ -32,9 +32,8 @@ ShipRecord.prototype.matchesGoalConditions = function(goalCondition){
     return false;
   }
   var that=this;
-  goalCondition.cards.every(function(filterCard){
-    var count = filterCard.count !== undefined? filterCard.count:1;
-    return that.ponyCards.filter(cardFilter(filterCard)).length >= count;
+  return goalCondition.cards.every(function(filterCard){
+    return that.ponyCards.some(cardFilter(filterCard));
   });
 };
 
@@ -94,7 +93,7 @@ CurrentGoals.prototype.checkForCompletion = function(n){
     });
     return {
       progress:matches.length,
-      needed:goal.goalCondition.cards[0].count //TODO fix count;
+      needed:goal.goalCondition.count //TODO fix count;
     };
   }
 };
@@ -226,13 +225,14 @@ Not implemented/Partly implemnted goal cards:
  - Time Travelers Among Us
  - It's Magical: Horns Are Touching
  - It's not evil
- - Needs More Lesbians
- - Quite
  - Shipwrecker
  - Invasive species
- - Go Forth and Multiply
  - Budding Curiosity
  - Charity Auction
+
+ - I Swear I'm Not Gay!
+ - It's Not EXACTLY Cheating..."
+ - "Just Experimenting"
 */
 
 module.exports = {CurrentGoals};

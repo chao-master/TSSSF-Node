@@ -1,12 +1,38 @@
+var cards = require("./Cards");
+
+function CardPlayRecord(action,card){
+  this.action = action;
+  this.card = card;
+  if (card instanceof cards.ShipCard){
+    this.type = "ship card";
+  } else if (card instanceof cards.PonyCard){
+    this.type = "pony";
+  } else {
+    console.warn("Bad card type",card);
+  }
+}
+
+CardPlayRecord.prototype.matchesGoalConditions = function(goalCondition){
+  if(this.type != goalCondition.type || this.action != goalCondition.action){
+    return false;
+  }
+  var that = this;
+  return goalCondition.cards.some(function(filterCard){
+    return cardFilter(filterCard)(that.card);
+  });
+};
+
 function CurrentGoals(game){
   this.game = game;
   this.currentGoals = Array(this.GOAL_LIMIT).fill(null);
-  this.playedPonies = [];
-  this.playedShips = [];
-  this.shipsCreated = [];
+  this.turnsPlays = [];
 }
 
 CurrentGoals.prototype.GOAL_LIMIT = 3;
+
+CurrentGoals.prototype.cardPlayed = function(card){
+  this.turnsPlays.push(new CardPlayRecord("play",card));
+};
 
 CurrentGoals.prototype.replenishGoals = function(){
   for(var i=0;i<this.GOAL_LIMIT;i++){
@@ -30,42 +56,10 @@ CurrentGoals.prototype.checkForCompletion = function(n){
     return false;
   }
   if(goal.goalCondition.action == "play"){
-    console.debug(goal.goalCondition);
-    return this.hasPlayedCards(goal.goalCondition);
-  }
-};
-
-CurrentGoals.prototype.hasPlayedCards = function(goalCondition){
-  var checkAganist;
-  switch(goalCondition.type){
-    case "pony":
-      checkAganist = this.playedPonies;
-      break;
-    case "ship":
-      checkAganist = this.shipsCreated;
-      break;
-    case "ship card":
-      checkAganist = this.playedShips;
-      break;
-    default:
-      console.error("Goal condition's type is neither pony, ship or ship card");
-      return false;
-  }
-  var filter = cardFilter(goalCondition.cards),
-      count = goalCondition.count;
-  if(goalCondition.type != "ship"){
-    count = count !== undefined? count:goalCondition.cards.count; //XXX What do they counts mean?
-    var progress = 0;
-    for(var i=0;i<checkAganist.lengt;i++){
-        if(filter(checkAganist[i])){
-          progress ++;
-        }
-    }
-    return progress >= count;
-  } else {
-    //TODO Ships are going to have to be done diffrentlly
-    //Also: swapping ponies needs to be tracked
-    //And Breakups
+    var matches = this.turnsPlays.filter(function(p){return p.matchesGoalConditions(goal.goalCondition);}),
+        pass = matches.length >= goal.goalCondition.cards[0].count; //TODO fix count;
+    console.debug(matches,pass);
+    return pass;
   }
 };
 

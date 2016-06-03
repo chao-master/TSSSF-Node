@@ -98,16 +98,10 @@ Game.prototype.onPlay = function(cards,params,client){
 
   //TODO Add the cards played to the tracked goals and then check for checkForCompletion
   var that = this;
-  cards.forEach(function(card){
-    if(card instanceof ShipCard){
-      that.currentGoals.playedShips.push(that.cardList[card.id]);
-      //TODO track the created ship
-    } else {
-      that.currentGoals.playedPonies.push(that.cardList[card.id]);
-    }
+  cards.forEach(function(c){
+    that.currentGoals.cardPlayed(that.cardList[c.id]);
   });
-  console.debug(this.currentGoals.playedPonies);
-  console.debug(this.currentGoals.playedShips);
+  console.debug(this.currentGoals.turnsPlays);
   console.debug(this.currentGoals.checkForCompletion(0));
   console.debug(this.currentGoals.checkForCompletion(1));
   console.debug(this.currentGoals.checkForCompletion(2));

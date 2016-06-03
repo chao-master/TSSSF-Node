@@ -83,6 +83,9 @@ CurrentGoals.prototype.replaceGoal = function(oldGoal){
 
 CurrentGoals.prototype.checkForCompletion = function(n){
   var goal = this.currentGoals[n];
+  if(goal === null){
+    return false;
+  }
   if(goal.goalCondition === undefined){
     console.warn("Goal",goal.name,"is not implemented");
     return false;
@@ -95,6 +98,17 @@ CurrentGoals.prototype.checkForCompletion = function(n){
       progress:matches.length,
       needed:goal.goalCondition.count //TODO fix count;
     };
+  }
+};
+
+CurrentGoals.prototype.checkAllForCompletion = function(){
+  var that = this;
+  for(var i=0;i<this.currentGoals.length;i++){
+    if(this.checkForCompletion(i)){
+      this.game.hands[this.game.activePlayer].addCard(this.currentGoals[i]);
+      this.currentGoals[i] = null;
+      //TODO tell players the goal is won
+    }
   }
 };
 

@@ -96,14 +96,13 @@ Game.prototype.onPlay = function(cards,params,client){
     response =  cards.concat(this.resolveEffect(params,client));
   }
 
-  //TODO Add the cards played to the tracked goals and then check for checkForCompletion
+  //TODO Add the plays that things such as replace and swap cause
+  //TODO Figure out what order all this actually needs to happen in
   var that = this;
   cards.forEach(function(c){
     that.currentGoals.cardPlayed(that.cardList[c.id]);
   });
-  console.debug(this.currentGoals.checkForCompletion(0));
-  console.debug(this.currentGoals.checkForCompletion(1));
-  console.debug(this.currentGoals.checkForCompletion(2));
+  this.currentGoals.checkAllForCompletion();
   return response;
 };
 

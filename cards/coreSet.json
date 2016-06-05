@@ -4,453 +4,571 @@
   "gender": "female",
   "race": "unicorn",
   "effect": "start",
-  "imgSrc": "../art2/Start-FanficAuthorTwilight.png"
+  "imgSrc": "../art2/Start-FanficAuthorTwilight.png",
+  "keywords": ["mane 6"],
+  "ponyName": "twilight sparkle"
  },
  {
   "name": "Star Student Twilight",
   "gender": "female",
   "race": "unicorn",
   "effect": "copy",
-  "imgSrc": "../art2/Pony-StarStudentTwilight.png"
+  "imgSrc": "../art2/Pony-StarStudentTwilight.png",
+  "keywords": ["mane 6"],
+  "ponyName": "twilight sparkle"
  },
  {
   "name": "Super Spy Twilight",
   "gender": "female",
   "race": "unicorn",
   "effect": "search",
-  "imgSrc": "../art2/Pony-SuperSpyTwilight.png"
+  "imgSrc": "../art2/Pony-SuperSpyTwilight.png",
+  "keywords": ["mane 6"],
+  "ponyName": "twilight sparkle"
  },
  {
   "name": "Private Eye Twilight",
   "gender": "female",
   "race": "unicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-PrivateEyeTwilight.png"
+  "imgSrc": "../art2/Pony-PrivateEyeTwilight.png",
+  "keywords": ["mane 6"],
+  "ponyName": "twilight sparkle"
  },
  {
   "name": "Heartless Dictator Rarity",
   "gender": "female",
   "race": "unicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-HeartlessDictatorRarity.png"
+  "imgSrc": "../art2/Pony-HeartlessDictatorRarity.png",
+  "keywords": ["mane 6","villain"],
+  "ponyName": "rarity"
  },
  {
   "name": "Dramatically Wounded Rarity",
   "gender": "female",
   "race": "unicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-DramaticallyWoundedRarity.png"
+  "imgSrc": "../art2/Pony-DramaticallyWoundedRarity.png",
+  "keywords": ["mane 6"],
+  "ponyName": "rarity"
  },
  {
   "name": "Black Widow Rarity",
   "gender": "female",
   "race": "unicorn",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-BlackWidowRarity.png"
+  "imgSrc": "../art2/Pony-BlackWidowRarity.png",
+  "keywords": ["mane 6"],
+  "ponyName": "rarity"
  },
  {
   "name": "Tsundere Rainbow Dash",
   "gender": "female",
   "race": "pegasus",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-TsundereRainbowDash.png"
+  "imgSrc": "../art2/Pony-TsundereRainbowDash.png",
+  "keywords": ["mane 6"],
+  "ponyName": "rainbow dash"
  },
  {
   "name": "Major General Dash",
   "gender": "female",
   "race": "pegasus",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-MajorGeneralDash.png"
+  "imgSrc": "../art2/Pony-MajorGeneralDash.png",
+  "keywords": ["mane 6","villain"],
+  "ponyName": "rainbow dash"
  },
  {
   "name": "Broken-Wing Rainbow Dash",
   "gender": "female",
   "race": "pegasus",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-BrokenWingRainbowDash.png"
+  "imgSrc": "../art2/Pony-BrokenWingRainbowDash.png",
+  "keywords": ["mane 6"],
+  "ponyName": "rainbow dash"
  },
  {
   "name": "Druid Fluttershy",
   "gender": "female",
   "race": "pegasus",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-DruidFluttershy.png"
+  "imgSrc": "../art2/Pony-DruidFluttershy.png",
+  "keywords": ["mane 6"],
+  "ponyName": "fluttershy"
  },
  {
   "name": "Cult Leader Fluttershy",
   "gender": "female",
   "race": "pegasus",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-CultLeaderFluttershy.png"
+  "imgSrc": "../art2/Pony-CultLeaderFluttershy.png",
+  "keywords": ["mane 6","villain"],
+  "ponyName": "fluttershy"
  },
  {
   "name": "Moe Fluttershy",
   "gender": "female",
   "race": "pegasus",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-MoeFluttershy.png"
+  "imgSrc": "../art2/Pony-MoeFluttershy.png",
+  "keywords": ["mane 6"],
+  "ponyName": "fluttershy"
  },
  {
   "name": "Pinkamena",
   "gender": "female",
   "race": "earthpony",
   "effect": "special",
-  "imgSrc": "../art2/Pony-Pinkamena.png"
+  "imgSrc": "../art2/Pony-Pinkamena.png",
+  "keywords": ["mane 6"],
+  "ponyName": "pinkie pie"
  },
  {
   "name": "Gypsy Witch Pinkie Pie",
   "gender": "female",
   "race": "earthpony",
   "effect": "special",
-  "imgSrc": "../art2/Pony-GypsyWitchPinkiePie.png"
+  "imgSrc": "../art2/Pony-GypsyWitchPinkiePie.png",
+  "keywords": ["mane 6"],
+  "ponyName": "pinkie pie"
  },
  {
   "name": "Freedom Fighter Pinkie Pie",
   "gender": "female",
   "race": "earthpony",
   "effect": "special",
-  "imgSrc": "../art2/Pony-FreedomFighterPinkiePie.png"
+  "imgSrc": "../art2/Pony-FreedomFighterPinkiePie.png",
+  "keywords": ["mane 6"],
+  "ponyName": "pinkie pie"
  },
  {
   "name": "Cider Season Applejack",
   "gender": "female",
   "race": "earthpony",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-CiderSeasonApplejack.png"
+  "imgSrc": "../art2/Pony-CiderSeasonApplejack.png",
+  "keywords": ["mane 6","apple"],
+  "ponyName": "applejack"
  },
  {
   "name": "Sharpshooter Applejack",
   "gender": "female",
   "race": "earthpony",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-SharpshooterApplejack.png"
+  "imgSrc": "../art2/Pony-SharpshooterApplejack.png",
+  "keywords": ["mane 6","apple"],
+  "ponyName": "applejack"
  },
  {
   "name": "Applejack: the Cutest, Smartest, All-Around-Best Background Pony",
   "gender": "female",
   "race": "earthpony",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-ApplejacktheCutestSmartestAllAroundBestBackgroundPony.png"
+  "imgSrc": "../art2/Pony-ApplejacktheCutestSmartestAllAroundBestBackgroundPony.png",
+  "keywords": ["mane 6","apple"],
+  "ponyName": "applejack"
  },
  {
   "name": "Princess Celestia",
   "gender": "female",
   "race": "alicorn",
   "effect": "search",
-  "imgSrc": "../art2/Pony-PrincessCelestia.png"
+  "imgSrc": "../art2/Pony-PrincessCelestia.png",
+  "keywords": ["elder","princess"],
+  "ponyName": "celestia"
  },
  {
   "name": "Mortal Celestia",
   "gender": "female",
   "race": "unicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-MortalCelestia.png"
+  "imgSrc": "../art2/Pony-MortalCelestia.png",
+  "keywords": ["elder","princess"],
+  "ponyName": "celestia"
  },
  {
   "name": "Princess Luna",
   "gender": "female",
   "race": "alicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-PrincessLuna.png"
+  "imgSrc": "../art2/Pony-PrincessLuna.png",
+  "keywords": ["elder","princess"],
+  "ponyName": "luna"
  },
  {
   "name": "Nightmare Moon",
   "gender": "female",
   "race": "alicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-NightmareMoon.png"
+  "imgSrc": "../art2/Pony-NightmareMoon.png",
+  "keywords": ["elder","princess","villain"],
+  "ponyName": "luna"
  },
  {
   "name": "Big Macintosh",
   "gender": "male",
   "race": "earthpony",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-BigMacintosh.png"
+  "imgSrc": "../art2/Pony-BigMacintosh.png",
+  "keywords": ["apple"],
+  "ponyName": "big macintosh"
  },
  {
   "name": "Braeburn",
   "gender": "male",
   "race": "earthpony",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-Braeburn.png"
+  "imgSrc": "../art2/Pony-Braeburn.png",
+  "keywords": ["apple"],
+  "ponyName": "braeburn"
  },
  {
   "name": "Doctor Whooves",
   "gender": "male",
   "race": "earthpony",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-DoctorWhooves.png"
+  "imgSrc": "../art2/Pony-DoctorWhooves.png",
+  "keywords": ["elder"],
+  "ponyName": "doctor whooves"
  },
  {
   "name": "Road Warrior Spike",
   "gender": "male",
   "race": "earthpony",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-RoadWarriorSpike.png"
+  "imgSrc": "../art2/Pony-RoadWarriorSpike.png",
+  "keywords": ["dragon"],
+  "ponyName": "spike"
  },
  {
   "name": "Derpy Hooves",
   "gender": "female",
   "race": "pegasus",
   "imgSrc": "../art2/Pony-DerpyHooves.png",
-  "special": "Derpy"
+  "effect": "special",
+  "ponyName": "derpy"
  },
  {
   "name": "Granny Smith",
   "gender": "female",
   "race": "earthpony",
   "effect": "search",
-  "imgSrc": "../art2/Pony-GrannySmith.png"
+  "imgSrc": "../art2/Pony-GrannySmith.png",
+  "keywords": ["apple","elder"],
+  "ponyName": "granny smith"
  },
  {
   "name": "Young and Hot Granny Smith",
   "gender": "female",
   "race": "earthpony",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-YoungandHotGrannySmith.png"
+  "imgSrc": "../art2/Pony-YoungandHotGrannySmith.png",
+  "keywords": ["apple"],
+  "ponyName": "granny smith"
  },
  {
   "name": "Starswirl the Bearded",
   "gender": "male",
   "race": "earthpony",
   "effect": "search",
-  "imgSrc": "../art2/Pony-StarswirltheBearded.png"
+  "imgSrc": "../art2/Pony-StarswirltheBearded.png",
+  "keywords": ["elder"],
+  "ponyName": "starswirl"
  },
  {
   "name": "Royal Guard Shining Armor",
   "gender": "male",
   "race": "unicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-RoyalGuardShiningArmor.png"
+  "imgSrc": "../art2/Pony-RoyalGuardShiningArmor.png",
+  "ponyName": "shining armor"
  },
  {
   "name": "B.B.B.F.F. Shining Armor",
   "gender": "male",
   "race": "unicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-BBBFFShiningArmor.png"
+  "imgSrc": "../art2/Pony-BBBFFShiningArmor.png",
+  "ponyName": "shining armor"
  },
  {
   "name": "Princess Cadance",
   "gender": "female",
   "race": "alicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-PrincessCadance.png"
+  "imgSrc": "../art2/Pony-PrincessCadance.png",
+  "keywords": ["princess"],
+  "ponyName": "cadance"
  },
  {
   "name": "Best Foalsitter Cadance",
   "gender": "female",
   "race": "alicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-BestFoalsitterCadance.png"
+  "imgSrc": "../art2/Pony-BestFoalsitterCadance.png",
+  "keywords": ["princess"],
+  "ponyName": "cadance"
  },
  {
   "name": "Bon Bon",
   "gender": "female",
   "race": "earthpony",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-BonBon.png"
+  "imgSrc": "../art2/Pony-BonBon.png",
+  "ponyName": "bon bon"
  },
  {
   "name": "Gilda",
   "gender": "female",
   "race": "pegasus",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-Gilda.png"
+  "imgSrc": "../art2/Pony-Gilda.png",
+  "keywords": ["griffon","villain"],
+  "ponyName": "gilda"
  },
  {
   "name": "Berry Punch",
   "gender": "female",
   "race": "earthpony",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-BerryPunch.png"
+  "imgSrc": "../art2/Pony-BerryPunch.png",
+  "ponyName": "berry punch"
  },
  {
   "name": "Crackle",
   "gender": "female",
   "race": "alicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-Crackle.png"
+  "imgSrc": "../art2/Pony-Crackle.png",
+  "keywords": ["dragon"],
+  "ponyName": "crackle"
  },
  {
   "name": "Mahou Shoujo Derpy",
   "gender": "female",
   "race": "pegasus",
   "effect": "special",
-  "imgSrc": "../art2/Pony-MahouShoujoDerpy.png"
+  "imgSrc": "../art2/Pony-MahouShoujoDerpy.png",
+  "ponyName": "derpy"
  },
  {
   "name": "Mr. Cake",
   "gender": "male",
   "race": "earthpony",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-MrCake.png"
+  "imgSrc": "../art2/Pony-MrCake.png",
+  "ponyName": "mr. cake"
  },
  {
   "name": "Mrs. Cake",
   "gender": "female",
   "race": "earthpony",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-MrsCake.png"
+  "imgSrc": "../art2/Pony-MrsCake.png",
+  "ponyName": "mrs. cake"
  },
  {
   "name": "Octavia",
   "gender": "female",
   "race": "earthpony",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-Octavia.png"
+  "imgSrc": "../art2/Pony-Octavia.png",
+  "ponyName": "octavia"
  },
  {
   "name": "Vinyl Scratch",
   "gender": "female",
   "race": "unicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-VinylScratch.png"
+  "imgSrc": "../art2/Pony-VinylScratch.png",
+  "ponyName": "vinyl scratch"
  },
  {
   "name": "Pony Joe",
   "gender": "male",
   "race": "unicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-PonyJoe.png"
+  "imgSrc": "../art2/Pony-PonyJoe.png",
+  "ponyName": "pony joe"
  },
  {
   "name": "Caramel",
   "gender": "male",
   "race": "earthpony",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-Caramel.png"
+  "imgSrc": "../art2/Pony-Caramel.png",
+  "keywords": ["apple"],
+  "ponyName": "caramel"
  },
  {
   "name": "Cheerilee",
   "gender": "female",
   "race": "earthpony",
   "effect": "special",
-  "imgSrc": "../art2/Pony-Cheerilee.png"
+  "imgSrc": "../art2/Pony-Cheerilee.png",
+  "ponyName": "cheerilee"
  },
  {
   "name": "Lyra",
   "gender": "female",
   "race": "unicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-Lyra.png"
+  "imgSrc": "../art2/Pony-Lyra.png",
+  "ponyName": "lyra"
  },
  {
   "name": "Royal Guard Hank",
   "gender": "male",
   "race": "pegasus",
   "effect": "draw",
-  "imgSrc": "../art2/Pony-RoyalGuardHank.png"
+  "imgSrc": "../art2/Pony-RoyalGuardHank.png",
+  "ponyName": "hank"
  },
  {
   "name": "Changeling",
   "race": "earthpony",
-  "imgSrc": "../art2/Pony-EarthPonyChangeling.png"
+  "imgSrc": "../art2/Pony-EarthPonyChangeling.png",
+  "effect": "changeling",
+  "keywords": ["changeling","villain"],
+  "ponyName": ""
  },
  {
   "name": "Changeling",
   "race": "unicorn",
-  "imgSrc": "../art2/Pony-UnicornChangeling.png"
+  "imgSrc": "../art2/Pony-UnicornChangeling.png",
+  "effect": "changeling",
+  "keywords": ["changeling","villain"],
+  "ponyName": ""
  },
  {
   "name": "Changeling",
   "race": "pegasus",
-  "imgSrc": "../art2/Pony-PegasusChangeling.png"
+  "imgSrc": "../art2/Pony-PegasusChangeling.png",
+  "effect": "changeling",
+  "keywords": ["changeling","villain"],
+  "ponyName": ""
  },
  {
   "name": "Queen Chrysalis",
   "gender": "female",
   "race": "alicorn",
-  "imgSrc": "../art2/Pony-QueenChrysalis.png"
+  "imgSrc": "../art2/Pony-QueenChrysalis.png",
+  "effect": "changeling",
+  "keywords": ["changeling","villain"],
+  "ponyName": "chrysalis"
  },
  {
   "name": "Zecora",
   "gender": "female",
   "race": "earthpony",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-Zecora.png"
+  "imgSrc": "../art2/Pony-Zecora.png",
+  "keywords": ["zebra"],
+  "ponyName": "zecora"
  },
  {
   "name": "The Great and Powerful Trixie",
   "gender": "female",
   "race": "unicorn",
   "effect": "copy",
-  "imgSrc": "../art2/Pony-TheGreatandPowerfulTrixie.png"
+  "imgSrc": "../art2/Pony-TheGreatandPowerfulTrixie.png",
+  "keywords": ["villain"],
+  "ponyName": "trixie"
  },
  {
   "name": "Kefentse",
   "gender": "female",
   "race": "alicorn",
   "effect": "copy",
-  "imgSrc": "../art2/Pony-Kefentse.png"
+  "imgSrc": "../art2/Pony-Kefentse.png",
+  "keywords": ["oc"],
+  "ponyName": "kefentse"
  },
  {
   "name": "Discord",
   "gender": "male",
   "race": "alicorn",
   "effect": "special",
-  "imgSrc": "../art2/Pony-Discord.png"
+  "imgSrc": "../art2/Pony-Discord.png",
+  "keywords": ["draconequus","elder","villain"],
+  "ponyName": "discord"
  },
  {
   "name": "Flim & Flam",
   "gender": "male",
   "race": "unicorn",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-FlimFlam.png"
+  "imgSrc": "../art2/Pony-FlimFlam.png",
+  "keywords": ["villain"],
+  "ponyName": ["flam","flim"]
  },
  {
   "name": "Aloe & Lotus",
   "gender": "female",
   "race": "earthpony",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-AloeLotus.png"
+  "imgSrc": "../art2/Pony-AloeLotus.png",
+  "ponyName": ["aloe","lotus"]
  },
  {
   "name": "Smarty Pants",
   "gender": "female",
   "race": "earthpony",
   "effect": "search",
-  "imgSrc": "../art2/Pony-SmartyPants.png"
+  "imgSrc": "../art2/Pony-SmartyPants.png",
+  "keywords": ["object"],
+  "ponyName": "smarty pants"
  },
  {
   "name": "Bulk Biceps",
   "gender": "male",
   "race": "pegasus",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-BulkBiceps.png"
+  "imgSrc": "../art2/Pony-BulkBiceps.png",
+  "ponyName": "bulk biceps"
  },
  {
   "name": "The Wonderbolts",
   "gender": "malefemale",
   "race": "pegasus",
-  "effect": "hermaphrodite",
-  "imgSrc": "../art2/Pony-TheWonderbolts.png"
+  "imgSrc": "../art2/Pony-TheWonderbolts.png",
+  "ponyName": "the wonderbolts"
  },
  {
   "name": "Prince Blueblood",
   "gender": "male",
   "race": "unicorn",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-PrinceBlueblood.png"
+  "imgSrc": "../art2/Pony-PrinceBlueblood.png",
+  "keywords": ["villain"],
+  "ponyName": "blueblood"
  },
  {
   "name": "Iron Will",
   "gender": "male",
   "race": "earthpony",
   "effect": "swap",
-  "imgSrc": "../art2/Pony-IronWill.png"
+  "imgSrc": "../art2/Pony-IronWill.png",
+  "keywords": ["minotaur"],
+  "ponyName": "iron will"
  },
  {
   "name": "Tom",
   "gender": "male",
   "effect": "replace",
-  "imgSrc": "../art2/Pony-Tom.png"
+  "imgSrc": "../art2/Pony-Tom.png",
+  "keywords": ["object"],
+  "ponyName": "tom"
  },
  {
   "name": "Bloomberg",
   "gender": "male",
   "effect": "newGoal",
-  "imgSrc": "../art2/Pony-Bloomberg.png"
+  "imgSrc": "../art2/Pony-Bloomberg.png",
+  "keywords": ["object","apple"],
+  "ponyName": "bloomberg"
  },
  {
   "name": "So THAT'S What That Does!",

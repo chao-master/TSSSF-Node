@@ -48,17 +48,22 @@ CurrentGoals.prototype.GOAL_LIMIT = 3;
 CurrentGoals.prototype.cardPlayed = function(card){
   this.turnsPlays.push(new CardPlayRecord("play",card));
   if(card instanceof cards.ShipCard){
-    var shipAt = card.position,
-        pony1At = shipAt.slice(0,2),
-        pony2At = shipAt.slice(0,2),
-        grid = this.game.grid;
-    if(shipAt[2] == "down"){
-      pony2At[1]++;
-    } else {
-      pony2At[0]++;
-    }
-    this.turnsPlays.push(new ShipRecord("play",grid.getCard(pony1At),grid.getCard(pony2At),shipAt));
+    this.formShip(card);
   }
+};
+
+CurrentGoals.prototype.breakupShip = function(shipCard){
+  var ponies = shipCard.getPonies();
+  this.turnsPlays.push(new ShipRecord("destroy",ponies[0],ponies[1],shipCard));
+};
+
+CurrentGoals.prototype.formShip = function(shipCard){
+  var ponies = shipCard.getPonies();
+  this.turnsPlays.push(new ShipRecord("play",ponies[0],ponies[1],shipCard));
+};
+
+CurrentGoals.prototype.markedSwapped = function(ponyCard){
+  this.turnsPlays.push(new CardPlayRecord("swapped",ponyCard));
 };
 
 CurrentGoals.prototype.onTurnBegin = function(){

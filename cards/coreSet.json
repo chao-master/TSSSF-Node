@@ -248,7 +248,8 @@
   "race": "pegasus",
   "imgSrc": "../art2/Pony-DerpyHooves.png",
   "effect": "special",
-  "ponyName": "derpy"
+  "ponyName": "derpy",
+  "special":"Derpy"
  },
  {
   "name": "Granny Smith",

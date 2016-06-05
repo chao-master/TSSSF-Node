@@ -174,7 +174,7 @@ function cardFilter(filterObject){
         case "count":
           continue; //Ignore count, it's not used here
         default:
-          console.warning(filterParts[i]+" is not one of the known filter types");
+          console.warn(filterParts[i]+" is not one of the known filter types");
           continue;
       }
       if (!Array.isArray(cardValue)){

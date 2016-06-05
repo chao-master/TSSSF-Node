@@ -89,6 +89,14 @@ handlers.playCards = function(data){
     var card = game.cardList[n.id],
         pos = n.position;
     if (card instanceof GoalCard){
+      if(typeof pos == 'string'){
+        //Card has been added to someone's hand
+        if(pos == ourId){
+          hand.addCard(game.cardList[card]);
+          showError("Goal "+game.cardList[card].name+" completed [click to dismiss]");
+        }
+        pos = null; //mark card for removal from list
+      }
       if(pos === null){
         var rId = goals.indexOf(card);
         if(rId < 0){
